@@ -40,10 +40,44 @@ class UserAdmin(DefaultUserAdmin):
         return super(UserAdmin, self).change_view(*args, **kwargs)
 
 
+class UserProxy(User):
+    class Meta:
+        proxy = True
+
+class UserProxyAdmin(admin.ModelAdmin):
+    verbose_name = "New Admin Model"
+    inlines = [UserProfileInline, TokenInline]
+    list_display = ('username', 'email', 'first_name', 'last_name', 'is_active')
+    action = ("set_active", "set_deactive")
+
+    def add_view(self, *args, **kwargs):
+        self.inlines = []
+        return super(UserAdmin, self).add_view(*args, **kwargs)
+
+    def change_view(self, *args, **kwargs):
+        self.inlines = [UserProfileInline, TokenInline]
+        return super(UserAdmin, self).change_view(*args, **kwargs)
+
+    def set_active(self, request, queryset):
+        for query in queryset:
+            query.is_active = True
+            query.save()
+
+    set_active.short_description = "Set user active"
+
+    def set_deactive(self, request, queryset):
+        for query in queryset:
+            query.is_active = False
+            query.save()
+
+    set_deactive.short_description = "Set user deactive"
+
+
 site.unregister(User)
 site.unregister(Group)
 site.register(User, UserAdmin)
 site.register(Group, GroupAdmin)
+site.register(UserProxy, UserProxyAdmin)
 
 
 class CompanyUserInline(admin.TabularInline):
