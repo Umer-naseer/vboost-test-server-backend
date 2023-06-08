@@ -1,0 +1,22 @@
+{% if packages %}
+    <table class="table" style="margin-bottom: 18px; width: 100%">
+        <tr>
+            {% for package in packages %}
+                <td style="text-align: center">
+                    <a href="{{ package.link }}">
+                        <img style="width: 150px" src="{{ package.cover.get_masked_thumbnail().url }}" alt="" />
+                    </a>
+                </td>
+            {% endfor %}
+        </tr>
+        <tr>
+            {% for package in packages %}
+                <td style="text-align: center; font-size: small">
+                    {% if package.contact.name != "Select Signature" %}By {{ package.contact }}{% endif %}
+                    For {{ package.target }}<br/>
+                    {{ package.video_views }} view{{ 's' if package.video_views != 1 else '' }}
+                </td>
+            {% endfor %}
+        </tr>
+    </table>
+{% endif %}

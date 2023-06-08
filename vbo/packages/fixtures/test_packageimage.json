@@ -1,0 +1,67 @@
+[
+    {
+        "model": "clients.company",
+        "pk": 1,
+        "fields": {
+            "name": "Company",
+            "key": "first"
+        }
+    },
+
+    {
+        "model": "clients.campaign",
+        "pk": 11,
+        "fields": {
+            "name": "Empty campaign",
+            "key": "empty",
+            "company": 1,
+            "lft": 0,
+            "rght": 0,
+            "tree_id": 0,
+            "level": 0
+        }
+    },
+
+    {
+        "model": "clients.contact",
+        "pk": 111,
+        "fields": {
+            "name": "A person",
+            "company": 1
+        }
+    },
+
+    {
+        "model": "clients.package",
+        "pk": 1111,
+        "fields": {
+            "company": 1,
+            "campaign": 11,
+            "contact": 111,
+            "submitted_time": "2013-09-13 12:00:00"
+        }
+    },
+
+    {
+        "model": "clients.packageimage",
+        "pk": 1,
+        "fields": {
+            "package": 1111,
+            "image": "testing/elephant.jpg",
+            "inline_ordering_position": 1,
+            "created": "2013-09-13 12:00:00"
+        }
+    },
+
+    {
+        "model": "clients.packageimage",
+        "pk": 2,
+        "fields": {
+            "package": 1111,
+            "image": "testing/elephant.jpg",
+            "inline_ordering_position": 1,
+            "created": "2013-09-13 12:00:00",
+            "angle": 90
+        }
+    }
+]

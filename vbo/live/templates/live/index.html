@@ -1,0 +1,202 @@
+{% extends 'live/base.html' %}
+
+{% load thumbnail static %}
+
+{% block content %}
+
+<div class="main-featured">
+    <div class="wrap cf">
+        <div class="row">
+            <div class="slider flexslider col-8">
+                <ul class="slides">
+                    {% with package=top_viewed_package_previous %}
+                        {% thumbnail package.thumbnail.image "702x425" crop="faces" overlay=package.company.get_stamp_path as thumb %}
+                            <a href="{{ package.get_landing_page_url }}" class="image-link" target="_blank">
+                                <img width="702" height="336" src="{{ thumb.url }}"/>
+                            </a>
+                        {% endthumbnail %}
+                        <a href="{{ package.get_landing_page_url }}" class="cat cat-title cat-26">Top Viewed Last Month</a>
+                        <div class="caption">
+                            <time class="the-date">{{ package.last_mailed|default:"" }}</time>
+                            <h3><a href="{{ package.get_landing_page_url }}" title="{{ package.company }}" target="_blank">{{ package.company }}</a></h3>
+                        </div>
+                    {% endwith %}
+                </ul>
+            </div>
+            <div class="blocks col-4">
+                <article class="large">
+                    {% with package=top_viewed.month %}
+                        {% if package %}
+                            <span class="cat cat-title cat-20">
+                                <a href="{{ package.get_landing_page_url }}">Top Viewed This Month</a>
+                            </span>
+                            {% thumbnail package.thumbnail.image "351x273" crop="faces" overlay=package.company.get_stamp_path as thumb %}
+                                <a href="{{ package.get_landing_page_url }}" class="image-link" target="_blank">
+                                    <img width="351" height="185" src="{{ thumb.url }}" class="attachment-main-block wp-post-image" alt="" title="" />
+                                </a>
+                            {% endthumbnail %}
+                            <h3><a href="{{ package.get_landing_page_url }}" target="_blank">{{ package.company }}</a></h3>
+                        {% endif %}
+                    {% endwith %}
+                </article>
+
+                <article class="small">
+                    {% with package=top_viewed_packages_last_week|first %}
+                        {% if package %}
+                            {% thumbnail package.thumbnail.image "168x139" crop="faces" overlay=package.company.get_stamp_path as thumb %}
+                                <a href="{{ package.get_landing_page_url }}" class="image-link" target="_blank">
+                                    <img width="168" height="139" src="{{ thumb.url }}" class="attachment-slider-small wp-post-image" />
+                                </a>
+                            {% endthumbnail %}
+                            <h3><a href="{{ package.get_landing_page_url }}" target="_blank">This week</a></h3>
+                        {% endif %}
+                    {% endwith %}
+                </article>
+
+                <article class="small last">
+                    {% with package=top_viewed_packages_last_year|first %}
+                        {% if package %}
+                            {% thumbnail package.thumbnail.image "168x139" crop="faces" overlay=package.company.get_stamp_path as thumb %}
+                                <a href="{{ package.get_landing_page_url }}" class="image-link" target="_blank">
+                                    <img width="168" height="139" src="{{ thumb.url }}" class="attachment-slider-small wp-post-image" />
+                                </a>
+                            {% endthumbnail %}
+                            <h3><a href="{{ package.get_landing_page_url }}" title="" target="_blank">This year</a></h3>
+                        {% endif %}
+                    {% endwith %}
+                </article>
+            </div>
+        </div>
+        <!-- .row -->
+    </div>
+    <!--  .wrap  -->
+</div>
+
+<div class="main wrap cf">
+    <div class="row">
+        <div class="col-8 main-content">
+            <div id="post-425" class="post-425 page type-page status-publish page-content">
+
+                {% if feeds.myshow %}
+                    <section class="news-focus">
+                        <div class="section-head heading cat-16">
+                            <a href="#" title="Entertainment"> My show</a>
+                        </div>
+                        <div class="row news-0 highlights">
+                            <div class="column half blocks">
+                                <article itemscope itemtype="http://schema.org/Article">
+                                    {% with mycustomer=feeds.myshow|first %}
+                                        <a href="{{ mycustomer.get_landing_page_url }}" target="_blank" title="Make The Perfect Dessert in Ten Mins" class="image-link" itemprop="url">
+                                            {% thumbnail mycustomer.thumbnail.image "325x264" crop="faces" overlay=mycustomer.company.get_stamp_path as thumb %}
+                                                <img width="325" height="264"
+                                                     src="{{ thumb.url }}"
+                                                     class="image wp-post-image" alt="92334668@N07-11368365445_1392cee23c_o"
+                                                     itemprop="image"/>
+                                                <span class="post-format-icon audio"><i class="fa fa-music"></i></span>
+                                            {% endthumbnail %}
+                                        </a>
+                                        <div class="meta">
+                                            <time datetime="{{ mycustomer.last_mailed|default:" " }}">{{ mycustomer.last_mailed|default:"NOT MAILED" }}</time>
+                                        </div>
+                                        {% if feeds.contact.name %}
+                                            <h2 itemprop="name headline">
+                                                {{ mycustomer.contact.name|default:"Scott Wilbers" }}
+                                            </h2>
+                                        {% endif %}
+                                        <div class="excerpt">
+                                            <p>{{ mycustomer.company }}</p>
+                                        </div>
+                                    {% endwith %}
+                                </article>
+                            </div>
+                            <ul class="column half block posts-list thumb">
+                                {% for customer in feeds.myshow|slice:'1:4' %}
+                                    <li>
+                                        <a href="{{ mycustomer.get_landing_page_url }}" target="_blank" title="Make The Perfect Dessert in Ten Mins" class="image-link" itemprop="url">
+                                            {% thumbnail customer.thumbnail.image "325x264" crop="faces" overlay=customer.company.get_stamp_path as thumb %}
+                                                <img width="110" height="69"
+                                                    src="{{ thumb.url }}"
+                                                    class="image wp-post-image" alt="92334668@N07-11368365445_1392cee23c_o"
+                                                    itemprop="image"/>
+                                                <span class="post-format-icon audio"><i class="fa fa-music"></i></span>
+                                            {% endthumbnail %}
+                                        </a>
+                                        <div class="content">
+                                            <time datetime="{{ customer.last_mailed|default:" " }}">{{ customer.last_mailed|default:"NOT MAILED" }}</time>
+                                            <a href="{{ customer.get_landing_page_url }}" target="_blank" title="Photography Tips From Wai Su">
+                                                {{ customer.contact.name }}
+                                            </a>
+                                        </div>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </section>
+                {% endif %}
+                <section class="related-posts">
+                    <h3 class="section-head">Recent Videos</h3>
+                    <ul class="highlights-box three-col related-posts">
+                        {% for package in packages %}
+                            <li class="highlights column one-third">
+                                <article>
+                                    {% thumbnail package.thumbnail.image "214x140" crop="faces" overlay=package.company.get_stamp_path as thumb %}
+                                        <a target="_blank" href="{{ package.get_landing_page_url }}" title="" class="image-link">
+                                            <img src="{{ thumb.url|default:"{% static 'live/img/5362055586_611f9563d8_b-351x185.jpg' %}" }}" class="image wp-post-image no-display appear" alt="{{ package.contact.name|default:"Scott Wilbers" }}" title="{{ package.contact.name|default:"Scott Wilbers" }}" height="140" width="214">
+                                        </a>
+                                    {% endthumbnail %}
+                                    <div class="meta" style="margin-top: 0px;">
+                                        <time datetime="{{ package.last_mailed|default:" " }}">{{ package.last_mailed|default:"NOT MAILED" }}</time>
+                                        <span class="comments">
+                                            <i class="fa fa-comments-o"></i>
+                                            {{ package.shares }}
+                                        </span>
+                                    </div>
+                                    <h2><a href="{{ package.get_landing_page_url }}" target="_blank" title="">{{ package.contact.name|default:"Scott Wilbers" }}</a></h2>
+                                </article>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                    {% if packages.has_other_pages %}
+                        <div class="main-pagination">
+                            {% if packages.has_previous %}
+                                {% if packages.previous_page_number == 1 %}
+                                    <a class="page-numbers" href="?page=1">1</a>
+                                {% else %}
+                                    <a class="back page-numbers" href="?page={{ packages.previous_page_number }}"><span class="visuallyhidden">Back</span><i class="fa fa-angle-left"></i></a>
+                                    <a class="page-numbers" href="?page=1">1</a>
+                                    <span class="page-numbers dots">…</span>
+                                    <a class="page-numbers" href="?page={{ packages.previous_page_number }}">{{ packages.previous_page_number }}</a> {% endif %} {% endif %}
+                                    <span class="page-numbers current">{{ packages.number }}</span> {% if packages.has_next %} {% if packages.next_page_number == paginator.num_pages %}
+                                    <a class="page-numbers" href="?page={{ packages.next_page_number }}">{{ packages.next_page_number }}</a> {% else %}
+                                    <a class="page-numbers" href="?page={{ packages.next_page_number }}">{{ packages.next_page_number }}</a>
+                                    <span class="page-numbers dots">…</span>
+                                    <a class="page-numbers" href="?page={{ paginator.num_pages }}">{{ paginator.num_pages }}</a>
+                                    <a class="next page-numbers" href="?page={{ packages.next_page_number }}">
+                                    <span class="visuallyhidden">Next</span><i class="fa fa-angle-right"></i></a>
+                                {% endif %}
+                            {% endif %}
+                        </div>
+                    {% endif %}
+                </section>
+                <div class="row cf builder">
+                    <div class="column builder one-1">
+                        <!--
+                            <div class="adwrap-widget">
+
+                                <img src="http://theme-sphere.com/smart-mag/wp-content/uploads/2014/01/ad-block-leaderboard.png" alt="Leaderboard Ad" />
+                            </div>
+                            -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <aside class="col-4 sidebar">
+            <ul>
+                {% include "live/include/right_tops.html" %}
+            </ul>
+        </aside>
+    </div>
+    <!-- .row -->
+</div>
+<!-- .main -->
+{% endblock %}

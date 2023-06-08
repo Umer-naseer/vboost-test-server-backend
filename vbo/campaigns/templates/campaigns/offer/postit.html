@@ -1,0 +1,72 @@
+{# This template can be used both in webpages and emails. For the latter, remember to set this flag. #}
+{% if not email %}
+<script>
+  $(function() {
+    var link = $('#open-dialog');
+    
+    if (!link.attr('href')) {
+      link.magnificPopup({
+        items: [
+          {
+            src: $('#dialog'),
+            type: 'inline',
+          }
+        ],
+      });
+    }
+  });
+</script>
+{% endif %}
+
+<style>
+  .post-it {
+    background: url(http://vboostlive.com/media/campaigns/media/post-it-transparent_4.png) no-repeat top center;
+    height:350px;
+    padding-top:90px;
+  }
+  
+  .post-it-title {
+    font-size: 18pt;
+    font-weight: bold;
+    color: #373f42;
+    text-align: center;
+    padding-right: 10px;
+  }
+  
+  .post-it-red {
+    color: red;
+    font-size: 48px;
+    line-height: 64px;
+    text-align: center;
+  }
+  
+  .post-it-note {
+    text-align: center;
+    padding-left: 10px;
+    font-size: 24px;
+  }
+  
+  {% if email %}
+  .post-it-title {
+    font-size: 12pt;
+  }
+  
+  .post-it-red {
+    font-size: 32px;
+  }
+  
+  .post-it-note {
+    font-size: 16px;
+  }
+  {% endif %}
+</style>
+<div class="post-it">
+  <div class="post-it-title">{{ offer.title }}</div>
+  <div class="post-it-red">{{ offer.subtitle }}</div>
+  <div class="post-it-note">
+    {{ offer.text }}<br/>
+    {% if not email %}
+        <a id="open-dialog" href="{% if offer.link_url %}{{ go }}/{{ package.landing_page_key }}/offer_{{ offer.target_audience }}/{% endif %}">{{ offer.link_text|default:"Go" }} »</a>
+    {% endif %}
+  </div>
+</div>

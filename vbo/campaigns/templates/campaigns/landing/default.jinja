@@ -1,0 +1,1044 @@
+<!DOCTYPE HTML>
+{% load thumbnail %}
+{% load static %}
+{% with player="XLKdrrPp" static="/static/campaigns/landing/default" go="https://vboostlive.com/go" %}
+
+<!--
+    Halcyonic 3.1 by HTML5 UP
+    html5up.net | @n33co
+    Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+    <head>
+		<title>{{ package.campaign.landing_title|default:package.company.name }}</title>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<meta name="description" content="" />
+		<meta name="keywords" content="{% if package.geo_keywords and package.product_keywords %}{{ package.geo_keywords }}, {{ package.product_keywords }}{% else %}{{ package.company.keywords1 }}, {{ package.company.keywords2 }}{% endif %}" />
+
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta property="og:title" content="{{ package.campaign.sharing_title|default:"My New Car!" }}" />
+		<meta property="og:description" content="{{ package.campaign.sharing_description|default:"&nbsp; " }}" />
+		<meta property="og:type" content="video" />
+
+		{% if flags.photo %}
+		  {% thumbnail package.cover.image.path "455x331" crop="faces" overlay=package.company.get_stamp_path as thumb %}
+			<meta property="og:image" content="{{ thumb.url }}" />
+		  {% endthumbnail %}
+		{% else %}
+		  <meta property="og:image" content="{{ package.cover.get_masked_thumbnail.url }}" />
+		  <!--meta property="og:url" content="{{ package.get_landing_page_url }}" /-->
+		  <meta property="og:video" content="{{ package.video_url }}" />
+		  <meta property="og:video:type" content="video/mp4" />
+		{% endif %}
+
+		<meta property="og:site_name" content="Powered by Vboost - The Viral Marketing Company" />
+
+		{% if package.campaign.social_site %}
+		  <meta property="article:author" content="{{ package.campaign.social_site }}" />
+		  <meta property="article:publisher" content="{{ package.campaign.social_site }}" />
+		{% endif %}
+
+		<script>
+
+			window._skel_config = {
+				preset: 'standard',
+				prefix: '/static/campaigns/landing/default/css/style',
+				resetCSS: true,
+				breakpoints: {
+					'1000px': {
+						grid: {
+							gutters: 25
+						}
+					}
+				}
+			};
+
+			window._skel_panels_config = {
+				preset: 'standard'
+			};
+
+		</script>
+
+<script type='text/javascript' src='https://platform-api.sharethis.com/js/sharethis.js#property=635c188ef2ceb00013984071&product=sop' async='async'></script>
+
+		<script src="{{ static }}/js/jquery.min.js"></script>
+		<script src="{{ static }}/js/jquery-ui.js"></script>
+		<script src="{{ static }}/js/config.js"></script>
+		<script src="{{ static }}/js/skel.min.js"></script>
+		<script src="{{ static }}/js/skel-panels.min.js"></script>
+		<script src="{{ static }}/popup/jquery.magnific-popup.min.js"></script>
+{% comment %}
+		<script src="/static/mediaelement/mediaelement-and-player.min.js"></script>
+		<link rel="stylesheet" href="/static/mediaelement/mediaelementplayer.min.css" />
+{% endcomment %}
+		<noscript>
+		  <link rel="stylesheet" href="{{ static }}/css/skel-noscript.css" />
+		  <link rel="stylesheet" href="{{ static }}/css/style.css" />
+		  <link rel="stylesheet" href="{{ static }}/css/style-desktop.css" />
+		  <link rel="stylesheet" href="{{ static }}/css/jquery-ui.css" />
+		</noscript>
+
+		<link rel="stylesheet" href="{{ static }}/popup/magnific-popup.css" />
+
+		<!--[if lte IE 9]><link rel="stylesheet" href="{{ static }}/css/ie9.css" /><![endif]-->
+		<!--[if lte IE 8]><script src="{{ static }}/js/html5shiv.js"></script><![endif]-->
+
+		<script>
+			window.package_id = {{ package.id }};
+		</script>
+<style>
+.ad-container {
+    /*width: 450px;*/
+    margin: 30px auto 0;
+    color: #fff;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.addthis_toolbox .share-title {
+    float: left;
+    margin: 0 20px 0 2;
+}
+
+.quote-list img.star {
+    width: 16px !important;
+}
+
+.quote-list span {
+    line-height: 16px !important;
+    vertical-align: middle;
+}
+
+.photo-only {
+    text-align: center;
+}
+
+.photo-only div {
+    text-align: left;
+}
+
+
+/* Photo gallery */
+
+.photo-note {
+    width: 100%;
+    margin-left: 5px;
+    margin-top: 15px;
+    line-height: 18px;
+    clear: both;
+}
+
+.photo-note img {
+    float: left;
+    margin-right: 4px;
+}
+
+#gallery-trigger {
+    cursor: pointer;
+}
+
+#photo-gallery {
+    position: relative;
+    background: #FFF;
+    padding: 20px;
+    width: auto;
+    max-width: 500px;
+    margin: 20px auto;
+}
+
+#photo-gallery img {
+    max-width: 90%;
+}
+
+</style>
+ <script>
+    const ShareFunction = () => {
+      const icons = $(".sharethis-inline-share-buttons>div");
+      if (!icons.length) {
+        return setTimeout(() => ShareFunction(), 500)
+      }
+
+      $("#st-1").prepend($(`<span class="share-title">Share Video:</span>`))     
+      $("#st-2").prepend($(`<span class="share-title">Share Photo:</span>`))
+      $(icons).css("display", "inline-block")
+    
+      $(icons).each(function() {
+        $(this).on("click", function() {
+          const service = $(this).data('network')
+          $.post('/api/v1/events/?format=json', {
+            package: window.package_id,
+            type: 'share',
+            service: service,
+            description: 'Shared via ' + service + '.'
+          });
+        })
+      })
+    }
+    ShareFunction()
+function on_desktop() {
+    // If photo is aligned with video
+    var eps = 10,
+        video = $('a > [id^=botr]'),
+        photo = $('.photo');
+
+    return (Math.abs(photo.offset().top - video.offset().top) < eps);
+};
+
+function getCookie(name) {
+    var cookieValue = null;
+    if (document.cookie && document.cookie != '') {
+        var cookies = document.cookie.split(';');
+        for (var i = 0; i < cookies.length; i++) {
+            var cookie = jQuery.trim(cookies[i]);
+            // Does this cookie string begin with the name we want?
+            if (cookie.substring(0, name.length + 1) == (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+};
+
+
+function csrfSafeMethod(method) {
+    // these HTTP methods do not require CSRF protection
+    return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+};
+
+
+function video_event(event_type, current_time) {
+    var delta = current_time - playback.current_time;
+
+    if ((delta > 0) && (delta < 1)) {
+        // Okay, delta is eligible. Add it.
+        playback.duration += delta;
+    }
+
+    console.log(event_type, playback.duration);
+
+    playback.current_time = current_time;
+
+    if ((event_type != 'timeupdate') || (playback.previous_duration == null) || ((playback.duration - playback.previous_duration) > 3)) {
+        if ((playback.event_id) && (playback.event_id != 'waiting')) {
+            $.ajax({
+                method: 'PATCH',
+                url: '/api/v1/events/' + playback.event_id + '/?format=json',
+                data: {
+                    type: 'video',
+                    duration: Math.round(playback.duration)
+                }
+            });
+        } else if (playback.event_id != 'waiting') {
+            playback.event_id = 'waiting';
+            $.post('/api/v1/events/?format=json', {
+                package: package_id,
+                type: 'video',
+                duration: Math.round(playback.duration),
+            }, function(response) {
+                playback.event_id = response.id;
+            });
+        }
+
+        playback.previous_duration = playback.duration;
+    }
+
+}
+
+function handle_mediaelement() {
+    window.player = document.getElementById('first_player_play_html5_api')
+    media_element = document.getElementById('first_player_play_html5_api')
+    var duration = 0,
+    last_duration = null,
+    current_time = 0,
+    previous_time = 0;
+
+    window.event_id = null;
+
+    fadeOutStartVolume = 0;
+
+    function listen(event) {
+        video_event(event.type, media_element.currentTime);
+    }
+
+    media_element.addEventListener('play', listen);
+    media_element.addEventListener('pause', listen);
+    media_element.addEventListener('ended', listen);
+    media_element.addEventListener('timeupdate', listen);
+
+    media_element.addEventListener('timeupdate', function(e) {
+    if (media_element.duration && !fadeOutStartVolume) {
+        var timeLeft = media_element.duration - media_element.currentTime;
+        if (timeLeft <= 2.0) {
+            fadeOutStartVolume = media_element.volume;
+           $(media_element).animate({volume: 0.0}, timeLeft * 1000, function() {
+            media_element.volume = fadeOutStartVolume;
+                fadeOutStartVolume = 0;
+            });
+                    }
+         }
+     });
+
+     media_element.addEventListener('ended', function(e) {
+        // Revert to the poster image when ended
+     });
+
+}
+
+
+function handle_jwplayer() {
+    var player = jwplayer(),
+        video = $('a > [id^=botr]'),
+        photo = $('.photo');
+
+    function adjust(height) {
+        //var height = height // + (420 - 378);
+        if (on_desktop()) {
+            // We are on desktop.
+            // Match photo height with video height
+            photo.css('height', height + 'px')
+                .css('width', 'auto');
+        } else {
+            // We are on a mobile device.
+            photo.css('height', 'auto');
+        }
+    };
+
+    player.onReady(function() {
+        adjust(player.getHeight());
+    })
+
+    player.onResize(function(size) {
+        adjust(size.height);
+    });
+
+    function listen(event) {
+        var event_type;
+
+        if (event.newstate == 'PLAYING') {
+            event_type = 'play';
+        } else if (event.oldstate == 'PLAYING') {
+            event_type = 'pause';
+        } else if (event.type == 'jwplayerMediaTime') {
+            event_type = 'timeupdate';
+        } else if (event.type == 'jwplayerMediaComplete') {
+            event_type = 'pause';
+        } else {
+            event_type = event.type;
+        }
+
+        video_event(
+            event_type,
+            event.position ? event.position : window.current_time
+        );
+    }
+
+    player.onTime(listen);
+    player.onPlay(listen);
+    player.onPause(listen);
+    player.onComplete(listen);
+    player.onIdle(listen);
+}
+
+$(function() {
+    window.playback = {
+        current_time: 0,
+        duration: 0,
+        event_id: null
+    };
+
+    $.ajaxSetup({
+        beforeSend: function(xhr, settings) {
+            if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+                xhr.setRequestHeader("X-CSRFToken", getCookie('csrftoken'));
+            }
+        }
+    });
+
+    if (window.jwplayer) {
+        handle_jwplayer();
+    } else {
+                // setTimeout(handle_mediaelement, 3000);
+                // setTimeout(handle_mediaelement, 2000);
+                // setTimeout(handle_mediaelement, 1000);
+        handle_mediaelement();
+      
+    }
+
+    window.addthis.addEventListener('addthis.menu.share', function(evt) {
+        var service = evt.data.service;
+        $.post('/api/v1/events/?format=json', {
+            package: window.package_id,
+            type: 'share',
+            service: service,
+            description: 'Shared via ' + service + '.'
+        });
+    });
+
+    $('#gallery-trigger').click(function() {
+        $.magnificPopup.open({
+            items: {
+                src: '#photo-gallery'
+            },
+            type: 'inline'
+        });
+    });
+});
+
+</script>
+	</head>
+    <body>
+        <script type="text/javascript">
+              var _gaq = _gaq || [];
+              _gaq.push(['_setAccount', '{{ package.campaign.google_analytics }}']);
+              _gaq.push(['_trackPageview', '{{ package.get_landing_page_url }}']);
+
+              // Tracking page hash
+             (function() {
+              var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+          })();
+
+        </script>
+
+		<!-- {{ campaign.media }} -->
+
+        <div id="body-wrapper" style="background-image: url('{% if campaign_media.background %}{{ campaign_media.background }}{% else %}{{ static }}/images/background.jpg{% endif %}');background-size:cover;">
+            <!-- Header -->
+            <div id="header-wrapper" style="background-image: none; background-color:transparent;">
+                <header id="header" class="container">
+                    <div class="row">
+                        <div class="12u">
+                            <!-- Logo!!! -->
+                            <h1><a href="" id="logo">{{ package.campaign.landing_title }}</a></h1>
+                            <!-- Nav -->
+                            <nav id="nav">
+								<a href="#review_block">{% if review_link and review_link.title %}{{ review_link.title }}{% else %}Review us{% endif %}</a>
+                                <a href="{% if website_link %}{{ VBOOSTLIVE_URL }}/go/{{ package.landing_page_key }}/{{ website_link.id }}{%else %}javascript:alert('Sorry, no data now.'){% endif %}">{% if website_link and website_link.title %}{{ website_link.title }}{% else %}Visit Website{% endif %}</a>
+                                <a href="{% if social_link %}{{ VBOOSTLIVE_URL }}/go/{{ package.landing_page_key }}/{{ social_link.id }}{%else %}javascript:alert('Sorry, no data now.'){% endif %}">{% if social_link and social_link.title %}{{ social_link.title }}{% else %}Like Us{% endif %}</a>
+                            </nav>
+                        </div>
+                    </div>
+                </header>
+            </div>
+            <!-- Features -->
+            <div id="features-wrapper" style="background-image: none; background-color:transparent;">
+                <div id="features">
+                    <div class="container">
+                        <div class="row">
+                            {% if not flags.photo %}
+                                <div class="6u">
+									<!-- Contacts -->
+									<div id="sales-rep-name">
+										Contact: {{ package.contact.name }} <strong>({{ package.contact.phone }})</strong>
+										{% comment %}
+										{% if package.product_keywords and package.geo_keywords %}, your {{ package.geo_keywords_list|first }} specialist in {{ package.get_product_keywords_display }}.{% endif %}
+										{% endcomment %}
+									</div>
+									<!-- Feature #1 -->
+                                    <section>
+                                        <h2>Play Slideshow ({{ plain_images|length|add:"1" }} Photos)</h2>
+                                        <a class="bordered-feature-image" {% if player == "XLKdrrPp" and package.video_key %} style="padding-bottom: 0"{% endif %}>
+
+                                         {% if package.video_key %}
+                                            <script type="text/javascript" src="https://content.jwplatform.com/players/{{ package.video_key }}-{{ player }}.js"></script>
+                                         {% else %}
+                                            {% thumbnail thumb.image "640x360" crop="faces" as poster %}
+{% comment %}
+                 <video src="{{ package.video_url }}" poster="{{ poster.url }}" controls />
+
+{% endcomment %}
+             
+<script type="text/javascript" src="https://player.idomoo.com/latest/main.js"></script>
+<div id="first_player"></div>
+<script>
+var player_options_first = {
+    size: "sd",
+    src: "{{package.video_url}}",
+    interactive: true,
+    autoplay: false,
+    mute: false,
+    idm_logo: false,
+    show_customise: 'on_start',
+    share_button: false,
+    fade_control_bar_on_pause: false,
+    click_to_pause: 'enable',
+    disabled_control_bar: false,
+    opening_image: {image_url:'{{poster.url}}' },
+    closing_image: {image_url:'{{poster.url}}'}
+};
+idmPlayerCreate(player_options_first, "first_player");
+</script>
+
+                              {% endthumbnail %}
+                                         {% endif %}
+
+                                        </a>
+                                        <div class="ad-container">
+					
+<!-- ShareThis BEGIN > -->
+<div class="sharethis-inline-share-buttons"></div>
+<!-- ShareThis END -->
+
+
+                                        </div>
+                                    </section>
+                                </div>
+                            {% endif %}
+							<div class="{% if flags.photo %}12u photo-only{% else %}6u{% endif %}">
+								<div style="position:absolute" id="specUpdate">
+									<div class="photo-note" id="gallery-trigger">
+									  <img src="/static/images/camera.png">
+									  <strong>Click here</strong> to view all images
+									</div>
+								</div>
+
+								<!-- Feature #2 -->
+                                <section>
+                                    {% include "campaigns/include/landing_photos.html" %}
+                                </section>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+		<style>
+    /* SHARE_THIS custom styles #START */
+
+		.st-label {
+      display: none !important;
+    }
+
+    #st-1 .st-btn {
+      min-width: 32px !important;
+    }
+
+    .sharethis-inline-share-buttons {
+      display: none;
+    }
+
+    /* SHARE_THIS custom styles #END */
+
+		/* Some corrections */
+
+			#header {
+			    min-height: 101px;
+			}
+			#header h1 {
+                font-family: Arial;
+				padding: 39px 0 79px 0;
+				top: -18px;
+			}
+			#nav {
+				margin-top: 14px;
+			}
+			#nav a {
+				font-weight: 700;
+				font-size: 1.8em;
+			}
+			#sales-rep-name {
+				position: absolute;
+				margin: -70px 0 0 0px;
+				width: 280px;
+				color: #ddd;
+				font-size: 14pt;
+				width: 300px;
+				overflow: hidden;
+			}
+			div.photo-note {
+				font-size: 25px;
+			}
+			#specUpdate {
+				margin: -5px 0 0 0;
+			}
+			#specUpdate img {
+				position: relative;
+				margin: -7px 9px 0 0;
+				width: 30px;
+				height: 27px;
+			}
+
+			/* Left top block "F&F" */
+			.nfb_1 div {
+				display: none;
+			    border: 3px solid #ddd;
+			}
+			.nfb_1 div a {
+                {% if offer.image %}
+				    background: white url("{{ offer.image.url }}") no-repeat center center;
+                {% else %}
+				    background: white url("https://vboostlive.com/media/campaigns/offer/205/1358457999_post-it-note-with-a-pin.jpg") no-repeat center center;
+                {% endif %}
+				background-size: cover;
+				width: 100%;
+				height: 100%;
+			    display: block;
+			}
+
+			/* Right top block "Review us on" */
+			.nfb_2 div {
+				background: white;
+				text-align: center;
+				vertical-align: middle;
+				display: none;
+			    border: 3px solid #ddd;
+			}
+
+/*
+			.nfb_2 a:nth-child(1) img {
+				display: block;
+				width: auto;
+				height: 45%;
+			    padding: 5% 0 4% 0;
+				margin: auto;
+			}
+			.nfb_2 a:nth-child(2) img {
+				width: 30%;
+				height: auto;
+				margin: 0 7% 0 0;
+			}
+			.nfb_2 a:nth-child(3) img {
+				width: 30%;
+				height: auto;
+				margin: 0 0 0 7%;
+			}
+*/
+			/* Left bottom block "Business Card" */
+			.nfb_3 {
+			}
+			.nfb_3 > div {
+				display: none;
+				background: white;
+			    border: 3px solid #ddd;
+			}
+			.nfb_3 > div > div {
+				width: 100%;
+				height: 100%;
+			}
+
+			/************************************************/
+
+			.nfb_3 table {
+				width: 100%;
+				height: 100%;
+				max-width: 100%;
+				max-height: 100%;
+				border: 0;
+				border-collapse: collapse;
+			}
+			.nfb_3 table td {
+				text-align: center;
+				v-align: middle;
+				vertical-align: middle;
+				padding: 2%;
+				overflow: hidden;
+			}
+			.nfb_3 td.newFixedPersonImage {
+				padding-right: 0;
+				width: 43%;
+			}
+			.nfb_3 td.newFixedPersonImage img {
+				max-width: 100%;
+				max-height: 100%;
+			}
+			.nfb_3 td.newFixedPersonLogo {
+				width: 48%;
+				height: 40%;
+				max-height: 45%;
+			}
+			.nfb_3 td.newFixedPersonLogo img {
+				max-width: 100%;
+				max-height: 100%;
+			}
+			.nfb_3 td.newFixedPersonName {
+				height: 15%;
+				max-height: 15%;
+				font-weight: bold;
+			}
+			.nfb_3 td.newFixedPersonContacts {
+				height: 15%;
+				max-height: 15%;
+				font-size: 60%;
+				line-height: 2;
+				vertical-align: bottom;
+				padding-bottom: 20px;
+			}
+
+			/************************************************/
+
+			/* Right bottom block "About" */
+			.nfb_4 > div {
+				background: white;
+				text-align: center;
+			    border: 3px solid #ddd;
+			}
+			.nfb_4 div.fixedBlockImage {
+				text-align: center;
+				padding: 4% 5% 2% 5%;
+				overflow: hidden;
+				font-weight: bold;
+				height: 40%;
+				max-height: 40%;
+				max-width: 90%;
+			}
+			.nfb_4 div.fixedBlockImage img {
+				max-width: 100%;
+				max-height: 100%;
+			}
+			.nfb_4 p {
+				color: black;
+				font-style: italic;
+				font-weight: bold;
+				letter-spacing: 2px;
+				text-align: center;
+				margin: 2% 1% 0 2%;
+			}
+			.nfb_4 a {
+				text-decoration: none;
+			}
+			.nfb_4 img.button {
+				margin: 2% 1% 0 2%;
+				vertical-align: middle;
+			}
+			img.nfb_left {
+				padding-top: 1%;
+			    max-width: 48%;
+			}
+			img.nfb_right {
+			    max-width: 37%;
+			}
+
+			/************************************************/
+
+			/* Media: All devices */
+			#features-wrapper {
+				padding: 30px 15px 15px 15px;
+				margin: 0;
+			}
+			#content-wrapper {
+				padding: 15px 15px 15px 15px;
+			}
+			#content section {
+				background: transparent;
+				box-shadow: none;
+				padding: 0 0 15px 0;
+			}
+			#content div.row {
+				background: #f7f7f7;
+			}
+
+			/* Media: Large devices */
+			@media (min-width: 1218px) {
+				#content section {
+					font-size: 30px;
+				}
+				.nfb_4 div.fixedBlockImage {
+				    padding: 4% 10% 2% 10%;
+				}
+				.nfb_3 td.newFixedPersonImage img {
+				    max-height: 296px;
+				}
+			}
+
+			/* Media: Medium devices */
+			@media (min-width: 498px) and (max-width: 1217px) {
+				#content section {
+					font-size: 20px;
+				}
+				.nfb_3 td.newFixedPersonName {
+				    font-size: 115%;
+				}
+				.nfb_3 td.newFixedPersonContacts {
+					font-size: 75%;
+				}
+				.nfb_3 td.newFixedPersonImage img {
+				    max-height: 238px;
+				}
+				#content div.row {
+					padding-bottom: 15px;
+				}
+			}
+
+			div.nfb_flex {
+				float: right;
+			}
+
+			/* Media: Small devices */
+			@media (max-width: 497px) {
+				#content section {
+					font-size: 15px;
+				}
+				div.nfb_flex {
+					float: left;
+				}
+				#features-wrapper {
+					padding-top: 80px;
+					margin: 0;
+				}
+				.nfb_3 td.newFixedPersonName {
+					font-size: 130%;
+				}
+				.nfb_3 td.newFixedPersonContacts {
+					font-size: 90%;
+				}
+				.nfb_3 td.newFixedPersonImage img {
+				    max-height: 39vw;
+				}
+			}
+
+			/* Media: Very small devices */
+			@media (max-width: 382px) {
+				#content section {
+					font-size: 15px;
+				}
+				#features-wrapper {
+					padding: 145px 15px 0px 15px;
+					margin: 0;
+				}
+				section.nfb_3 td.newFixedPersonName {
+					font-size:90%;
+				}
+				section.nfb_3 td.newFixedPersonContacts {
+					font-size: 57%;
+					line-height: 150%;
+				}
+			}
+
+			div.clear {
+				clear: both;
+			}
+
+			/* 29-30.11.16 *************************************/
+
+			h1,
+			span.title {
+				white-space: nowrap;
+				overflow: hidden;
+				padding: 5px;
+				position: relative;
+			}
+			span.title {
+				line-height: 35px!important;
+			    margin-left: 59px!important;
+			    padding-right: 59px!important;
+			}
+			h1 {
+			    width: 100%;
+			    max-width: 100%;
+			}
+			@media (max-width: 497px) {
+				h1 {
+					max-width: 50%;
+				}
+			}
+			@media (max-width: 497px) {
+				#sales-rep-name {
+					margin-top: -31px;
+				}
+			}
+			@media (max-width: 480px) {
+				#sales-rep-name {
+					margin-top: -32px;
+				}
+			}
+			@media (max-width: 378px) {
+				#sales-rep-name {
+					margin-top: -62px;
+				}
+			}
+
+/* DEBUG */
+			/*div.review-num-1 img,*/
+			/*div.review-num-2 img,*/
+			/*div.review-num-3 img,*/
+			/*div.review-num-4 img {*/
+				/*outline: 1px dotted red;*/
+			/*}*/
+/* /DEBUG */
+
+			div.review-num-1 img {
+				max-width: 92%;
+				max-height: 92%;
+				vertical-align: middle;
+			}
+			div.review-num-2 img {
+				max-width: 42%;
+				max-height: 92%;
+				vertical-align: middle;
+			}
+			div.review-num-2 a:first-child img {
+				margin-right: 3%;
+			}
+			div.review-num-3 img {
+				max-width: 42%;
+				max-height: 47%;
+				vertical-align: middle;
+			}
+			div.review-num-3 a:first-child img {
+				max-width: 92%;
+				display: block;
+				margin: 0 auto 3%;
+			}
+			div.review-num-3 a:nth-child(2) img {
+				margin-right: 3%;
+			}
+			div.review-num-4 img {
+				max-width: 42%;
+				max-height: 47%;
+				vertical-align: middle;
+			}
+			div.review-num-4 a:nth-child(2n+1) img {
+				margin-right: 3%;
+			}
+
+		</style>
+		<script>
+
+			function adjustFixedZoom() {
+				var e = $('section.nfb_1');
+				var w = e.width() - 6;
+				var h = w * (327+6) / (580+6) - 6;
+
+				//alert('W = '+(e.width() + 20));
+
+				$('section.nfb_1>div')
+					.width(w)
+					.height(h)
+					.show();
+				$('section.nfb_2>div')
+					.width(w)
+					.height(h)
+					.css('display', 'table-cell');
+				$('section.nfb_3>div')
+					.width(w)
+					.height(h)
+					.show();
+				$('section.nfb_4>div')
+					.width(w)
+					.height(h)
+					.show();
+			}
+
+			setTimeout(adjustFixedZoom, 100);
+			setTimeout(adjustFixedZoom, 1000);
+			setTimeout(adjustFixedZoom, 3000);
+			setTimeout(adjustFixedZoom, 5000);
+			$(window).on('resize', function(){
+				setTimeout(adjustFixedZoom, 200);
+			});
+
+		</script>
+		<!-- Content -->
+		{% load thumbnail %}
+		<div id="content-wrapper">
+			<div id="content">
+				<div class="container">
+					<div class="row">
+						<div class="6u">
+							<section class="nfb_1">
+								<div>
+									<a href="{% if offer.link_url %}{{ VBOOSTLIVE_URL }}/go/{{ package.landing_page_key }}/offer_{{ offer.target_audience }}/{% endif %}"></a>
+								</div>
+							</section>
+						</div>
+						<div class="6u">
+							<section class="nfb_2">
+								<div id="review_block" class="review-num-{{review_links.count}}">
+{% comment %}<!--
+								<div id="review_block" class="review-num-4">
+									<a href="https://vboostoffice.criterion-dev.net/a/go/bty01ki/2364"><img src="/media/gallery/images/Google_Logo_Color_Wide.png"></a><a href="https://vboostoffice.criterion-dev.net/a/go/bty01ki/2345"><img src="/static/images/review.png"></a><a href="https://vboostoffice.criterion-dev.net/a/go/bty01ki/2364"><img src="/media/gallery/images/Google_Logo_Color_Wide.png"></a><a href="https://vboostoffice.criterion-dev.net/a/go/bty01ki/2345"><img src="/static/images/review.png"></a>
+-->{% endcomment %}
+									{% for link in review_links %}<a href="{{VBOOSTLIVE_URL}}/go/{{package.landing_page_key}}/{{link.id}}"><img src="{% if link.artwork %}{{ link.artwork.image.url }}{% else %}/static/images/{{link.get_site}}.png{% endif %}"></a>{% endfor %}
+								</div>
+							</section>
+						</div>
+						<div class="6u nfb_flex">
+							<section class="nfb_4">
+								<div>
+									<div class="fixedBlockImage">
+										{% thumbnail package.campaign.logo "350x150" format="PNG" as thumb %}
+											<img src="{{ thumb.url }}" />
+										{% endthumbnail %}
+									</div>
+									<p> </p><br>
+                                    <a href="{% if website_link %}{{ VBOOSTLIVE_URL }}/go/{{ package.landing_page_key }}/{{ website_link.id }}{%else %}javascript:alert('Sorry, no data now.'){% endif %}">
+                                        {% if website_link and website_link.artwork %}
+                                            <img src="{{ website_link.artwork.image.url }}" class="button nfb_left">
+                                        {% else %}
+                                            <img src="/static/images/landing-visit-website.png" class="button nfb_left">
+                                        {% endif %}
+                                    </a>
+                                    <a href="{% if social_link %}{{ VBOOSTLIVE_URL }}/go/{{ package.landing_page_key }}/{{ social_link.id }}{%else %}javascript:alert('Sorry, no data now.'){% endif %}">
+                                        {% if social_link and social_link.artwork %}
+                                            <img src="{{ social_link.artwork.image.url }}" class="button nfb_right">
+                                        {% else %}
+                                            <img src="/static/images/landing-facebook.png" class="button nfb_right">
+                                        {% endif %}
+                                    </a>
+								</div>
+							</section>
+						</div>
+						<div class="6u">
+							<section class="nfb_3">
+								<div>
+									<div>
+										<table cellspacing="0" cellpadding="0">
+											<tr>
+												<td rowspan="3" class="newFixedPersonImage">
+													{% if package.contact.photo %}
+														{% thumbnail package.contact.photo "250" as thumb %}
+															<img src="{{ thumb.url }}" />
+														{% endthumbnail %}
+													{% else %}
+														<img src="{% static 'images/nopersonal.jpg' %}" />
+													{% endif %}
+												</td>
+												<td class="newFixedPersonLogo">
+													{% thumbnail package.campaign.logo "250x100" format="PNG" as thumb %}
+														<img src="{{ thumb.url }}" />
+													{% endthumbnail %}
+												</td>
+											</tr>
+											<tr>
+												<td class="newFixedPersonName">
+													{{ package.contact.name }}
+												</td>
+											</tr>
+											<tr>
+												<td class="newFixedPersonContacts">
+													{% if package.contact.phone %}Phone: <strong><b>{{ package.contact.phone }}</b></strong>{% endif %}<br>
+													{% if package.contact.email %}<a href="mailto:{{ package.contact.email }}">{{ package.contact.email }}</a>{% endif %}
+												</td>
+											</tr>
+										</table>
+									</div>
+								</div>
+							</section>
+						</div>
+						<div class="clear"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Copyright -->
+		<div id="copyright">
+			&copy; Vboost, Inc. All rights reserved.
+		</div>
+
+        <script type="text/javascript">
+            var addthis_config = {
+                "data_track_addressbar": true,
+                "data_ga_property": '{{ package.campaign.google_analytics }}',
+                "data_ga_social" : true,
+                "image_include": "nothing"
+            };
+        </script>
+
+        <script type="text/javascript" src="https://s7.addthis.com/js/300/addthis_widget.{{ package.campaign.tracking_link }}" ></script>
+    </body>
+</html>
+{% endwith %}

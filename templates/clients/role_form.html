@@ -1,0 +1,26 @@
+{% extends "template.html" %}
+{% load url from future %}
+
+{% block content %}
+<h1>
+    {% if role %}
+        Edit role <emph>{{ role.name }}</emph>
+    {% else %}
+        Add new role
+    {% endif %}
+</h1>
+
+{% if form.has_errors %}
+<p class="highlight-1">Please correct error{{ form.errors|pluralize }}.</p>
+{% endif %}
+
+<form action="." method="POST">
+{% csrf_token %}
+{{ form.as_p }}
+<input class="button" type="submit" value="Submit">
+{% if role %}
+<a href="{% url 'role-list' %}">Cancel</a>
+{% endif %}
+</form>
+
+{% endblock %}

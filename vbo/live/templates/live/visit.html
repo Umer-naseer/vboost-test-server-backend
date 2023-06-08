@@ -1,0 +1,52 @@
+{% load static %}
+<HTML>
+<HEAD>
+    <script type="text/javascript">
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', '{{ object.campaign.google_analytics }}']);
+        _gaq.push(['_trackPageview']);
+
+        (function () {
+            var ga = document.createElement('script');
+            ga.type = 'text/javascript';
+            ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(ga, s);
+        })();
+
+        var count = 2;
+
+        var counter = setInterval(timer, 1000); //1000 will  run it every 1 second
+
+        function timer() {
+            count = count - 1;
+            if (count <= 0) {
+                clearInterval(counter);
+                return;
+            }
+
+            document.getElementById("timer").innerHTML = count + ' second' + (count > 1 ? 's': '');
+        }
+
+        setTimeout("location.href='{{ target_url|safe }}'", 2000);
+    </script>
+
+</HEAD>
+
+
+<body>
+<P> &nbsp;
+
+<P> &nbsp;
+
+<P>
+
+<div style="text-align: center">
+    <img width="175" src="{% static 'images/vboost_hor_blue.png' %}">
+
+    <h3><i>Now leaving vboostlive.com, you will be redirected in
+        <div id="timer" style="text-align:center;display:inline;">2 seconds</div>...</i></h3>
+</div>
+</body>
+</HTML>

@@ -1,0 +1,13 @@
+{% extends "template.html" %}
+{% load url from future %}
+
+{% block content %}
+<h1>Deleting company <emph>{{ company.name }}</emph></h1>
+<p>Are you sure you want to delete company <emph>{{ company.name }}</emph>?</p>
+<p>Its users, groups, videos, campaigns and other data will be permanently deleted.</p>
+<form action="." method="POST">
+    {% csrf_token %}
+    <input class="button" type="submit" value="Delete" />
+    <a href="{% url 'company-list' %}">No, cancel</a>
+</form>
+{% endblock %}

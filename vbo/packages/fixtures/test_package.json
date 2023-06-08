@@ -1,0 +1,153 @@
+[
+    {
+        "model": "clients.company",
+        "pk": 1,
+        "fields": {
+            "name": "Company",
+            "key": "first",
+            "keywords1": "abc",
+            "keywords2": "def",
+            "slug": "first"
+        }
+    },
+
+    {
+        "model": "clients.company",
+        "pk": 2,
+        "fields": {
+            "name": "Another company",
+            "key": "other"
+        }
+    },
+
+    {
+        "model": "templates.videotemplate",
+        "pk": 1,
+        "fields": {
+            "template": "test",
+            "last_modified": "2013-09-13 12:00:00"
+        }
+    },
+
+    {
+        "model": "clients.campaign",
+        "pk": 1,
+        "fields": {
+            "name": "Empty campaign",
+            "key": "empty",
+            "company": 1,
+            "lft": 0,
+            "rght": 0,
+            "tree_id": 0,
+            "level": 0,
+            "stupeflix_template": 1,
+            "website": "http://www.google.com/",
+            "review_site": "http://yahoo.com/"
+        }
+    },
+
+    {
+        "model": "clients.campaign",
+        "pk": 2,
+        "fields": {
+            "name": "Campaign with images",
+            "key": "images",
+            "company": 1,
+            "lft": 0,
+            "rght": 0,
+            "tree_id": 0,
+            "level": 0
+        }
+    },
+
+    {
+        "model": "clients.campaign",
+        "pk": 3,
+        "fields": {
+            "name": "Campaign without default contact",
+            "key": "no_default_contact",
+            "company": 2,
+            "lft": 0,
+            "rght": 0,
+            "tree_id": 0,
+            "level": 0
+        }
+    },
+
+    {
+        "model": "clients.campaign",
+        "pk": 4,
+        "fields": {
+            "name": "Campaign with default contact",
+            "key": "default_contact",
+            "default_contact": 2,
+            "company": 2,
+            "lft": 0,
+            "rght": 0,
+            "tree_id": 0,
+            "level": 0
+        }
+    },
+
+    {
+        "model": "clients.campaignimage",
+        "pk": 1,
+        "fields": {
+            "campaign": 2,
+            "name": "donkey",
+            "image": "donkey.jpg"
+        }
+    },
+
+    {
+        "model": "clients.contact",
+        "pk": 1,
+        "fields": {
+            "name": "A person",
+            "company": 1
+        }
+    },
+
+    {
+        "model": "clients.contact",
+        "pk": 2,
+        "fields": {
+            "name": "A default contact",
+            "company": 2
+        }
+    },
+
+    {
+        "model": "clients.package",
+        "pk": 1,
+        "fields": {
+            "company": 1,
+            "campaign": 1,
+            "contact": 1,
+            "submitted_time": "2013-09-13 12:00:00",
+            "landing_page_key": "my_key"
+        }
+    },
+
+    {
+        "model": "clients.package",
+        "pk": 2,
+        "fields": {
+            "company": 1,
+            "campaign": 1,
+            "contact": 1,
+            "submitted_time": "2013-09-13 12:00:00"
+        }
+    },
+
+    {
+        "model": "clients.packageimage",
+        "pk": 1,
+        "fields": {
+            "package": 2,
+            "image": "elephant.jpg",
+            "inline_ordering_position": 1,
+            "created": "2013-09-13 12:00:00"
+        }
+    }
+]

@@ -1,0 +1,1155 @@
+[
+    {
+        "fields": {
+            "address": "Somewhere", 
+            "address2": "", 
+            "city": "Somecity", 
+            "crm_account_id": "", 
+            "default_company_name": "Vboost", 
+            "default_display_name": "Vboost", 
+            "default_email": "vboost@vboost.com", 
+            "default_phone": "78009547285", 
+            "is_active": true, 
+            "name": "Vboost", 
+            "state": "California", 
+            "zipcode": "123456"
+        }, 
+        "model": "clients.company", 
+        "pk": 1
+    }, 
+    {
+        "fields": {
+            "address": "f", 
+            "address2": "", 
+            "city": "g", 
+            "crm_account_id": "", 
+            "default_company_name": "a", 
+            "default_display_name": "b", 
+            "default_email": "c@d.com", 
+            "default_phone": "e", 
+            "is_active": true, 
+            "name": "MikeSoft", 
+            "state": "h", 
+            "zipcode": "i"
+        }, 
+        "model": "clients.company", 
+        "pk": 2
+    }, 
+    {
+        "fields": {
+            "address": "", 
+            "address2": "", 
+            "approval_instructions": "", 
+            "bypass_approval": false, 
+            "city": "", 
+            "company": 1, 
+            "default_subject": "", 
+            "is_active": true, 
+            "key": "sc", 
+            "landing_page_html": "", 
+            "logo": "", 
+            "name": "Sample campaign", 
+            "state": "", 
+            "tracking_link": "", 
+            "tracking_password": "", 
+            "tracking_username": "", 
+            "website": "", 
+            "zipcode": ""
+        }, 
+        "model": "clients.campaign", 
+        "pk": 1
+    }, 
+    {
+        "fields": {
+            "company": 1, 
+            "email": "john@contact.net", 
+            "is_active": true, 
+            "name": "John S. Contact", 
+            "phone": "123", 
+            "title": "somebody"
+        }, 
+        "model": "clients.contact", 
+        "pk": 1
+    }, 
+    {
+        "fields": {
+            "company": 1, 
+            "email": "", 
+            "is_active": true, 
+            "name": "Anatoly", 
+            "phone": "", 
+            "title": ""
+        }, 
+        "model": "clients.contact", 
+        "pk": 2
+    }, 
+    {
+        "fields": {
+            "company": 1, 
+            "email": "", 
+            "is_active": true, 
+            "name": "Kevin", 
+            "phone": "", 
+            "title": ""
+        }, 
+        "model": "clients.contact", 
+        "pk": 3
+    }, 
+    {
+        "fields": {
+            "created": "2013-04-03T21:42:44", 
+            "image": "images/1/2/13/04/03/051668@gmail.com.jpg", 
+            "inline_ordering_position": 8, 
+            "is_skipped": false, 
+            "is_thumbnail": false, 
+            "package": 2
+        }, 
+        "model": "clients.packageimage", 
+        "pk": 18
+    }, 
+    {
+        "fields": {
+            "created": "2013-03-01T12:08:59", 
+            "image": "images/1/1/13/03/10/db.png", 
+            "inline_ordering_position": 1, 
+            "is_skipped": false, 
+            "is_thumbnail": true, 
+            "package": 1
+        }, 
+        "model": "clients.packageimage", 
+        "pk": 5
+    }, 
+    {
+        "fields": {
+            "created": "2013-03-01T12:08:59", 
+            "image": "images/13/03/01/tn_blonde_1.jpg", 
+            "inline_ordering_position": 2, 
+            "is_skipped": true, 
+            "is_thumbnail": false, 
+            "package": 1
+        }, 
+        "model": "clients.packageimage", 
+        "pk": 6
+    }, 
+    {
+        "fields": {
+            "created": "2013-03-01T12:08:59", 
+            "image": "images/13/03/01/tn_blonde_2.jpg", 
+            "inline_ordering_position": 3, 
+            "is_skipped": true, 
+            "is_thumbnail": false, 
+            "package": 1
+        }, 
+        "model": "clients.packageimage", 
+        "pk": 7
+    }, 
+    {
+        "fields": {
+            "created": "2013-03-01T12:08:59", 
+            "image": "images/13/03/01/tn_blonde_3.jpg", 
+            "inline_ordering_position": 4, 
+            "is_skipped": true, 
+            "is_thumbnail": false, 
+            "package": 1
+        }, 
+        "model": "clients.packageimage", 
+        "pk": 8
+    }, 
+    {
+        "fields": {
+            "created": "2013-03-01T12:08:59", 
+            "image": "images/1362897218/13/03/10", 
+            "inline_ordering_position": 6, 
+            "is_skipped": true, 
+            "is_thumbnail": false, 
+            "package": 1
+        }, 
+        "model": "clients.packageimage", 
+        "pk": 9
+    }, 
+    {
+        "fields": {
+            "created": "2013-03-01T12:08:59", 
+            "image": "images/13/03/01/tn_blonde_5.jpg", 
+            "inline_ordering_position": 5, 
+            "is_skipped": true, 
+            "is_thumbnail": false, 
+            "package": 1
+        }, 
+        "model": "clients.packageimage", 
+        "pk": 10
+    }, 
+    {
+        "fields": {
+            "created": "2013-03-01T12:38:58", 
+            "image": "images/13/03/01/image4_550764660_image4.jpg", 
+            "inline_ordering_position": 2, 
+            "is_skipped": false, 
+            "is_thumbnail": false, 
+            "package": 2
+        }, 
+        "model": "clients.packageimage", 
+        "pk": 11
+    }, 
+    {
+        "fields": {
+            "created": "2013-03-08T16:02:55", 
+            "image": "images/13/03/08/image1_886785842_image1.jpg", 
+            "inline_ordering_position": 7, 
+            "is_skipped": false, 
+            "is_thumbnail": false, 
+            "package": 2
+        }, 
+        "model": "clients.packageimage", 
+        "pk": 12
+    }, 
+    {
+        "fields": {
+            "created": "2013-03-08T16:02:55", 
+            "image": "images/13/03/08/image2_447614352_image2.jpg", 
+            "inline_ordering_position": 3, 
+            "is_skipped": false, 
+            "is_thumbnail": false, 
+            "package": 2
+        }, 
+        "model": "clients.packageimage", 
+        "pk": 13
+    }, 
+    {
+        "fields": {
+            "created": "2013-03-08T16:02:55", 
+            "image": "images/13/03/08/image3_962955016_image3.jpg", 
+            "inline_ordering_position": 1, 
+            "is_skipped": false, 
+            "is_thumbnail": false, 
+            "package": 2
+        }, 
+        "model": "clients.packageimage", 
+        "pk": 14
+    }, 
+    {
+        "fields": {
+            "created": "2013-03-08T16:02:55", 
+            "image": "images/13/03/08/image4_550764660_image4.jpg", 
+            "inline_ordering_position": 4, 
+            "is_skipped": false, 
+            "is_thumbnail": false, 
+            "package": 2
+        }, 
+        "model": "clients.packageimage", 
+        "pk": 15
+    }, 
+    {
+        "fields": {
+            "created": "2013-03-08T16:02:55", 
+            "image": "images/13/03/08/image5_929877168_image5.jpg", 
+            "inline_ordering_position": 5, 
+            "is_skipped": false, 
+            "is_thumbnail": true, 
+            "package": 2
+        }, 
+        "model": "clients.packageimage", 
+        "pk": 16
+    }, 
+    {
+        "fields": {
+            "created": "2013-03-08T16:02:55", 
+            "image": "images/13/03/08/image6_564139348_image6.jpg", 
+            "inline_ordering_position": 6, 
+            "is_skipped": false, 
+            "is_thumbnail": false, 
+            "package": 2
+        }, 
+        "model": "clients.packageimage", 
+        "pk": 17
+    }, 
+    {
+        "fields": {
+            "company": 1, 
+            "is_active": true, 
+            "key": "b497c840-9d20-4d7c-818b-d16a6adab0fe", 
+            "name": "Vboost mobile app"
+        }, 
+        "model": "clients.apiclient", 
+        "pk": 1
+    }, 
+    {
+        "fields": {
+            "codename": "add_logentry", 
+            "content_type": 8, 
+            "name": "Can add log entry"
+        }, 
+        "model": "auth.permission", 
+        "pk": 19
+    }, 
+    {
+        "fields": {
+            "codename": "change_logentry", 
+            "content_type": 8, 
+            "name": "Can change log entry"
+        }, 
+        "model": "auth.permission", 
+        "pk": 20
+    }, 
+    {
+        "fields": {
+            "codename": "delete_logentry", 
+            "content_type": 8, 
+            "name": "Can delete log entry"
+        }, 
+        "model": "auth.permission", 
+        "pk": 21
+    }, 
+    {
+        "fields": {
+            "codename": "add_lock", 
+            "content_type": 21, 
+            "name": "Can add lock"
+        }, 
+        "model": "auth.permission", 
+        "pk": 34
+    }, 
+    {
+        "fields": {
+            "codename": "change_lock", 
+            "content_type": 21, 
+            "name": "Can change lock"
+        }, 
+        "model": "auth.permission", 
+        "pk": 35
+    }, 
+    {
+        "fields": {
+            "codename": "delete_lock", 
+            "content_type": 21, 
+            "name": "Can delete lock"
+        }, 
+        "model": "auth.permission", 
+        "pk": 36
+    }, 
+    {
+        "fields": {
+            "codename": "use_atc", 
+            "content_type": 21, 
+            "name": "Use ATC"
+        }, 
+        "model": "auth.permission", 
+        "pk": 37
+    }, 
+    {
+        "fields": {
+            "codename": "add_group", 
+            "content_type": 2, 
+            "name": "Can add group"
+        }, 
+        "model": "auth.permission", 
+        "pk": 4
+    }, 
+    {
+        "fields": {
+            "codename": "change_group", 
+            "content_type": 2, 
+            "name": "Can change group"
+        }, 
+        "model": "auth.permission", 
+        "pk": 5
+    }, 
+    {
+        "fields": {
+            "codename": "delete_group", 
+            "content_type": 2, 
+            "name": "Can delete group"
+        }, 
+        "model": "auth.permission", 
+        "pk": 6
+    }, 
+    {
+        "fields": {
+            "codename": "add_permission", 
+            "content_type": 1, 
+            "name": "Can add permission"
+        }, 
+        "model": "auth.permission", 
+        "pk": 1
+    }, 
+    {
+        "fields": {
+            "codename": "change_permission", 
+            "content_type": 1, 
+            "name": "Can change permission"
+        }, 
+        "model": "auth.permission", 
+        "pk": 2
+    }, 
+    {
+        "fields": {
+            "codename": "delete_permission", 
+            "content_type": 1, 
+            "name": "Can delete permission"
+        }, 
+        "model": "auth.permission", 
+        "pk": 3
+    }, 
+    {
+        "fields": {
+            "codename": "add_user", 
+            "content_type": 3, 
+            "name": "Can add user"
+        }, 
+        "model": "auth.permission", 
+        "pk": 7
+    }, 
+    {
+        "fields": {
+            "codename": "change_user", 
+            "content_type": 3, 
+            "name": "Can change user"
+        }, 
+        "model": "auth.permission", 
+        "pk": 8
+    }, 
+    {
+        "fields": {
+            "codename": "delete_user", 
+            "content_type": 3, 
+            "name": "Can delete user"
+        }, 
+        "model": "auth.permission", 
+        "pk": 9
+    }, 
+    {
+        "fields": {
+            "codename": "add_apiclient", 
+            "content_type": 29, 
+            "name": "Can add APIClient"
+        }, 
+        "model": "auth.permission", 
+        "pk": 59
+    }, 
+    {
+        "fields": {
+            "codename": "change_apiclient", 
+            "content_type": 29, 
+            "name": "Can change APIClient"
+        }, 
+        "model": "auth.permission", 
+        "pk": 60
+    }, 
+    {
+        "fields": {
+            "codename": "delete_apiclient", 
+            "content_type": 29, 
+            "name": "Can delete APIClient"
+        }, 
+        "model": "auth.permission", 
+        "pk": 61
+    }, 
+    {
+        "fields": {
+            "codename": "add_campaign", 
+            "content_type": 22, 
+            "name": "Can add campaign"
+        }, 
+        "model": "auth.permission", 
+        "pk": 38
+    }, 
+    {
+        "fields": {
+            "codename": "change_campaign", 
+            "content_type": 22, 
+            "name": "Can change campaign"
+        }, 
+        "model": "auth.permission", 
+        "pk": 39
+    }, 
+    {
+        "fields": {
+            "codename": "delete_campaign", 
+            "content_type": 22, 
+            "name": "Can delete campaign"
+        }, 
+        "model": "auth.permission", 
+        "pk": 40
+    }, 
+    {
+        "fields": {
+            "codename": "add_company", 
+            "content_type": 12, 
+            "name": "Can add company"
+        }, 
+        "model": "auth.permission", 
+        "pk": 22
+    }, 
+    {
+        "fields": {
+            "codename": "change_company", 
+            "content_type": 12, 
+            "name": "Can change company"
+        }, 
+        "model": "auth.permission", 
+        "pk": 23
+    }, 
+    {
+        "fields": {
+            "codename": "delete_company", 
+            "content_type": 12, 
+            "name": "Can delete company"
+        }, 
+        "model": "auth.permission", 
+        "pk": 24
+    }, 
+    {
+        "fields": {
+            "codename": "add_contact", 
+            "content_type": 23, 
+            "name": "Can add contact"
+        }, 
+        "model": "auth.permission", 
+        "pk": 41
+    }, 
+    {
+        "fields": {
+            "codename": "change_contact", 
+            "content_type": 23, 
+            "name": "Can change contact"
+        }, 
+        "model": "auth.permission", 
+        "pk": 42
+    }, 
+    {
+        "fields": {
+            "codename": "delete_contact", 
+            "content_type": 23, 
+            "name": "Can delete contact"
+        }, 
+        "model": "auth.permission", 
+        "pk": 43
+    }, 
+    {
+        "fields": {
+            "codename": "add_package", 
+            "content_type": 24, 
+            "name": "Can add package"
+        }, 
+        "model": "auth.permission", 
+        "pk": 44
+    }, 
+    {
+        "fields": {
+            "codename": "change_package", 
+            "content_type": 24, 
+            "name": "Can change package"
+        }, 
+        "model": "auth.permission", 
+        "pk": 45
+    }, 
+    {
+        "fields": {
+            "codename": "delete_package", 
+            "content_type": 24, 
+            "name": "Can delete package"
+        }, 
+        "model": "auth.permission", 
+        "pk": 46
+    }, 
+    {
+        "fields": {
+            "codename": "add_packageimage", 
+            "content_type": 25, 
+            "name": "Can add package image"
+        }, 
+        "model": "auth.permission", 
+        "pk": 47
+    }, 
+    {
+        "fields": {
+            "codename": "change_packageimage", 
+            "content_type": 25, 
+            "name": "Can change package image"
+        }, 
+        "model": "auth.permission", 
+        "pk": 48
+    }, 
+    {
+        "fields": {
+            "codename": "delete_packageimage", 
+            "content_type": 25, 
+            "name": "Can delete package image"
+        }, 
+        "model": "auth.permission", 
+        "pk": 49
+    }, 
+    {
+        "fields": {
+            "codename": "add_role", 
+            "content_type": 18, 
+            "name": "Can add role"
+        }, 
+        "model": "auth.permission", 
+        "pk": 25
+    }, 
+    {
+        "fields": {
+            "codename": "change_role", 
+            "content_type": 18, 
+            "name": "Can change role"
+        }, 
+        "model": "auth.permission", 
+        "pk": 26
+    }, 
+    {
+        "fields": {
+            "codename": "delete_role", 
+            "content_type": 18, 
+            "name": "Can delete role"
+        }, 
+        "model": "auth.permission", 
+        "pk": 27
+    }, 
+    {
+        "fields": {
+            "codename": "add_user", 
+            "content_type": 19, 
+            "name": "Can add user"
+        }, 
+        "model": "auth.permission", 
+        "pk": 28
+    }, 
+    {
+        "fields": {
+            "codename": "change_user", 
+            "content_type": 19, 
+            "name": "Can change user"
+        }, 
+        "model": "auth.permission", 
+        "pk": 29
+    }, 
+    {
+        "fields": {
+            "codename": "delete_user", 
+            "content_type": 19, 
+            "name": "Can delete user"
+        }, 
+        "model": "auth.permission", 
+        "pk": 30
+    }, 
+    {
+        "fields": {
+            "codename": "add_userrole", 
+            "content_type": 20, 
+            "name": "Can add user role"
+        }, 
+        "model": "auth.permission", 
+        "pk": 31
+    }, 
+    {
+        "fields": {
+            "codename": "change_userrole", 
+            "content_type": 20, 
+            "name": "Can change user role"
+        }, 
+        "model": "auth.permission", 
+        "pk": 32
+    }, 
+    {
+        "fields": {
+            "codename": "delete_userrole", 
+            "content_type": 20, 
+            "name": "Can delete user role"
+        }, 
+        "model": "auth.permission", 
+        "pk": 33
+    }, 
+    {
+        "fields": {
+            "codename": "add_contenttype", 
+            "content_type": 5, 
+            "name": "Can add content type"
+        }, 
+        "model": "auth.permission", 
+        "pk": 10
+    }, 
+    {
+        "fields": {
+            "codename": "change_contenttype", 
+            "content_type": 5, 
+            "name": "Can change content type"
+        }, 
+        "model": "auth.permission", 
+        "pk": 11
+    }, 
+    {
+        "fields": {
+            "codename": "delete_contenttype", 
+            "content_type": 5, 
+            "name": "Can delete content type"
+        }, 
+        "model": "auth.permission", 
+        "pk": 12
+    }, 
+    {
+        "fields": {
+            "codename": "add_session", 
+            "content_type": 6, 
+            "name": "Can add session"
+        }, 
+        "model": "auth.permission", 
+        "pk": 13
+    }, 
+    {
+        "fields": {
+            "codename": "change_session", 
+            "content_type": 6, 
+            "name": "Can change session"
+        }, 
+        "model": "auth.permission", 
+        "pk": 14
+    }, 
+    {
+        "fields": {
+            "codename": "delete_session", 
+            "content_type": 6, 
+            "name": "Can delete session"
+        }, 
+        "model": "auth.permission", 
+        "pk": 15
+    }, 
+    {
+        "fields": {
+            "codename": "add_site", 
+            "content_type": 7, 
+            "name": "Can add site"
+        }, 
+        "model": "auth.permission", 
+        "pk": 16
+    }, 
+    {
+        "fields": {
+            "codename": "change_site", 
+            "content_type": 7, 
+            "name": "Can change site"
+        }, 
+        "model": "auth.permission", 
+        "pk": 17
+    }, 
+    {
+        "fields": {
+            "codename": "delete_site", 
+            "content_type": 7, 
+            "name": "Can delete site"
+        }, 
+        "model": "auth.permission", 
+        "pk": 18
+    }, 
+    {
+        "fields": {
+            "codename": "add_migrationhistory", 
+            "content_type": 28, 
+            "name": "Can add migration history"
+        }, 
+        "model": "auth.permission", 
+        "pk": 56
+    }, 
+    {
+        "fields": {
+            "codename": "change_migrationhistory", 
+            "content_type": 28, 
+            "name": "Can change migration history"
+        }, 
+        "model": "auth.permission", 
+        "pk": 57
+    }, 
+    {
+        "fields": {
+            "codename": "delete_migrationhistory", 
+            "content_type": 28, 
+            "name": "Can delete migration history"
+        }, 
+        "model": "auth.permission", 
+        "pk": 58
+    }, 
+    {
+        "fields": {
+            "codename": "add_apiaccess", 
+            "content_type": 26, 
+            "name": "Can add api access"
+        }, 
+        "model": "auth.permission", 
+        "pk": 50
+    }, 
+    {
+        "fields": {
+            "codename": "change_apiaccess", 
+            "content_type": 26, 
+            "name": "Can change api access"
+        }, 
+        "model": "auth.permission", 
+        "pk": 51
+    }, 
+    {
+        "fields": {
+            "codename": "delete_apiaccess", 
+            "content_type": 26, 
+            "name": "Can delete api access"
+        }, 
+        "model": "auth.permission", 
+        "pk": 52
+    }, 
+    {
+        "fields": {
+            "codename": "add_apikey", 
+            "content_type": 27, 
+            "name": "Can add api key"
+        }, 
+        "model": "auth.permission", 
+        "pk": 53
+    }, 
+    {
+        "fields": {
+            "codename": "change_apikey", 
+            "content_type": 27, 
+            "name": "Can change api key"
+        }, 
+        "model": "auth.permission", 
+        "pk": 54
+    }, 
+    {
+        "fields": {
+            "codename": "delete_apikey", 
+            "content_type": 27, 
+            "name": "Can delete api key"
+        }, 
+        "model": "auth.permission", 
+        "pk": 55
+    }, 
+    {
+        "fields": {
+            "codename": "add_kvstore", 
+            "content_type": 30, 
+            "name": "Can add kv store"
+        }, 
+        "model": "auth.permission", 
+        "pk": 62
+    }, 
+    {
+        "fields": {
+            "codename": "change_kvstore", 
+            "content_type": 30, 
+            "name": "Can change kv store"
+        }, 
+        "model": "auth.permission", 
+        "pk": 63
+    }, 
+    {
+        "fields": {
+            "codename": "delete_kvstore", 
+            "content_type": 30, 
+            "name": "Can delete kv store"
+        }, 
+        "model": "auth.permission", 
+        "pk": 64
+    }, 
+    {
+        "fields": {
+            "date_joined": "2012-09-13T21:55:29", 
+            "email": "altaisoft@gmail.com", 
+            "first_name": "", 
+            "groups": [], 
+            "is_active": true, 
+            "is_staff": true, 
+            "is_superuser": true, 
+            "last_login": "2013-04-17T13:15:58", 
+            "last_name": "", 
+            "password": "pbkdf2_sha256$10000$OIDmMG1D7RH5$+GogXHrhe+GCyu3MuLY5YYIW7McRl9uIXSzL9mb5AQg=", 
+            "user_permissions": [], 
+            "username": "admin"
+        }, 
+        "model": "auth.user", 
+        "pk": 1
+    }, 
+    {
+        "fields": {
+            "date_joined": "2012-09-24T12:24:47", 
+            "email": "chris@vboost.com", 
+            "first_name": "Chris", 
+            "groups": [], 
+            "is_active": true, 
+            "is_staff": true, 
+            "is_superuser": false, 
+            "last_login": "2013-02-21T17:57:17", 
+            "last_name": "Miller", 
+            "password": "pbkdf2_sha256$10000$n0IbvgevJjQU$BnvYMM0smazApA6aOW6ABblP/8XtH59beYiOKd4UjHY=", 
+            "user_permissions": [], 
+            "username": "chris"
+        }, 
+        "model": "auth.user", 
+        "pk": 2
+    }, 
+    {
+        "fields": {
+            "date_joined": "2012-09-24T21:17:22", 
+            "email": "", 
+            "first_name": "", 
+            "groups": [], 
+            "is_active": true, 
+            "is_staff": false, 
+            "is_superuser": false, 
+            "last_login": "2012-10-19T12:47:20", 
+            "last_name": "", 
+            "password": "pbkdf2_sha256$10000$GihEmW7VE8Qt$i0OVtDgdSjXGsYzipyLbkHgmUJKzpLkjhDgNfpkRofE=", 
+            "user_permissions": [], 
+            "username": "john"
+        }, 
+        "model": "auth.user", 
+        "pk": 3
+    }, 
+    {
+        "fields": {
+            "date_joined": "2012-10-05T12:00:48", 
+            "email": "joe@joe.com", 
+            "first_name": "", 
+            "groups": [], 
+            "is_active": true, 
+            "is_staff": false, 
+            "is_superuser": false, 
+            "last_login": "2012-10-05T12:00:48", 
+            "last_name": "", 
+            "password": "pbkdf2_sha256$10000$9jIW12fGgn9l$ugQZvog6u9IL3cBUVnSVg/3ZyHeTXwuulxs6nX1bkec=", 
+            "user_permissions": [], 
+            "username": "joe"
+        }, 
+        "model": "auth.user", 
+        "pk": 5
+    }, 
+    {
+        "fields": {
+            "date_joined": "2012-10-05T12:04:31", 
+            "email": "jane@jane.com", 
+            "first_name": "", 
+            "groups": [], 
+            "is_active": true, 
+            "is_staff": false, 
+            "is_superuser": false, 
+            "last_login": "2012-10-05T12:04:31", 
+            "last_name": "", 
+            "password": "pbkdf2_sha256$10000$HodUyrEdPCZZ$CWpBpVR8KLk90oU8AUQ9SiqrmirAc7QvMzc4kOaBehw=", 
+            "user_permissions": [], 
+            "username": "jane"
+        }, 
+        "model": "auth.user", 
+        "pk": 6
+    }, 
+    {
+        "fields": {
+            "date_joined": "2012-10-05T19:50:01", 
+            "email": "", 
+            "first_name": "", 
+            "groups": [], 
+            "is_active": true, 
+            "is_staff": false, 
+            "is_superuser": false, 
+            "last_login": "2012-10-05T19:50:01", 
+            "last_name": "", 
+            "password": "pbkdf2_sha256$10000$y3R8tx2cOOo2$I8nzBnXgWLG5+i6mEyCvcomfav9PlmMkxMP5Zl1X170=", 
+            "user_permissions": [], 
+            "username": "jill"
+        }, 
+        "model": "auth.user", 
+        "pk": 7
+    }, 
+    {
+        "fields": {
+            "groups": [], 
+            "phone": "123456", 
+            "title": "Administrator", 
+            "user_permissions": []
+        }, 
+        "model": "clients.user", 
+        "pk": 1
+    }, 
+    {
+        "fields": {
+            "groups": [], 
+            "phone": "123456789", 
+            "title": "CTO", 
+            "user_permissions": []
+        }, 
+        "model": "clients.user", 
+        "pk": 2
+    }, 
+    {
+        "fields": {
+            "groups": [], 
+            "phone": "", 
+            "title": "", 
+            "user_permissions": []
+        }, 
+        "model": "clients.user", 
+        "pk": 3
+    }, 
+    {
+        "fields": {
+            "groups": [], 
+            "phone": "", 
+            "title": "", 
+            "user_permissions": []
+        }, 
+        "model": "clients.user", 
+        "pk": 5
+    }, 
+    {
+        "fields": {
+            "groups": [], 
+            "phone": "", 
+            "title": "", 
+            "user_permissions": []
+        }, 
+        "model": "clients.user", 
+        "pk": 6
+    }, 
+    {
+        "fields": {
+            "groups": [], 
+            "phone": "", 
+            "title": "", 
+            "user_permissions": []
+        }, 
+        "model": "clients.user", 
+        "pk": 7
+    }, 
+    {
+        "fields": {
+            "company": null, 
+            "name": "CompanyAdmin", 
+            "permissions": [
+                37, 
+                23, 
+                24, 
+                25, 
+                26, 
+                27, 
+                28, 
+                29, 
+                30, 
+                31, 
+                32, 
+                33
+            ]
+        }, 
+        "model": "clients.role", 
+        "pk": 1
+    }, 
+    {
+        "fields": {
+            "company": 1, 
+            "name": "CEO", 
+            "permissions": [
+                37, 
+                38, 
+                39, 
+                23, 
+                24, 
+                42
+            ]
+        }, 
+        "model": "clients.role", 
+        "pk": 2
+    }, 
+    {
+        "fields": {
+            "company": null, 
+            "name": "Employee", 
+            "permissions": []
+        }, 
+        "model": "clients.role", 
+        "pk": 3
+    }, 
+    {
+        "fields": {
+            "company": 2, 
+            "name": "MikeRole", 
+            "permissions": []
+        }, 
+        "model": "clients.role", 
+        "pk": 4
+    }, 
+    {
+        "fields": {
+            "company": 1, 
+            "role": 2, 
+            "user": 2
+        }, 
+        "model": "clients.userrole", 
+        "pk": 1
+    }, 
+    {
+        "fields": {
+            "company": 2, 
+            "role": 3, 
+            "user": 7
+        }, 
+        "model": "clients.userrole", 
+        "pk": 8
+    }, 
+    {
+        "fields": {
+            "company": 2, 
+            "role": 1, 
+            "user": 2
+        }, 
+        "model": "clients.userrole", 
+        "pk": 4
+    }, 
+    {
+        "fields": {
+            "address": "", 
+            "address2": "", 
+            "approver": 1, 
+            "asset": "", 
+            "asset_tracking_link": "", 
+            "campaign": 1, 
+            "campaign_key": "123", 
+            "city": "", 
+            "company": 1, 
+            "contact": 2, 
+            "copy_email": "", 
+            "created_time": null, 
+            "recipient_email": "sdf@somewhere.net", 
+            "recipient_name": "Client", 
+            "recipient_permission": false, 
+            "recipient_phone": "", 
+            "state": "", 
+            "status": "pending", 
+            "submitted_time": "2013-03-08T16:02:55", 
+            "zipcode": ""
+        }, 
+        "model": "clients.package", 
+        "pk": 1
+    }, 
+    {
+        "fields": {
+            "address": "", 
+            "address2": "", 
+            "approver": null, 
+            "asset": "", 
+            "asset_tracking_link": "", 
+            "campaign": 1, 
+            "campaign_key": "123", 
+            "city": "", 
+            "company": 1, 
+            "contact": 1, 
+            "copy_email": "", 
+            "created_time": null, 
+            "recipient_email": "", 
+            "recipient_name": "", 
+            "recipient_permission": false, 
+            "recipient_phone": "", 
+            "state": "", 
+            "status": "skipped", 
+            "submitted_time": "2013-03-25T15:38:28", 
+            "zipcode": ""
+        }, 
+        "model": "clients.package", 
+        "pk": 2
+    }
+]

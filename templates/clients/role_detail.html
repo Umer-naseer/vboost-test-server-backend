@@ -1,0 +1,30 @@
+{% extends "template.html" %}
+
+{% block content %}
+<h1>{{ role.name }}</h1>
+
+{% if 'clients.change_role' in role_perms %}
+<a href="{% url role-edit role.id %}">Edit this role</a> | 
+{% endif %}
+
+{% if 'clients.delete_role' in role_perms %}
+<a href="{% url role-delete role.id %}">Delete this role</a>
+{% endif %}
+
+{{ content_types }}
+
+{% if role.permissions %}
+{% regroup role.permissions.all by content_type as apps %}
+<table>
+    {% for app in apps %}
+        <tr><th>{{ app.grouper|capfirst }}</th></tr>
+        {% for permission in app.list %}
+            <tr><td>{{ permission.name }}</td></tr>
+        {% endfor %}
+    {% endfor %}
+</table>
+{% endif %}
+
+<a href="{% url role-list %}">Back to Roles</a>
+
+{% endblock %}

@@ -1,0 +1,136 @@
+{% load static %}
+{% get_static_prefix as STATIC_PREFIX %}
+{% load url from future %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Vboost - The Viral Marketing Company. Leverage natural sharing and viral marketing to acquire new customers.</title>
+<meta charset="UTF-8">
+<meta name="robots" content="index,follow,noarchive">
+</head>
+
+<body>
+	
+	<div id="header">
+			<img src="{{ STATIC_PREFIX }}images/vboost_logo.png" border=0>
+			{% block tertiary %}
+			<div id="tertiary">
+				<a href="#TODO">contact us</a> | 
+				<a href="#TODO">my account</a> | 
+				<a href="#TODO">help</a> |
+				<a href="{% url 'django.contrib.auth.views.logout_then_login' %}">logout</a><br>
+				<div id="phonecta">
+					Call Us: (800) 954-7285
+				</div>
+			</div>
+			{% endblock tertiary %}
+	</div>
+	
+	<ul id="nav">
+		
+		<li><a href="{% url 'panel.views.home' %}">Home</a></li>
+		
+		<!--li class="divider"><img src="{{ STATIC_PREFIX }}images/divider.gif" align="absmiddle"></li>
+		<li><a href="#TODO">Reporting</a>
+			<ul>
+				<li><a href="#TODO">Viral Metrics</a>
+					<ul>
+						<li><a href="#TODO">Emails</a></li>
+						<li><a href="#TODO">Views</a></li>
+					</ul>
+				</li>
+				<li><a href="#TODO">ROI</a>
+					<ul>
+						<li><a href="#TODO">Sales</a></li>
+						<li><a href="#TODO">Service</a></li>
+					</ul>
+				</li>
+				<li><a href="#TODO">Viral Heat Map</a></li>
+			</ul>
+		</li-->
+
+		<li class="divider"><img src="{{ STATIC_PREFIX }}images/divider.gif" align="absmiddle"></li>
+		<li><a href="#TODO">Production</a>
+			<ul>
+				<!--li><a href="#TODO">Incoming Images (34)</a></li-->
+				<li><a href="/atc/">Thumbnail Creator</a></li>
+				<!--li><a href="#TODO">Campaigns</a></li-->
+			</ul>
+		</li>
+
+		<!--li class="divider"><img src="{{ STATIC_PREFIX }}images/divider.gif" align="absmiddle"></li>
+		<li><a href="#TODO">Review</a>
+			<ul>
+				<li><a href="#TODO">Videos</a></li>
+				<li><a href="#TODO">Email</a></li>
+				<li><a href="#TODO">Landing Pages</a></li>
+			</ul>
+		</li-->
+
+		<li class="divider"><img src="{{ STATIC_PREFIX }}images/divider.gif" align="absmiddle"></li>
+		<li><a href="#">Manage</a>
+			<ul>
+				<li><a href="/admin/clients/company/">Companies</a></li>
+				<li><a href="/admin/clients/role/">Roles</a></li>
+				<li><a href="/admin/clients/user/">Users</a></li>
+				<!--li><a href="#TODO">Security</a></li-->
+			</ul>
+		</li>
+
+
+		<!--li class="divider"><img src="{{ STATIC_PREFIX }}images/divider.gif" align="absmiddle"></li>
+		<li><a href="#TODO">Settings</a>
+			<ul>
+				<li><a href="#TODO">System Settings</a></li>
+				<li><a href="#TODO">Custom Fields</a></li>
+				<li><a href="#TODO">System Status</a></li>
+			</ul>
+		</li>
+		
+		<li class="divider"><img src="{{ STATIC_PREFIX }}images/divider.gif" align="absmiddle"></li>
+		<li><a href="index.cfm?page=profile">Help</a>
+		<ul>
+			<li><a href="index.cfm?page=history">FAQ</a></li>
+			<li><a href="index.cfm?page=profile">User Guide</a></li>
+			<li><a href="index.cfm?page=profile">Contact Us</a></li-->
+		</ul>
+		</li>
+	</ul>
+	
+	<div id="a">
+		<div id="b">
+		     <div id="article">
+				{% block content %}{% endblock %}
+			</div>
+			<div id="aside">
+				{% block aside %}{% endblock %}
+			</div>
+		</div>
+		<div id="footer">
+			<a href="#TODO">Terms of Use</a> | <a href="#TODO">Privacy Policy</a> | <a href="#TODO">Vboost v1.0</a><br>
+			Copyright © 2012 Vboost, Inc. All Rights Reserved.   
+			<!-- 
+			### LICENSE
+			############
+
+			This W3C-compliant, CSS-based website template has a 
+			Creative Commons Attribution-Share Alike 3.0 Unported License.
+
+			http://creativecommons.org/licenses/by-sa/3.0/
+
+			In short, you must:
+			+ keep the credit links in the footer intact
+			+ not change the license (e.g. copywriting my work)
+
+
+			### BREAKING THE LICENSE
+			#########################
+
+			Breaking the rules of the license will result in me initiating
+			the necessary legal procedures and publicly shaming you here:
+
+			http://owmx.com/hall-of-shame/
+			-->
+		</div>
+	</div>
+</html>

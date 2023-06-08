@@ -1,0 +1,364 @@
+<!doctype html>
+
+<!--
+	Halcyonic 3.1 by HTML5 UP
+	html5up.net | @n33co
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  
+		<!--- BEGIN VBOOST LANDER STUFF --->
+		<title>My Photos from Tustin Toyota</title>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<meta name="description" content="" />
+		<meta name="keywords" content="" />
+		<script src="js/jquery.min.js"></script>
+		<script src="js/config.js"></script>
+		<script src="js/skel.min.js"></script>
+		<script src="js/skel-panels.min.js"></script>
+		<noscript>
+			<link rel="stylesheet" href="css/skel-noscript.css" />
+			<link rel="stylesheet" href="css/style.css" />
+			<link rel="stylesheet" href="css/style-desktop.css" />
+		</noscript>
+		<!--[if lte IE 9]><link rel="stylesheet" href="css/ie9.css" /><![endif]-->
+		<!--[if lte IE 8]><script src="js/html5shiv.js"></script><![endif]-->
+				
+		<style>
+			#share {
+			  margin: 30px auto 0;
+			  color: #fff;
+			  font-size: 30px;
+			  font-weight: bold;
+			}
+		  
+			.addthis_toolbox .share-title {
+			  float: left;
+			  margin: 0 20px 0 2;
+			}
+		</style>
+		<!--- END VBOOST LANDER STUFF --->
+		
+		<!--- BEGIN MODAL JS/CSS STUFF --->
+		
+		  <link rel="stylesheet" href="smoothness/jquery-ui.css">
+		  
+		  <script src="smoothness/jquery-1.10.2.js"></script>
+		  <script src="smoothness/jquery-ui.js"></script>
+		  
+		  <style>
+		    label { font-weight:bold; }
+			fieldset { padding:0; border:0; margin-top:25px; font-size: 0.7em; color:#555555;}
+			#schedule-appt {cursor:pointer;}
+			.ui-dialog .ui-state-error { padding: 0.5em; }
+			.validateTips { font-size: 0.7em; line-height:16pt; color:#2c5b9b; margin-bottom:-10px;}
+			.minorComment { font-size: 0.8em; line-height:12pt; color:#2c5b9b; margin-bottom:5px;}
+		  </style>
+		  
+		  <script>
+		  $(function() {
+			var dialog, form,
+		 
+			  // From http://www.whatwg.org/specs/web-apps/current-work/multipage/states-of-the-type-attribute.html#e-mail-state-%28type=email%29
+			  emailRegex = /^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/,
+			  name = $( "#name" ),
+			  email = $( "#email" ),
+			  mobile = $( "#mobile" ),
+			  allFields = $( [] ).add( name ).add( email ).add( mobile ),
+			  tips = $( ".validateTips" );
+		 
+			function updateTips( t ) {
+			  tips
+				.text( t )
+				.addClass( "ui-state-highlight" );
+			  setTimeout(function() {
+				tips.removeClass( "ui-state-highlight", 1500 );
+			  }, 500 );
+			}
+		 
+			function checkLength( o, n, min, max ) {
+			  if ( o.val().length > max || o.val().length < min ) {
+				o.addClass( "ui-state-error" );
+				updateTips( "Length of " + n + " must be between " +
+				  min + " and " + max + "." );
+				return false;
+			  } else {
+				return true;
+			  }
+			}
+		 
+			function checkRegexp( o, regexp, n ) {
+			  if ( !( regexp.test( o.val() ) ) ) {
+				o.addClass( "ui-state-error" );
+				updateTips( n );
+				return false;
+			  } else {
+				return true;
+			  }
+			}
+		 
+			function addUser() {
+			  var valid = true;
+			  allFields.removeClass( "ui-state-error" );
+		 
+			  valid = valid && checkLength( name, "name", 3, 25 );
+			  valid = valid && checkLength( email, "email", 6, 80 );
+			  valid = valid && checkLength( mobile, "mobile", 10, 10 );
+		 
+			  valid = valid && checkRegexp( name, /^[a-z]([0-9a-z_\s])+$/i, "Name may consist of a-z, 0-9, underscores, spaces and must begin with a letter." );
+			  valid = valid && checkRegexp( email, emailRegex, "Please supply a valid email address: e.g. username@domain.com" );
+			  valid = valid && checkRegexp( mobile, /^([0-9a-zA-Z])+$/, "Mobile number field only allows numbers 0-9 (zero thru nine)" );
+		 
+			  if ( valid ) {
+				$( "#users tbody" ).append( "<tr>" +
+				  "<td>" + name.val() + "</td>" +
+				  "<td>" + email.val() + "</td>" +
+				  "<td>" + mobile.val() + "</td>" +
+				"</tr>" );
+				dialog.dialog( "close" );
+			  }
+			  return valid;
+			}
+		 
+			dialog = $( "#dialog-form" ).dialog({
+			  autoOpen: true,
+			  modal: true,
+			  width: 500,
+			  show: { effect: "fade", duration: 500 },
+			  buttons: {
+				"Skip this step": function() {
+				  dialog.dialog( "close" );
+				},
+				"Continue": addUser
+			  },
+			  close: function() {
+				form[ 0 ].reset();
+				allFields.removeClass( "ui-state-error" );
+			  }
+			});
+			
+			dialog.dialog("widget")
+			  .next(".ui-widget-overlay")
+              .css("background", "#1036dc");
+		 
+			form = dialog.find( "form" ).on( "submit", function( event ) {
+			  event.preventDefault();
+			  addUser();
+			});
+		 
+			$( "#schedule-appt" ).on( "click", function() {
+			  dialog.dialog( "open" );
+			});
+		
+		  });
+		  
+		  </script>
+		 <!--- END MODAL JS/CSS STUFF --->
+</head>
+
+<body>
+ 
+<div id="dialog-form" title="Congratulations!">
+  <p class="validateTips">Thank you for your recent vehicle purchase. We hope you enjoy the photos and video slideshow we have prepared for you. But first, please write a brief dealer review below and schedule your 30-Day Vehicle Check Up  as recommended and covered by your new car warranty.</p>
+ 
+  <form>
+    <fieldset>
+      <label for="name">Name</label>
+      <input type="text" name="name" id="name" value="" class="text ui-widget-content ui-corner-all"><br>
+      <label for="email">Email</label>
+      <input type="text" name="email" id="email" value="" class="text ui-widget-content ui-corner-all"><br>
+      <label for="mobile">Mobile #</label>
+      <input type="text" name="mobile" id="mobile" value="" class="text ui-widget-content ui-corner-all"><br>
+	  <p class="minorComment"> * We will only send you ONE appointment reminder via text; standard text messaging rates apply. We will NOT send you any additional marketing promotions.</p>
+       <label for="review">Write a single sentence review of your dealer experience:</label><br>
+	   <textarea rows="2" cols="60" name="review" class="text ui-widget-content ui-corner-all" style="height:30px;line-height:16px;padding:3px;"> </textarea><br>
+      <label for="date">Service Appointment Date:</label> 
+      <input type="text" name="date" id="date" value="" class="text ui-widget-content ui-corner-all" style="width:40px;">
+	  <div id="datepicker"></div>
+	  <p class="minorComment">* You may bring your vehicle in at any time on the date you select. We recommend coming in the morning. The service takes less than 30 minutes to complete.</p>
+      <!-- Allow form submission with keyboard without duplicating the dialog button -->
+      <input type="submit" tabindex="-1" style="position:absolute; top:-1000px">
+    </fieldset>
+  </form>
+	
+</div>
+ 
+	<!-- Header -->
+		<div id="header-wrapper">
+			<header id="header" class="container">
+				<div class="row">
+					<div class="12u">
+					
+						<!-- Logo -->
+							<h1>  <a href="#" id="logo">My New Car from Tustin Toyota</a></h1>
+						
+						<!-- Nav -->
+							<nav id="nav">
+								<a href="#">Visit Website</a>
+								<a href="#">Like Us</a>
+								<a href="#">Review Us</a>
+							</nav>
+
+					</div>
+				</div>
+			</header>
+			<p>
+		</div>
+
+	<!-- Features -->
+		<div id="features-wrapper">
+			<div id="features">
+				<div class="container">
+					<div class="row">
+					
+						<div class="4u">
+							
+							<!-- Feature #1 -->
+								<section>
+									<h2>Video Slideshow (5 Photos)</h2>
+									<a href="#" class="bordered-feature-image"><img src="images/pic02.jpg" alt="" /></a>
+									
+									<div id="share">
+										<!-- AddThis Button BEGIN -->
+										<div class="addthis_toolbox addthis_default_style addthis_32x32_style">
+											<span class="share-title">Share Video: &nbsp;</span>
+											<a class="addthis_button_facebook"></a>
+											<a class="addthis_button_twitter"></a>
+											<a class="addthis_button_email"></a>
+											<a class="addthis_button_compact"></a>
+										</div>
+										<script type="text/javascript">
+										  var addthis_config = {
+											"data_track_addressbar": true,
+											"data_ga_property": 'UA-40226125-1',
+											"data_ga_social" : true
+										  };
+										</script>
+										<script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=ra-502018a918baca22"></script>
+										<!-- AddThis Button END -->
+									</div>
+								</section>
+
+						</div>
+						
+						<div class="4u">
+						
+							<!-- Feature #2 -->
+								<section>
+									<h2>Me and My New Car</h2>
+									<a href="#" class="bordered-feature-image"><img src="images/pic01.jpg" alt="" /></a>
+									<div id="share">
+										<!-- AddThis Button BEGIN -->
+										<div class="addthis_toolbox addthis_default_style addthis_32x32_style">
+											<span class="share-title">Share Photo: &nbsp;</span>
+											<a class="addthis_button_facebook"></a>
+											<a class="addthis_button_twitter"></a>
+											<a class="addthis_button_email"></a>
+											<a class="addthis_button_compact"></a>
+										</div>
+										<script type="text/javascript">
+										  var addthis_config = {
+											"data_track_addressbar": true,
+											"data_ga_property": 'UA-40226125-1',
+											"data_ga_social" : true
+										  };
+										</script>
+										<script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=ra-502018a918baca22"></script>
+										<!-- AddThis Button END -->
+									</div>
+									<div style="width:100%;margin-left:5px;margin-top:8px;line-height:18px;"><div style="float:left;margin-right:4px;"><img src="images/instagram.png"></div><strong>To share on Instagram from mobile device:</strong> Tap and hold image, Save to Camera Roll, and post with Instagram app</div>
+									
+									
+								</section>
+
+						</div>
+						
+						
+						<div class="4u">
+						
+							<!-- Feature #3 -->
+								<section>
+									<h2>Schedule Your Free 1-Month Vehicle Check-Up</h2>
+									<a id="schedule-appt" class="bordered-feature-image"><img src="images/special_offer.png" alt="" /></a>
+									
+									
+								</section>
+
+						</div>
+						
+					</div>
+				</div>
+			</div>
+		</div>
+
+		
+	<!-- Content -->
+		<div id="content-wrapper">
+			<div id="content">
+				<div class="container">
+					<div class="row">
+						<div class="7u">
+
+							<!-- Box #1 -->
+								<section>
+									<header>
+										<h2>About Tustin Toyota</h2>
+										<h3>Orange County, Garden Grove, Irvine and Anaheim</h3>
+									</header>
+									<a href="#" class="feature-image"><img src="images/pic05.jpg" alt=""  /></a>
+									<center>
+									<a href="https://vboostlive.com/go/kzwn5vu/website/" class="button-big" style="color:#fff;">Visit Us</a> &nbsp; 
+									<a href="https://vboostlive.com/go/kzwn5vu/review_site/" class="button-big" style="color:#fff;">Review Us</a>  &nbsp; 
+									<a href="https://vboostlive.com/go/kzwn5vu/social_site/" class="button-big" style="color:#fff;">Like Us</a>
+									</center><br />
+								<p>
+								Tustin Toyota is Orange County's premier Toyota Scion dealer offering every new 2014 model in stock. And the talented staff in our service center is standing by to fix your vehicle quickly and exceed your customer service expectations. Call our sales department at 888-999-6821 to test drive your next car. To schedule a service appointment call 888-992-7001. We are conveniently located in the Tustin Auto Center at 36 Auto Center Drive, Tustin, CA 92782. 
+								</p>
+								</section>
+
+						</div>
+						<div class="5u">
+							
+							<!-- Box #3 -->
+								<section>
+									<header>
+										<h2>What People Are Saying</h2>
+										<h3>Exceeding Expectations, Every Day</h3>
+									</header>
+									<ul class="quote-list">
+										<li>
+											<img src="images/pic06.jpg" alt="" />
+											<p>"Tustin Toyota is the only dealer I've ever trusted."</p>
+											<span>Jamie Conway, Newport</span>
+										</li>
+										<li>
+											<img src="images/pic07.jpg" alt="" />
+											<p>"You guys always seem to fix my car the fastest."</p>
+											<span>Mike Jacobs, Costa Mesa</span>
+										</li>
+										<li>
+											<img src="images/pic08.jpg" alt="" />
+											<p>"Finally, a factory dealer that doesn't overcharge for service."</p>
+											<span>Erica Needles, Tustin</span>
+										</li>
+									</ul>
+								</section>
+
+						</div>
+						
+					</div>
+				</div>
+			</div>
+		</div>
+		
+	<!-- Copyright -->
+	<div id="copyright">
+		&copy; Vboost, Inc. All rights reserved. 
+	</div>
+  
+</body>
+</html>

@@ -1,0 +1,3 @@
+# Dirty hack for correct PIL installation
+
+Pillow-SIMD==4.3.0.post0

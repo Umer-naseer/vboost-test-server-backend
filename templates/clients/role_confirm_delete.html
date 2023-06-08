@@ -1,0 +1,12 @@
+{% extends "template.html" %}
+
+{% block content %}
+<h1>Deleting role <emph>{{ role.name }}</emph></h1>
+<p>Are you sure you want to delete role <emph>{{ role.name }}</emph>?</p>
+<p>Users associated with this role will be permanently deleted.</p>
+<form action="." method="POST">
+    {% csrf_token %}
+    <input class="button" type="submit" value="Delete" />
+    <a href="{% url role-list %}">No, cancel</a>
+</form>
+{% endblock %}

@@ -1,0 +1,32 @@
+{% extends "template.html" %}
+{% load admin_urls i18n %}
+
+{% block breadcrumbs %}
+<div class="breadcrumbs">
+<a href="{% url 'admin:index' %}">{% trans 'Home' %}</a>
+&rsaquo; <a href="{% url 'admin:app_list' app_label=app_label %}">{{ app_label|capfirst|escape }}</a>
+&rsaquo; <a href="{% url opts|admin_urlname:'changelist' %}">{{ module_name }}</a>
+&rsaquo; <a href="{% url opts|admin_urlname:'change' object.pk|admin_urlquote %}">{{ object|truncatewords:"18" }}</a>
+&rsaquo; {{ title }}
+</div>
+{% endblock %}
+
+
+{% block content %}
+    <ul class="object-tools">
+    {% for type, label in links %}
+        <li{% if type == template_type %} class="selected"{% endif %}>
+        <a href="{% url "admin:preview" original.id type %}">{{ label|capfirst }}</a>
+        </li>
+    {% endfor %}
+    </ul>
+    {% if template_type == 'landing' %}
+        <iframe width="100%" height="800" seamless src="{{ original.get_landing_page_url }}">
+            Cannot load iframe.
+        </iframe>
+    {% else %}
+        <iframe width="100%" height="800" seamless src="{% url "admin:preview_iframe" original.id template_type %}">
+            Cannot load iframe.
+        </iframe>
+    {% endif %}
+{% endblock %}

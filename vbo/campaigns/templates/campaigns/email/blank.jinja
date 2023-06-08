@@ -1,0 +1,68 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title></title>
+    <style type="text/css">
+      body {
+	      margin-left: 0px;
+	      margin-top: 0px;
+	      margin-right: 0px;
+	      margin-bottom: 0px;
+      }
+    </style>
+  </head>
+  <body>
+    {{ tracking_pixel|safe }}
+    <table width="650" height="751" border="0" align="center" cellpadding="0" cellspacing="0" >
+      <tr>
+        <td valign="top">
+          <table width="650" height="43" border="0" align="center" cellpadding="0" cellspacing="0">
+            <tr>
+              <th align="left" valign="top" scope="col">&nbsp;</th>
+            </tr>
+          </table>
+          <table width="446" height="84" border="0" align="center" cellpadding="0" cellspacing="0">
+            <tr>
+              <td width="446" height="84">
+                <span style="font-family:Arial, Helvetica, sans-serif; font-size:10pt; color:#000;">{{ campaign.email_greeting or "Enjoy the slideshow below." }}<br />
+                <b>- {{ contact.name }}</b></span>
+              </td>
+            </tr>
+          </table>
+          <table width="650" height="147" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+              <td align="center"><p><img src="{{ MEDIA }}/{{ campaign.logo }}" style="width: 220; max-width: 220" /><br />
+                <br />
+                </p>
+              </td>
+            </tr>
+          </table>
+          <table width="650" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+              <td align="center"><a href="{{ landing_page_url }}"><img src="{{ cropped_thumb }}" width="425" height="331" border="0" /></a></td>
+            </tr>
+          </table>
+          <table width="650" height="133" border="0" cellpadding="0" cellspacing="0">
+            <tr>
+              <td height="133" align="center"><a href="{{ landing_page_url }}"><img src="http://www.vboost.com/aag/emailtemplate/v2/images/button.jpg" width="312" height="75" border="0" /></a></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </table>
+    {% block footer %}
+      <div class="footer"><small>
+
+        <p>If you no longer wish to receive these emails, please simply click on the following link: <a href="{{ unsubscribe_url }}">Unsubscribe</a>.</p>
+
+        <a href="http://vboost.com"><img style="float: right" src="http://vboostlive.com/static/images/visit_vboost.jpg" /></a>
+
+        <p>Vboost- The Viral Marketing Company<br/>
+        5267 Warner Ave. #107<br/>
+        Huntington beach, California 92649<br/>
+          US</p></small>
+      </div>
+    {% endblock %}
+  </body>
+</html>

@@ -1,0 +1,13 @@
+syntax: glob
+*~
+*.pyc
+*.pyo
+.DS_Store
+*.dat
+.idea
+development_settings.py
+vboostoffice/settings/local.py
+imports/management/commands/analytics/analytics.dat
+analytics/analytics.dat
+documentation/site/
+reports

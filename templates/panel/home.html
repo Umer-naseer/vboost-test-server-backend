@@ -1,0 +1,102 @@
+{% extends "template.html" %}
+{% load url from future %}
+{% load admin_urls %}
+
+{% block content %}
+<h1>Hello {% if user.get_full_name %}{{ user.get_full_name }}{% else %}{{ user.username }}{% endif %}. Welcome to Vboost Control Panel v1.0!</h1>
+
+<p class="menuoptions">
+    <img  src="/static/images/thumbnailCreator.jpg"><a href="/atc" class="url">Thumbnail Creator</a>
+</p>
+
+<div class="clear"></div>
+
+<h1>Administration &amp; settings</h1>
+
+<p class="menuoptions">
+    <img src="/static/images/companies.png"><a href="/admin/clients/company/" class="url">Companies</a>
+</p>
+
+<p class="menuoptions">
+    <img  src="/static/images/users.png"> <a href="/admin/clients/role" class="url">Roles</a>
+</p>
+
+<p class="menuoptions">
+    <img  src="/static/images/user_settings.png"> <a href="/admin/clients/user" class="url">Users</a>
+</p>
+
+<!--p class="menuoptions">
+    <img  src="/static/images/reporting.jpg"> <a href="#" class="url">Reports</a>
+</p>
+
+<p class="menuoptions">
+    <img  src="/static/images/map-icon.png"> <a href="#" class="url">Viral Heat Map</a>
+</p>
+
+<p class="menuoptions">
+    <img  src="/static/images/dynamics-icon.jpg"> <a href="http://Vboost1.crm.dynamics.com" class="url" target="new">Salesforce.com CRM</a>
+</p>
+
+<p class="menuoptions">
+    <img  src="/static/images/imageReview.png"> <a href="#" class="url">Incoming Images (34)</a>
+</p>
+
+<p class="menuoptions">
+    <img  src="/static/images/campaigns.jpg"> <a href="#" class="url">Campaigns</a>
+</p>
+
+<p class="menuoptions">
+    <img  src="/static/images/video.png"> <a href="#" class="url">Videos</a>
+</p>
+
+<p class="menuoptions">
+    <img  src="/static/images/email.jpg"> <a href="#" class="url">Emails</a>
+</p>
+
+<p class="menuoptions">
+    <img  src="/static/images/landingPages.png"> <a href="#" class="url">Landing Pages</a>
+</p-->
+        
+<!--p class="menuoptions">
+    <img  src="/static/images/permissions.png"> <a href="#" class="url">Security</a>
+</p>
+        
+<p class="menuoptions">
+    <img  src="/static/images/investment.png"> <a href="#" class="url">Billing</a>
+</p>
+                                
+<p class="menuoptions">
+    <img  src="/static/images/sitepages.png"> <a href="#" class="url" target="new">System Settings</a>
+</p>    
+
+<p class="menuoptions">
+    <img  src="/static/images/databaseFields.png"> <a href="#" class="url">Custom Fields</a>
+</p>
+
+<p class="menuoptions">
+    <img  src="/static/images/systemStatus.png"> <a href="#" class="url" target="new">System Status</a>
+</p-->
+
+<div class="clear"></div>
+{% endblock %}
+
+{% block aside %}
+{% comment %}
+<h4>Search</h4>
+<form action="#" class="s">
+    <input name="search" type="text" value="Type term and hit enter...">
+</form>
+{% endcomment %}
+<h4>Message from the CEO</h4>
+<div id="c">
+    <img src="/static/images/paul_moran.jpg" alt="#" style="width:70px;">
+      <p>Every day we build things, connect with people, and grow.</p>
+    <p>Thank you to our clients and team for making Vboost great!</p>
+    <p></p>
+    
+    <p style="text-align:right;">-<a href="http://www.Vboost.com/">Paul Moran</a></p>
+    <p></p>
+    <b>Follow Me</b>
+    <p><a href="http://www.facebook.com/paul.moran.3950" title="Follow Paul">Facebook</a> | <a href="http://www.linkedin.com/profile/view?id=53874627&locale=en_US&trk=tyah" title="Follow Paul">LinkedIn</a></p>
+</div>
+{% endblock %}

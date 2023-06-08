@@ -1,0 +1,56 @@
+<style>
+    .totals {
+        border-collapse: collapse;
+        width: 100%;
+        margin-bottom: 18px;
+        margin-top: 18px;
+    }
+
+    .totals td {
+        background: #F3F1F2;
+        text-align: center;
+        padding: 9px;
+        border: solid 1px white;
+
+        font-weight: bold;
+        font-size: 16px;
+        line-height: 16px;
+    }
+
+    .totals .viral_lift {
+        font-size: 18px;
+        line-height: 18px;
+        font-weight: bold;
+        background: #F1F3F1;
+    }
+
+    .totals .numbers td {
+        padding: 9px 3px;
+    }
+</style>
+
+<div style="text-align: center">
+<table class="totals">
+    <tr>
+        <td colspan="{% if show_clicks %}7{% else %}6{% endif %}" class="viral_lift">
+            Viral lift:
+            {% if viral_lift != None %}
+                {{ '%0.2f%%'|format(viral_lift * 100) }}
+            {% else %}
+                <em>not defined</em>
+            {% endif %}
+        </td>
+    </tr>
+    <tr class="numbers">
+        <td>{{ sent }} Photo Sets Sent</td>
+        <td>{{ opened }} Photo Sets Opened</td>
+        <td>{{ page }} Page Views</td>
+        <td>{{ video }} Video Views</td>
+        <td>{{ viewed }} Time Viewed</td>
+        <td>{{ shares }} Shares</td>
+        {% if show_clicks %}
+            <td>{{ clicks }} Visits to Websites</td>
+        {% endif %}
+    </tr>
+</table>
+</div>

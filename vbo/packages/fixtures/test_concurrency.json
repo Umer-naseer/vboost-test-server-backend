@@ -1,0 +1,367 @@
+[
+    {
+        "fields": {
+            "date_joined": "2012-09-13T21:55:29",
+            "email": "altaisoft@gmail.com",
+            "first_name": "",
+            "groups": [],
+            "is_active": true,
+            "is_staff": true,
+            "is_superuser": true,
+            "last_login": "2013-04-17T13:15:58",
+            "last_name": "",
+            "password": "pbkdf2_sha256$10000$OIDmMG1D7RH5$+GogXHrhe+GCyu3MuLY5YYIW7McRl9uIXSzL9mb5AQg=",
+            "user_permissions": [],
+            "username": "admin"
+        },
+        "model": "auth.user",
+        "pk": 1
+    },
+    {
+        "fields": {
+            "phone": "123456",
+            "title": "Administrator",
+            "user": 1
+        },
+        "model": "clients.userprofile",
+        "pk": 1
+    },
+
+    {
+        "fields": {
+            "date_joined": "2012-09-13T21:55:29",
+            "email": "john@example.com",
+            "first_name": "",
+            "groups": [],
+            "is_active": true,
+            "is_staff": true,
+            "is_superuser": true,
+            "last_login": "2013-04-17T13:15:58",
+            "last_name": "",
+            "password": "pbkdf2_sha256$10000$OIDmMG1D7RH5$+GogXHrhe+GCyu3MuLY5YYIW7McRl9uIXSzL9mb5AQg=",
+            "user_permissions": [],
+            "username": "john"
+        },
+        "model": "auth.user",
+        "pk": 2
+    },
+    {
+        "fields": {
+            "phone": "123456",
+            "title": "John",
+            "user": 2
+        },
+        "model": "clients.userprofile",
+        "pk": 2
+    },
+
+    {
+        "model": "clients.company",
+        "pk": 1,
+        "fields": {
+            "name": "Company",
+            "key": "first"
+        }
+    },
+
+    {
+        "model": "clients.campaign",
+        "pk": 1,
+        "fields": {
+            "name": "Empty campaign",
+            "key": "empty",
+            "company": 1,
+            "lft": 0,
+            "rght": 0,
+            "tree_id": 0,
+            "level": 0
+        }
+    },
+    {
+        "model": "clients.campaign",
+        "pk": 2,
+        "fields": {
+            "name": "Donkey campaign",
+            "key": "donkey",
+            "company": 1,
+            "lft": 0,
+            "rght": 0,
+            "tree_id": 0,
+            "level": 0
+        }
+    },
+
+    {
+        "model": "clients.campaignimage",
+        "pk": 1,
+        "fields": {
+            "campaign": 2,
+            "name": "donkey",
+            "image": "testing/donkey.jpg"
+        }
+    },
+
+    {
+        "model": "clients.contact",
+        "pk": 1,
+        "fields": {
+            "name": "A person",
+            "company": 1
+        }
+    },
+
+    {
+        "model": "clients.package",
+        "pk": 1,
+        "fields": {
+            "company": 1,
+            "campaign": 1,
+            "contact": 1,
+            "status": "void",
+            "submitted_time": "2013-09-13 12:00:00"
+        }
+    },
+    {
+        "model": "clients.package",
+        "pk": 2,
+        "fields": {
+            "company": 1,
+            "campaign": 1,
+            "contact": 1,
+            "status": "void",
+            "submitted_time": "2013-09-14 12:00:00"
+        }
+    },
+    {
+        "model": "clients.package",
+        "pk": 3,
+        "fields": {
+            "company": 1,
+            "campaign": 1,
+            "contact": 1,
+            "status": "void",
+            "submitted_time": "2013-09-15 12:00:00"
+        }
+    },
+    {
+        "model": "clients.package",
+        "pk": 4,
+        "fields": {
+            "company": 1,
+            "campaign": 1,
+            "contact": 1,
+            "status": "void",
+            "submitted_time": "2013-09-16 12:00:00"
+        }
+    },
+
+    {
+        "model": "clients.package",
+        "pk": 5,
+        "fields": {
+            "company": 1,
+            "campaign": 1,
+            "contact": 1,
+            "status": "void",
+            "submitted_time": "2013-09-17 12:00:00"
+        }
+    },
+    {
+        "model": "clients.package",
+        "pk": 6,
+        "fields": {
+            "company": 1,
+            "campaign": 1,
+            "contact": 1,
+            "status": "void",
+            "submitted_time": "2013-09-18 12:00:00"
+        }
+    },
+    {
+        "model": "clients.package",
+        "pk": 7,
+        "fields": {
+            "company": 1,
+            "campaign": 1,
+            "contact": 1,
+            "status": "void",
+            "submitted_time": "2013-09-19 12:00:00"
+        }
+    },
+    {
+        "model": "clients.package",
+        "pk": 8,
+        "fields": {
+            "company": 1,
+            "campaign": 1,
+            "contact": 1,
+            "status": "void",
+            "submitted_time": "2013-09-20 12:00:00"
+        }
+    },
+    {
+        "model": "clients.package",
+        "pk": 9,
+        "fields": {
+            "company": 1,
+            "campaign": 1,
+            "contact": 1,
+            "status": "void",
+            "submitted_time": "2013-09-21 12:00:00"
+        }
+    },
+    {
+        "model": "clients.package",
+        "pk": 10,
+        "fields": {
+            "company": 1,
+            "campaign": 1,
+            "contact": 1,
+            "status": "void",
+            "submitted_time": "2013-09-22 12:00:00"
+        }
+    },
+    {
+        "model": "clients.package",
+        "pk": 11,
+        "fields": {
+            "company": 1,
+            "campaign": 1,
+            "contact": 1,
+            "status": "void",
+            "submitted_time": "2013-09-23 12:00:00"
+        }
+    },
+    {
+        "model": "clients.package",
+        "pk": 12,
+        "fields": {
+            "company": 1,
+            "campaign": 1,
+            "contact": 1,
+            "status": "void",
+            "submitted_time": "2013-09-24 12:00:00"
+        }
+    },
+
+    {
+        "model": "clients.packageimage",
+        "pk": 1,
+        "fields": {
+            "package": 1,
+            "image": "testing/package1.jpg",
+            "inline_ordering_position": 1,
+            "created": "2013-09-13 12:00:00"
+        }
+    },
+    {
+        "model": "clients.packageimage",
+        "pk": 2,
+        "fields": {
+            "package": 2,
+            "image": "testing/package2.jpg",
+            "inline_ordering_position": 1,
+            "created": "2013-09-13 12:00:00"
+        }
+    },
+    {
+        "model": "clients.packageimage",
+        "pk": 3,
+        "fields": {
+            "package": 3,
+            "image": "testing/package3.jpg",
+            "inline_ordering_position": 1,
+            "created": "2013-09-13 12:00:00"
+        }
+    },
+    {
+        "model": "clients.packageimage",
+        "pk": 4,
+        "fields": {
+            "package": 4,
+            "image": "testing/package3.jpg",
+            "inline_ordering_position": 4,
+            "created": "2013-09-13 12:00:00"
+        }
+    },
+    {
+        "model": "clients.packageimage",
+        "pk": 5,
+        "fields": {
+            "package": 5,
+            "image": "testing/package5.jpg",
+            "inline_ordering_position": 1,
+            "created": "2013-09-13 12:00:00"
+        }
+    },
+    {
+        "model": "clients.packageimage",
+        "pk": 6,
+        "fields": {
+            "package": 6,
+            "image": "testing/package6.jpg",
+            "inline_ordering_position": 1,
+            "created": "2013-09-13 12:00:00"
+        }
+    },
+    {
+        "model": "clients.packageimage",
+        "pk": 7,
+        "fields": {
+            "package": 7,
+            "image": "testing/package7.jpg",
+            "inline_ordering_position": 1,
+            "created": "2013-09-13 12:00:00"
+        }
+    },
+    {
+        "model": "clients.packageimage",
+        "pk": 8,
+        "fields": {
+            "package": 8,
+            "image": "testing/package8.jpg",
+            "inline_ordering_position": 1,
+            "created": "2013-09-13 12:00:00"
+        }
+    },
+    {
+        "model": "clients.packageimage",
+        "pk": 9,
+        "fields": {
+            "package": 9,
+            "image": "testing/package9.jpg",
+            "inline_ordering_position": 1,
+            "created": "2013-09-13 12:00:00"
+        }
+    },
+    {
+        "model": "clients.packageimage",
+        "pk": 10,
+        "fields": {
+            "package": 10,
+            "image": "testing/package10.jpg",
+            "inline_ordering_position": 1,
+            "created": "2013-09-13 12:00:00"
+        }
+    },
+    {
+        "model": "clients.packageimage",
+        "pk": 11,
+        "fields": {
+            "package": 11,
+            "image": "testing/package11.jpg",
+            "inline_ordering_position": 1,
+            "created": "2013-09-13 12:00:00"
+        }
+    },
+    {
+        "model": "clients.packageimage",
+        "pk": 12,
+        "fields": {
+            "package": 12,
+            "image": "testing/package12.jpg",
+            "inline_ordering_position": 1,
+            "created": "2013-09-13 12:00:00"
+        }
+    }
+]

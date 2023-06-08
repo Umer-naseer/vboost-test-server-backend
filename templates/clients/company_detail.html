@@ -1,0 +1,70 @@
+{% extends "template.html" %}
+
+{% block content %}
+<h1>{{ company.name }}</h1>
+
+{% if 'clients.change_company' in company_perms %}
+<a href="{% url company-edit company.id %}">Edit this company</a> | 
+{% endif %}
+
+{% if 'clients.delete_company' in company_perms %}
+<a href="{% url company-delete company.id %}">Delete this company</a>
+{% endif %}
+
+<table>
+    <tr>
+        <td>ID</td>
+        <td>{{ company.id }}</td>
+    </tr>
+    <tr>
+        <td>Active</td>
+        <td>{{ company.active }}</td>
+    </tr>
+    <tr>
+        <td>Default Company Name</td>
+        <td>{{ company.default_company_name }}</td>
+    </tr>
+    <tr>
+        <td>Default Display Name</td>
+        <td>{{ company.default_display_name }}</td>
+    </tr>
+    <tr>
+        <th colspan="2">How to contact</th>
+    </tr>
+    <tr>
+        <td>Default Email</td>
+        <td>{{ company.default_email }}</td>
+    </tr>
+    <tr>
+        <td>Default Phone</td>
+        <td>{{ company.default_phone }}</td>
+    </tr>
+    <tr>
+        <th colspan="2">Address</th>
+    </tr>
+    <tr>
+        <td>Address</td>
+        <td>{{ company.address }}
+            {% if company.address2 %}
+                <br />
+                {{ company.address2 }}
+            {% endif %}
+        </td>
+    </tr>
+    <tr>
+        <td>City</td>
+        <td>{{ company.city }}</td>
+    </tr>
+    <tr>
+        <td>State</td>
+        <td>{{ company.state }}</td>
+    </tr>
+    <tr>
+        <td>Zip Code</td>
+        <td>{{ company.zipcode }}</td>
+    </tr>
+</table>
+
+<a href="{% url company-list %}">Back to Companies</a>
+
+{% endblock %}

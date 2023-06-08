@@ -1,0 +1,114 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>{{ title }}</title>
+    <style type="text/css">
+        .centered {
+            text-align: center;
+        }
+
+        table.table {
+            border: solid 1px #538DD5;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        table.table tr {
+            line-height: 12px;
+        }
+
+        table.table td {
+            border: solid 1px #538DD5;
+            padding: 3px;
+            text-indent: 0;
+        }
+
+        table.table th {
+            text-align: left;
+            background: #538DD5;
+            color: white;
+
+            font-weight: bold;
+            font-size: 14px;
+            line-height: 14px;
+            padding: 3px;
+        }
+
+        .section {
+            background: #F2F0F1;
+            margin-top: 18px;
+            page-break-after: always;
+        }
+
+        .section .subtitle {
+            background: #AAAAAA;
+            font-weight: bold;
+
+            font-size: 17px;
+            padding: 3px;
+            line-height: 17px;
+            margin-bottom: 0;
+
+            page-break-after: avoid;
+        }
+
+        .section .body {
+            padding: 9px;
+            margin: 0;
+            page-break-before: avoid;
+        }
+
+        .over-title {
+            font-weight: bold;
+            color: white;
+            margin: 0;
+            background: #D55953;
+            font-size: 18px;
+            padding: 3px;
+            line-height: 18px;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .title {
+            font-weight: bold;
+            color: white;
+            margin: 0;
+            background: #538DD5;
+            font-size: 16px;
+            padding: 3px;
+            line-height: 16px;
+        }
+
+        p {
+            line-spacing: 9px;
+        }
+    </style>
+    {% block extrahead %}{% endblock %}
+</head>
+
+<body style="font-family: Helvetica,Arial; font-size: 12px;">
+<div style="background: #F2F0F1">
+    <a href="http://www.vboost.com"><img src="https://vboostlive.com/static/images/vboost_logo.png"></a>
+</div>
+{% if campaign_type == 'mylead' or campaign_type == 'myride' %}
+<div class="over-title">
+    {% if campaign_type == 'myride' %}
+        Delivered Customer Report
+    {% elif campaign_type == 'mylead' %}
+        Lead Follow up Report
+    {% endif %}
+</div>
+{% endif %}
+<div class="title">{{ title }}</div>
+
+<p><!--MESSAGE--></p>
+
+{% block content %}
+    {% for block in content %}
+        {{ block }}
+    {% endfor %}
+{% endblock %}
+</body>

@@ -1,0 +1,177 @@
+{% macro duration(image) %}{{ 5 if image.width() < image.height() else 4 }}{% endmacro %}
+
+{% macro closing_text(text, y, fontsize) %}
+<text type="zone" fontsize="{{ fontsize }}" fontname="http://vboostlive.com/media/ttf/coolvetica.ttf" align="center,center" duration="6" vector="true">
+  {{ text }}
+  <filter type="distancemap" distanceWidth="40.0"/>
+  <filter type="distancecolor" distanceWidth="40.0" color="#FFFFFF" dropShadowColor="#000000" dropShadowBlurWidth="1" dropShadowOpacity="0.8" dropShadowPosition="-0.01,0.01" />
+
+  <animator type="custom">
+    <key pos="0,{{ y }},0" time="0.0" />
+  </animator>
+</text>
+{% endmacro %}
+
+{% block movie %}
+<movie service="craftsman-1.0">
+  <body>
+    {% block preambula %}{% endblock %}
+    <stack>
+        <effect type="kenburns" duration=".." direction="negative">
+          <image filename="{{ thumb }}">
+            <filter type="blur" diameter="5.0" />
+          </image>
+        </effect>
+
+      <audio filename="{{ campaign.media.soundtrack }}" duration=".." fadeout="5" />
+
+      <sequence>
+        <text type="zone" fontsize="30" fontname="http://vboostlive.com/media/ttf/coolvetica.ttf" align="center,center" duration="3" vector="true">
+          {% block welcome_text %}{{ campaign.text.welcome|default("My New Car!") }}{% endblock %}
+          <filter type="distancemap" distanceWidth="40.0"/>
+          <filter type="distancecolor" distanceWidth="40.0" color="#FFFFFF" dropShadowColor="#000000" dropShadowBlurWidth="0.5" dropShadowOpacity="0.8" dropShadowPosition="-0.01,0.01" />
+          <animator type="custom">
+            <key scale="0.01,0.01,0.01" rot="180,0,0,1" time="0" />
+            <key scale="1,1,1" rot="0,0,0,1" time="1.5" />
+          </animator>
+        </text>
+
+        <transition type="scan" duration="1" direction="right" />
+
+        <overlay>
+          <effect type="sliding" duration="{{ 6 if plain_images else 3 }}">
+            <image filename="{{ thumb }}" />
+            {% if plain_images %}
+              <image filename="{{ plain_images|first }}" />
+            {% endif %}
+          </effect>
+        </overlay>
+
+        {% if plain_images|length > 1 %}
+        <!-- Up -->
+        <transition duration="1" type="custom">
+          <widget duration="1" type="set.whitestripe.transition.cut.higher.08"/>
+        </transition>
+
+        <effect type="kenburns" duration="{{ duration(plain_images.1) }}" direction="negative" margin-start="1.5">
+          <image filename="{{ plain_images.1 }}" />
+        </effect>
+        {% endif %}
+
+        {% if plain_images|length > 2 %}
+        <!-- Stripe -->
+        <transition duration="1" type="custom">
+          <widget duration="1" type="set.whitestripe.transition.internal.high.06"/>
+        </transition>
+
+        <effect type="kenburns" duration="{{ duration(plain_images.2) }}" direction="negative" margin-start="1.5">
+          <image filename="{{ plain_images.2 }}" />
+        </effect>
+        {% endif %}
+
+        {% if plain_images|length > 3 %}
+        <transition type="swirl" duration="1" />
+
+        <effect type="kenburns" duration="{{ duration(plain_images.3) }}" direction="negative" margin-start="1.5">
+          <image filename="{{ plain_images.3 }}" />
+        </effect>
+        {% endif %}
+
+        {% if plain_images|length > 4 %}
+        <transition duration="1" type="custom">
+          <widget duration="1" type="set.whitestripe.transition.internal.low.15"/>
+        </transition>
+
+        <effect type="kenburns" duration="{{ duration(plain_images.4) }}" direction="negative" margin-start="1.5">
+          <image filename="{{ plain_images.4 }}" />
+        </effect>
+        {% endif %}
+
+
+        {% block dealer_media %}
+          <transition type="crossfade" duration="1" />
+
+          <stack{% if campaign.media.intro_video %} duration="6"{% endif %}>
+            {% if campaign.media.intro_video %}
+              <effect type="kenburns">
+                <video filename="{{ campaign.media.intro_video }}" />
+              </effect>
+            {% elif campaign_images %}
+              <overlay>
+                <effect type="sliding" duration="5">
+                    <image filename="{{ campaign_images|first }}" />
+                </effect>
+              </overlay>
+            {% endif %}
+
+            <overlay>
+              {% block closing_strings %}
+                <stack>
+                  {% with %}
+                    {% if campaign.text.closing %}
+                      {% set header = campaign.text.closing %}
+                    {% elif self.closing_header %}
+                      {% set header = self.closing_header() %}
+                    {% endif %}
+
+                    {% if not header %}
+                      {% set header = "Got Mine At" %}
+                    {% endif %}
+
+                    {{ closing_text(header, 0.1, 20) }}
+                  {% endwith %}
+
+                  {% if company.default_display_name %}
+                    {{ closing_text(company.default_display_name, -0.1, 30) }}
+                  {% else %}
+                    {{ closing_text(company.name, -0.1, 30) }}
+                  {% endif %}
+
+                  {% if campaign.text.slogan %}
+                    {{ closing_text(campaign.text.slogan, -0.4, 20) }}
+                  {% endif %}
+                </stack>
+              {% endblock %}
+
+              {% block closing_animation %}
+                <animator type="custom">
+                  <key scale="1,1,1" time="0" />
+                  <key scale="1,1,1" time="2" />
+                  <key scale="0.01,0.01,0.01" time="3.5" />
+                </animator>
+              {% endblock %}
+            </overlay>
+          </stack>
+
+          {% if not campaign.media.intro_video %}
+            {% block closing_images %}
+              {% with %}
+                {% set dealer_slides = campaign_images[1:] %}
+                {% if dealer_slides %}
+                  <transition type="scan" duration="1" direction="right" />
+                  <overlay>
+                    <effect type="sliding" duration="{{ dealer_slides|length * 3 }}">
+                      {% for image in dealer_slides %}
+                        <image filename="{{ image }}" />
+                      {% endfor %}
+                    </effect>
+                  </overlay>
+                {% endif %}
+              {% endwith %}
+            {% endblock %}
+          {% endif %}
+        {% endblock %}
+
+        <transition type="scan" duration="1" direction="left" />
+
+        <overlay>
+          <animator type="slide-in" direction="up" />
+          <effect type="panel" adapter="kenburnsAdapter" margin-start="0" duration="5">
+            <image filename="{{ thumb }}" />
+          </effect>
+        </overlay>
+      </sequence>
+    </stack>
+  </body>
+</movie>
+{% endblock %}

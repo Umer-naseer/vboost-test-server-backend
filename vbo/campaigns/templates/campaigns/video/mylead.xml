@@ -1,0 +1,89 @@
+{% extends "video/default.xml" %}
+
+{% if not thumb %}
+  {% set thumb = plain_images[0] %}
+{% endif %}
+
+{% macro text_slide(first, latter, flash=False) %}
+  <stack>
+    <effect type="kenburns" duration=".." direction="negative">
+      <image filename="{{ thumb }}">
+        <filter type="blur" diameter="5.0" />
+        <filter type="alpha" duration="60.0" alphaStart="0.5" alphaEnd="0.5" />
+        {% if flash %}
+        <filter type="glow" duration="1.0" diameter="1.0" timeOffset="1.0" />
+        {% endif %}
+      </image>
+    </effect>
+    
+    {{ closing_text(first, 0.1, 32) }}
+    {{ closing_text(latter, -0.2, 25) }}
+  </stack>
+{% endmacro %}
+
+{% block movie %}
+  {% with %}
+    {% set duration = 10 %}
+    <movie service="craftsman-1.0">
+      <body>
+        <effect type="none" duration="1">
+          <image color="#000000" />
+        </effect>
+        
+        <transition type="swirl" duration="1" />
+        
+        {% if campaign.media.intro_video %}
+          <effect type="kenburns">
+            <video filename="{{ campaign.media.intro_video }}" volume="10" />
+          </effect>
+        {% endif %}
+        
+        <stack>
+          {% if campaign.media.soundtrack %}
+            <audio filename="{{ campaign.media.soundtrack }}" duration=".." fadeout="5" />
+          {% endif %}
+          
+          <sequence>
+            {{ text_slide("Your New Car From...", company.default_display_name or company.name, flash=True) }}
+            
+            <transition type="scans" />
+            
+            <effect type="kenburns" duration="{{ duration }}">
+              <image filename="{{ thumb }}" />
+            </effect>
+            
+            {% for image in plain_images %}
+            <transition type="crossfade" />
+            
+            <effect type="kenburns" duration="{{ duration }}" direction="{{ loop.cycle('positive', 'negative') }}">
+              <image filename="{{ image }}" />
+            </effect>
+            {% endfor %}
+            
+            <transition type="crossfade" />
+            
+            {{ text_slide(contact.name, contact.title) }}
+            
+            <transition type="scan" />
+            
+            {{ text_slide(contact.phone or campaign.default_phone, contact.email or campaign.default_email) }}
+            
+            {% if campaign.media.final_video %}
+              <!-- Final video -->
+              <effect type="kenburns">
+                <video filename="{{ campaign.media.final_video }}" volume="10" />
+              </effect>
+            {% else %}
+              {% for image in campaign_images %}
+                <transition type="crossfade" />
+                <effect type="kenburns" duration="{{ duration }}" direction="{{ loop.cycle('positive', 'negative') }}">
+                  <image filename="{{ image }}" />
+                </effect>
+              {% endfor %}
+            {% endif %}
+          </sequence>
+        </stack>
+      </body>
+    </movie>
+  {% endwith %}
+{% endblock %}

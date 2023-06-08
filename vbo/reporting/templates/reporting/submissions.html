@@ -1,0 +1,49 @@
+{% if submissions %}
+    <div class="section">
+    <div class="subtitle">Offer Submissions</div>
+    <table class="table">
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Mobile #</th>
+            <th>Zip Code</th>
+            <th>Code</th>
+            <th>Appointment</th>
+            <th>Submitted</th>
+            <th>Redeemed</th>
+        </tr>
+
+        {% for offer_id, submissions in submissions|groupby("offer.id") %}
+            <tr><th colspan="8" style="background: #CCCCCC; color: black">
+                {% with offer = submissions[0].offer %}
+                    Offer: {{ offer }} (for {{ offer.target_audience }}) at {{ offer.campaign }}
+                {% endwith %}
+            </th></tr>
+            {% for submission in submissions %}
+                <tr>
+                <td>{{ submission.name }}</td>
+                <td>{{ submission.email }}</td>
+                <td>{{ submission.mobile }}</td>
+                <td>{{ submission.zipcode }}</td>
+                <td>{{ submission.code }}</td>
+                <td>
+                    {% if submission.appointment_date %}
+                        {{ submission.appointment_date.strftime('%D') }}
+                    {% endif %}
+                </td>
+                <td>{{ submission.created_time.strftime('%D') }}</td>
+                <td>
+                    {% if submission.last_redeem_time %}
+                        {{ submission.last_redeem_time.strftime('%D') }}
+                    {% endif %}
+                </td>
+                </tr>
+            {% endfor %}
+        {% endfor %}
+        <tr>
+            <th colspan="7">Total submissions:</th>
+            <th>{{ submissions|length }}</th>
+        </tr>
+    </table>
+    </div>
+{% endif %}

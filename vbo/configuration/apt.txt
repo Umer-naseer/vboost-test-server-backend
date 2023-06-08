@@ -1,0 +1,13 @@
+# Development
+build-essential gfortran
+
+# Python components
+python-opencv python-pycurl python-gpgme
+
+# Libraries
+libatlas-base-dev python-dev cython libcurl4-gnutls-dev libjpeg-dev libevent-dev
+libgpgme11-dev libattr1-dev libxml2-dev libxslt1-dev liblzma-dev libavcodec-dev libavformat-dev
+libswscale-dev gnutls-dev libgcrypt-dev
+
+# MySQL and related
+mysql-server mysql-client libmysqlclient-dev

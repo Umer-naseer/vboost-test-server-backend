@@ -1,0 +1,10 @@
+.CodeMirror {
+    font-size: 11pt;
+}
+
+.cm-jinja2 {
+    color: #CC0000;
+    border-radius: 3px;
+    text-shadow: 1px 1px 1px #CC0000;
+}
+

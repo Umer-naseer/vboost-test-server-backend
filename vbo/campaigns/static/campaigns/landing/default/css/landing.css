@@ -1,0 +1,63 @@
+.ad-container {
+    /*width: 450px;*/
+    margin: 30px auto 0;
+    color: #fff;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.addthis_toolbox .share-title {
+    float: left;
+    margin: 0 20px 0 2;
+}
+
+.quote-list img.star {
+    width: 16px !important;
+}
+
+.quote-list span {
+    line-height: 16px !important;
+    vertical-align: middle;
+}
+
+.photo-only {
+    text-align: center;
+}
+
+.photo-only div {
+    text-align: left;
+}
+
+
+/* Photo gallery */
+
+.photo-note {
+    width: 100%;
+    margin-left: 5px;
+    margin-top: 15px;
+    line-height: 18px;
+    clear: both;
+}
+
+.photo-note img {
+    float: left;
+    margin-right: 4px;
+}
+
+#gallery-trigger {
+    cursor: pointer;
+}
+
+#photo-gallery {
+    position: relative;
+    background: #FFF;
+    padding: 20px;
+    width: auto;
+    max-width: 500px;
+    margin: 20px auto;
+}
+
+#photo-gallery img {
+    max-width: 90%;
+}
+

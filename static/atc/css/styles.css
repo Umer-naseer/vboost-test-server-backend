@@ -1,0 +1,25 @@
+/* Images table */
+
+#images td {
+    padding: 6px;
+    vertical-align: top;
+}
+
+.image {
+    border: none;
+    width: 300px;
+}
+
+.controls {
+    text-align: center;
+}
+
+.caption {
+    background: 9px;
+    text-align: center;
+    font-weight: bold;
+}
+
+#no-images {
+    text-align: center;
+}

@@ -1,0 +1,93 @@
+{% load i18n admin_static %}
+{% load thumbnail %}
+{% if result_hidden_fields %}
+<div class="hiddenfields">{# DIV for HTML validation #}
+{% for item in result_hidden_fields %}{{ item }}{% endfor %}
+</div>
+{% endif %}
+{% if results %}
+<div class="results">
+<table id="result_list">
+<thead>
+<tr>
+{% for header in result_headers %}
+<th scope="col" {{ header.class_attrib }}>
+   {% if False and header.sortable %}
+     {% if header.sort_priority > 0 %}
+       <div class="sortoptions">
+         <a class="sortremove" href="{{ header.url_remove }}" title="{% trans "Remove from sorting" %}"></a>
+         {% if num_sorted_fields > 1 %}<span class="sortpriority" title="{% blocktrans with priority_number=header.sort_priority %}Sorting priority: {{ priority_number }}{% endblocktrans %}">{{ header.sort_priority }}</span>{% endif %}
+         <a href="{{ header.url_toggle }}" class="toggle {% if header.ascending %}ascending{% else %}descending{% endif %}" title="{% trans "Toggle sorting" %}"></a>
+       </div>
+     {% endif %}
+   {% endif %}
+   <div class="text">{% if False and header.sortable %}<a href="{{ header.url_primary }}">{{ header.text|capfirst }}</a>{% else %}<span>{{ header.text|capfirst }}</span>{% endif %}</div>
+   <div class="clear"></div>
+</th>{% endfor %}
+</tr>
+</thead>
+<tbody>
+{% for result in results %}
+{% if result.form.non_field_errors %}
+    <tr><td colspan="{{ result|length }}">{{ result.form.non_field_errors }}</td></tr>
+{% endif %}
+{% if result.form.last_problem %}
+<tr><td colspan="{{ result|length }}">
+  <p class="errornote" style="padding-left:24px">{{ result.form.last_problem }}</p>
+</td></tr>
+{% endif %}
+<tr class="row1">{% for item in result %}{{ item }}{% endfor %}</tr>
+
+{% with result.form.nested as images %}
+  {% if images.non_form_errors %}
+    <tr><td colspan="{{ result|length }}">{{ images.non_form_errors }}</td></tr>
+  {% endif %}
+  <tr class="row2">
+    <td colspan="{{ result|length }}" class="package-images">
+        {{ images.management_form }}
+        {% for image in images.get_ordered_forms %}
+          <div class="package-image">
+            <div class="package-image-overlay"><div class="inner">
+              <a href="javascript:void(0)" class="package-rotate" title="Rotate image">
+                <img src="/static/images/rotate.png" alt="Rotate" />
+              </a>
+              <a href="javascript:void(0)" class="package-duplicate" title="Duplicate image">
+                <img src="/static/images/duplicate.png" alt="Duplicate" />
+              </a>
+              {% comment %}
+              {# TODO: enable this button, taking rotation in account. #}
+              <a href="/media/{{ image.instance.image }}" class="package-zoom" title="View at full size">
+                <img src="/static/images/zoom.png" alt="Zoom in" />
+              </a>
+              {% endcomment %}
+            </div></div>
+            <div class="package-image-frame"{% if image.instance.angle %} rel="rotate-{{ image.instance.angle }}"{% endif %}>
+            {% thumbnail image.instance.image "190" as thumb %}
+              {% spaceless %}
+              <img src="/media/{{ thumb }}" class="package-thumbnail" alt="" />
+              {% endspaceless %}
+            {% endthumbnail %}
+            </div>
+
+            {{ image.id }}
+            {{ image.source }}
+            {{ image.angle }}
+            {{ image.campaign }}
+            {{ image.inline_ordering_position }}
+            
+            <div class="package-buttons">
+              <label for="{{ image.is_thumbnail.auto_id }}">Thumb</label>
+                {{ image.is_thumbnail }}
+              <label for="{{ image.is_skipped.auto_id }}">Skip</label>
+                {{ image.is_skipped }}
+            </div>
+          </div>
+        {% endfor %}
+    </td>
+  </tr>
+{% endwith %}
+{% endfor %}
+</tbody>
+</table>
+</div>
+{% endif %}

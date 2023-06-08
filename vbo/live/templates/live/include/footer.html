@@ -1,0 +1,59 @@
+{% load thumbnail static %}
+
+<footer class="main-footer">
+    <div class="wrap">
+        <ul class="widgets row cf">
+            <li class="widget col-4 bunyad-about"><h3 class="widgettitle">About  </h3>
+                <div class="about-widget">
+                    <p class="logo-text">VBOOST<span class="main-color">LIVE</span></p>
+                    <p>The Automotive Viral Marketing Company</p>
+                    <div class="feedburner">
+                    </div>
+                </div>
+            </li>
+            <li class="widget col-4 popular-posts">
+                <h3 class="widgettitle">Popular Videos</h3>
+                <ul class="posts-list">
+                    {% for package in top_viewed_packages %}
+                        <li>
+                            {% thumbnail package.thumbnail.image  "75x58" crop="faces" overlay=package.company.get_stamp_path as thumb %}
+                                <a href="{{ package.get_landing_page_url }}" target="_blank"><img
+                                    src="{{ thumb.url }}"
+                                    class="attachment-post-thumbnail wp-post-image">
+                                </a>
+                            {% endthumbnail %}
+                            <div class="content">
+                                <time datetime="{{ package.last_mailed }}">{{ package.last_mailed }}</time>
+                                <a href="{{ package.get_landing_page_url }}">
+                                    {{ package.contact.name|default:"Scott Wilbers" }}
+                                </a>
+                            </div>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </li>
+            <li class="widget col-4 popular-posts">
+                <h3 class="widgettitle">Happy Customers </h3>
+                <div class="flickr-widget">
+                    {% for customer in happy_customer %}
+                        <div class="flickr_badge_image">
+                            <a href="{{ customer.get_landing_page_url }}" target="_blank">
+                                {% thumbnail customer.thumbnail.image "72x72" crop="faces" as thumb %}
+                                    <img src="{{ thumb.url }}" class="no-display appear">
+                                {% endthumbnail %}
+                            </a>
+                        </div>
+                    {% endfor %}
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div class="lower-foot">
+        <div class="wrap">
+            <div class="widgets">
+                <div class="textwidget">Copyright &copy; 2018 <a href="https://vboostlive.com/">vboostlive</a>.
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>

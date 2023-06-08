@@ -1,0 +1,33 @@
+{% extends "template.html" %}
+{% load url from future %}
+
+{% block content %}
+<h1>Roles</h1>
+
+{% if roles %}
+{% regroup roles by company as role_list %}
+
+<table>
+{% for group in role_list %}
+    <tr>
+        <th>{{ group.grouper|default:'Global' }}</th>
+    </tr>
+
+    {% for role in group.list %}
+    <tr>
+        <td><a href="{% url 'role-edit' pk=role.id %}">{{ role.name }}</a></td>
+    </tr>
+    {% endfor %}
+
+    {% if group.grouper %}
+        <tr><td><a href="{% url 'role-add' company=group.grouper.id %}">[Add a role]</a></td></tr>
+    {% elif perms.clients.admin_company %}
+        <tr><td><a href="{% url 'role-add' %}">[Add a global role]</a></td></tr>
+    {% endif %}
+{% endfor %}
+</table>
+{% else %}
+No roles available
+{% endif %}
+
+{% endblock %}

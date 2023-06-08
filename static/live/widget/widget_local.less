@@ -1,0 +1,227 @@
+div.VboostWidget {
+	* {
+		box-sizing: content-box;
+	}
+	float: none;
+	text-align: left;
+	margin-top: 20px;
+	width: 1128px;
+	margin: auto;
+	div.vboostWidgetInner {
+		h1, h2, div, img, span, a, b {
+			margin: 0;
+			padding: 0;
+			border: 0;
+			outline: 0;
+			color: black;
+			background: transparent;
+			font: inherit;
+			vertical-align: baseline;
+			text-align: left;
+		}
+		div.leftColumn {
+			width: 702px;
+			float: left;
+			padding: 0 0 20px 25px;
+			border-right: 1px solid #d9d9d9;
+			img.coverImage {
+				display: block;
+				width: 100%;
+				max-width: 702px;
+				margin-bottom: 25px;
+				&:hover {
+					opacity: 0.8;
+				}
+				will-change: opacity;
+				transition: all .4s ease-in-out;
+			}
+			h1 {
+				font: 20px/21px "Roboto Slab", Georgia, serif;
+				padding-left: 18px;
+				border-left: 3px solid #e54e53;
+			}
+			h3 {
+			    color: #e54e53;
+				background: #f9f9f9;
+				border-top: 1px solid #d9d9d9;
+				border-bottom: 1px solid #d9d9d9;
+				font: 13px/32px "Open Sans", Arial, sans-serif;
+				text-transform: uppercase;
+				padding: 0 14px;
+				margin: 25px 0 8px;
+				letter-spacing: 0;
+			}
+			div.cellContainer {
+				margin-right: -30px;
+				a.cell {
+					width: 214px;
+					height: 197px;
+					margin: 20px 30px 4px 0;
+					overflow: hidden;
+					display: inline-block;
+					text-decoration: none;
+					img {
+						display: block;
+						width: 100%;
+						height: auto;
+						transition: all .4s ease-in-out;
+						will-change: opacity;
+					}
+					div.date {
+						background: #f2f2f2;
+						font: 11px/25px "Open Sans", Arial, sans-serif;
+						color: #a6a6a6;
+						text-transform: uppercase;
+						padding-left: 14px;
+						overflow: hidden;
+						text-align: left;
+					}
+					h2 {
+						padding-left: 11px;
+						margin: 7px 0;
+						text-align: left;
+						border-left: 3px solid #e54e53;
+						color: red;
+						font: 11px/17px 'Times New Roman', Times, serif;
+						text-transform: none;
+						letter-spacing: 0;
+						span.rep {
+							color: black;
+							font: 13px/17px "Roboto Slab", Georgia, serif;
+						}
+					}
+					&:hover {
+						img {
+							opacity: 0.8;
+						}
+						span.rep {
+							text-decoration: underline;
+						}
+					}
+				}
+				div.pagination {
+					font: 14px/21px "Open Sans", Arial, sans-serif;
+					margin: 20px 0 0 -4px;
+					span {
+						padding: 0 10px;
+						margin: 0 3px;
+						border-radius: 3px;
+					}
+					span.regular {
+						color: white;
+						background: #e54e53;
+					}
+					span.link {
+						cursor: pointer;
+						color: #676767;
+						background: #ebebeb;
+						text-decoration: none;
+						&:hover {
+							color: white;
+							background: #e54e53;
+						}
+						transition: all .4s ease-in-out;
+					}
+					span.ellipsis {
+						color: black;
+						background: #ebebeb;
+					}
+				}
+			}
+		}
+		div.rightColumn {
+			float: right;
+			padding: 0 20px 20px 0;
+			width: 325px;
+			div.fiveStar {
+				font: 13px/34px "Open Sans", Arial, sans-serif;
+				text-transform: uppercase;
+				background: #19232d;
+				color: #efefef;
+				padding: 0 14px;
+				margin-bottom: 35px;
+			}
+			div.dynamicSidebar {
+				a {
+					text-decoration: none;
+					display: block;
+					margin-bottom: 16px;
+					span {
+						display: block;
+					}
+					img {
+						width: 111px;
+						float: left;
+						clear: left;
+						margin: 0 9px 8px 0;
+						will-change: opacity;
+						transition: all .4s ease-in-out;
+					}
+					span.date {
+						font: 11px/11px "Open Sans", Arial, sans-serif;
+						color: #a6a6a6;
+						text-transform: uppercase;
+						padding-top: 12px;
+					}
+					span.name {
+						font: 13px/21px "Roboto Slab", Georgia, serif;
+						color: #19232d;
+						margin-top: 8px;
+					}
+					&:first-child {
+					    margin-bottom: 10px;
+						img {
+							width: 100%;
+							margin: 0 0 15px 0;
+							float: none;
+						    display: block;
+						}
+						span.date {
+							font: 14px/14px "Open Sans", Arial, sans-serif;
+							color: #606569;
+							padding: 0;
+							text-transform: none;
+						}
+						span.name {
+							font: 14px/14px "Open Sans", Arial, sans-serif;
+							color: #606569;
+						    margin: 0;
+						}
+						span.monthly {
+							font: 16px/16px "Roboto Slab", Georgia, serif;
+							color: #19232d;
+							margin: 5px 0;
+						}
+					}
+					&:hover {
+						span.name {
+							text-decoration: underline;
+						}
+						img {
+							opacity: 0.8;
+						}
+					}
+				}
+			}
+		}
+		br {
+			clear: both;
+		}
+	}
+	div.vboostWidgetOverlay {
+		background: #ddd;
+		left: 0;
+		right: 0;
+		top: 0;
+		bottom: 0;
+		text-align: center;
+		opacity: 0.5;
+		padding-top: 40vh;
+		position: fixed;
+		z-index: 1;
+		cursor: progress;
+		img {
+			height: 20vh;
+		}
+	}
+}

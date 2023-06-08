@@ -1,0 +1,75 @@
+{% extends 'live/base.html' %}
+{% load thumbnail static %}
+{% block extrahead %} login | {% endblock %}
+{% block content %}
+
+<div class="main wrap cf">
+	<div class="row">
+		<div class="col-8 main-content">
+
+
+			<article class="post-2030 page type-page status-publish" id="post-2030">
+
+
+			<div class="post-content">
+
+				<div class="woocommerce">
+{% if form.errors %}
+
+<ul class="woocommerce-error">
+			<li style="color:#b81c23;"><strong>ERROR</strong>: Invalid username or password.</li>
+	</ul>
+{% endif %}
+
+<div id="customer_login" class="col2-set">
+
+	<div class="col-12">
+
+
+		<h2>Login</h2>
+
+		<form class="login" action="." method="POST">
+             {% csrf_token %}
+
+
+			<p class="form-row form-row-wide">
+				<label for="username">Username or email address <span class="required">*</span></label>
+				<input type="text" value="" id="username" name="username" class="input-text">
+			</p>
+			<p class="form-row form-row-wide">
+				<label for="password">Password <span class="required">*</span></label>
+				<input type="password" id="password" name="password" class="input-text">
+			</p>
+
+
+			<p class="form-row">
+				<input type="hidden" value="0f99efced4" name="_wpnonce" id="_wpnonce"><input type="hidden" value="/smart-mag/my-account/" name="_wp_http_referer">				<input type="submit" value="Login" name="login" class="button">
+				<!--<label class="inline" for="rememberme">-->
+					<!--<input type="checkbox" value="forever" id="rememberme" name="rememberme"> Remember me				</label>-->
+			</p>
+			<!--<p class="lost_password">-->
+				<!--<a href="http://theme-sphere.com/smart-mag/my-account/lost-password/">Lost your password?</a>-->
+			<!--</p>-->
+
+
+		</form>
+
+
+	</div>
+
+
+
+</div>
+
+</div>
+			</div>
+
+			</article>
+
+		</div>
+
+
+	</div> <!-- .row -->
+</div>
+{% endblock %}
+

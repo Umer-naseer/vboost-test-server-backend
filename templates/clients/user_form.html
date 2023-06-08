@@ -1,0 +1,28 @@
+{% extends "template.html" %}
+{% load url from future %}
+
+{% block content %}
+<h1>
+    {% if form.instance.id %}
+        Edit user <emph>{{ form.instance.username }}</emph>
+    {% else %}
+        Add new user
+    {% endif %}
+</h1>
+
+{% if form.errors %}
+<p class="highlight-1">Please correct the error{{ form.errors|pluralize }} below.</p>
+{% endif %}
+
+<form action="." method="POST">
+{% csrf_token %}
+{{ form.as_p }}
+<input class="button" type="submit" value="Submit">
+{% if user %}
+<a href="{% url 'user-list' %}">Cancel</a>
+{% endif %}
+</form>
+
+<a href="{% url 'user-list' %}">Back to Users</a>
+
+{% endblock %}

@@ -1,0 +1,119 @@
+{% extends "admin/base.html" %}
+
+{% load static %}
+
+{% load url from future %}
+{% load i18n %}
+
+{% block title %}{{ title }} | {% trans 'Vboost Control Panel' %}{% endblock %}
+
+{% block extrastyle %}<link rel="stylesheet" href="{{ STATIC_URL }}css/styles.css">{% endblock %}
+
+{% block branding %}
+    <div id="phonecta">
+        Call Us: (800) 954-7285
+    </div>
+    <img src="{{ STATIC_URL }}images/vboost_logo.png" border=0>
+{% endblock %}
+
+{% block nav-global %}
+<ul id="nav">
+    
+    <li><a href="{% url 'admin:index' %}">Home</a></li>
+    
+    <!--li class="divider"><img src="{{ STATIC_URL }}images/divider.gif" align="absmiddle"></li>
+    <li><a href="#TODO">Reporting</a>
+        <ul>
+            <li><a href="#TODO">Viral Metrics</a>
+                <ul>
+                    <li><a href="#TODO">Emails</a></li>
+                    <li><a href="#TODO">Views</a></li>
+                </ul>
+            </li>
+            <li><a href="#TODO">ROI</a>
+                <ul>
+                    <li><a href="#TODO">Sales</a></li>
+                    <li><a href="#TODO">Service</a></li>
+                </ul>
+            </li>
+            <li><a href="#TODO">Viral Heat Map</a></li>
+        </ul>
+    </li-->
+
+    <li class="divider"><img src="{{ STATIC_URL }}images/divider.gif" align="absmiddle"></li>
+    <li><a href="#TODO">Production</a>
+        <ul>
+            <!--li><a href="#TODO">Incoming Images (34)</a></li-->
+            <li><a href="/atc/">Thumbnail Creator</a></li>
+            <!--li><a href="#TODO">Campaigns</a></li-->
+        </ul>
+    </li>
+
+    <!--li class="divider"><img src="{{ STATIC_URL }}images/divider.gif" align="absmiddle"></li>
+    <li><a href="#TODO">Review</a>
+        <ul>
+            <li><a href="#TODO">Videos</a></li>
+            <li><a href="#TODO">Email</a></li>
+            <li><a href="#TODO">Landing Pages</a></li>
+        </ul>
+    </li-->
+
+    <li class="divider"><img src="{{ STATIC_URL }}images/divider.gif" align="absmiddle"></li>
+    <li><a href="#">Manage</a>
+        <ul>
+            <li><a href="{% url 'admin:clients_company_changelist' %}">Companies</a></li>
+            <li><a href="{% url 'admin:clients_role_changelist' %}">Roles</a></li>
+            <li><a href="{% url 'admin:clients_user_changelist' %}">Users</a></li>
+            <!--li><a href="#TODO">Security</a></li-->
+        </ul>
+    </li>
+
+
+    <!--li class="divider"><img src="{{ STATIC_URL }}images/divider.gif" align="absmiddle"></li>
+    <li><a href="#TODO">Settings</a>
+        <ul>
+            <li><a href="#TODO">System Settings</a></li>
+            <li><a href="#TODO">Custom Fields</a></li>
+            <li><a href="#TODO">System Status</a></li>
+        </ul>
+    </li>
+    
+    <li class="divider"><img src="{{ STATIC_URL }}images/divider.gif" align="absmiddle"></li>
+    <li><a href="index.cfm?page=profile">Help</a>
+    <ul>
+        <li><a href="index.cfm?page=history">FAQ</a></li>
+        <li><a href="index.cfm?page=profile">User Guide</a></li>
+        <li><a href="index.cfm?page=profile">Contact Us</a></li-->
+    </ul>
+    </li>
+</ul>
+{% endblock %}
+
+{% block footer %}
+<div id="footer">
+<a href="#TODO">Terms of Use</a> | <a href="#TODO">Privacy Policy</a> | <a href="#TODO">Vboost v1.0</a><br>
+Copyright © 2012 Vboost, Inc. All Rights Reserved.   
+<!-- 
+### LICENSE
+############
+
+This W3C-compliant, CSS-based website template has a 
+Creative Commons Attribution-Share Alike 3.0 Unported License.
+
+http://creativecommons.org/licenses/by-sa/3.0/
+
+In short, you must:
++ keep the credit links in the footer intact
++ not change the license (e.g. copywriting my work)
+
+
+### BREAKING THE LICENSE
+#########################
+
+Breaking the rules of the license will result in me initiating
+the necessary legal procedures and publicly shaming you here:
+
+http://owmx.com/hall-of-shame/
+-->
+</div>
+{% endblock %}

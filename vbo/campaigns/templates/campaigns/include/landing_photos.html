@@ -1,0 +1,53 @@
+{% load thumbnail %}
+
+<div id="photo-gallery" class="mfp-hide">
+    <h2>Photo gallery</h2>
+    {% for image in images %}
+        {% if not image.is_skipped and not image.campaign_id %}
+            {% thumbnail image.image "640x360" crop="faces" overlay=package.company.get_stamp_path as thumb %}
+                <a href="{% url 'live:download_photo' image.id %}">
+                    <img class='bordered-feature-image' src="{{ thumb.url }}" alt="" />
+                </a>
+            {% endthumbnail %}
+        {% endif %}
+    {% endfor %}
+</div>
+
+<h2>{{ campaign.photo_title|default:"&nbsp;" }}</h2>
+
+{% thumbnail thumb.image "640x360" crop="faces" overlay=package.company.get_stamp_path as thumb %}
+    <a class="bordered-feature-image" style="display: inline-block">
+        <img class='photo' src="{{ thumb.url }}" alt="" />
+    </a>
+{% endthumbnail %}
+
+
+<!-- Inline-block extra margin fix -->
+<div class="ad-container" style="margin-top: -9px; ">
+
+
+  <!-- AddThis Button BEGIN -->
+  <div class="addthis_toolbox addthis_default_style addthis_32x32_style" addthis:url="{{ package.get_landing_page_url }}photo/"></div>
+
+<!-- ShareThis BEGIN > -->
+
+<div class="sharethis-inline-share-buttons"></div>
+<!-- ShareThis END -->
+
+
+<!--    <a class="addthis_button_facebook"></a>
+    <a class="addthis_button_pinterest_pinit" pi:pinit:url="{{ package.get_landing_page_url }}photo/" pi:pinit:media="{{ photo_thumb }}"></a>
+    <a class="addthis_button_email" addthis:url="{{ package.get_landing_page_url }}photo/"></a>
+    <a class="addthis_button_compact"></a> -->
+  </div>
+  <!-- AddThis Button END -->
+</div>
+
+<style>
+	.ig-follow {
+		position: absolute;
+		display: inline-block;
+		vertical-align: middle;
+		margin: -37px 0 0 253px;
+	}
+</style>

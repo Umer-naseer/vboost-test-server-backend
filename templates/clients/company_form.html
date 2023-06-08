@@ -1,0 +1,28 @@
+{% extends "template.html" %}
+{% load url from future %}
+
+{% block content %}
+<h1>
+    {% if company %}
+        Edit company <emph>{{ company.name }}</emph>
+    {% else %}
+        Add new company
+    {% endif %}
+</h1>
+
+{% if form.has_errors %}
+<p class="highlight-1">Please correct error{{ form.errors|pluralize }}.</p>
+{% endif %}
+
+<form action="." method="POST">
+{% csrf_token %}
+{{ form.as_p }}
+<input class="button" type="submit" value="Submit">
+{% if company %}
+<a href="{% url 'company-edit' company.id %}">Cancel</a>
+{% endif %}
+</form>
+
+<a href="{% url 'company-list' %}">Back to Companies</a>
+
+{% endblock %}

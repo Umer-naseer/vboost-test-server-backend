@@ -1,0 +1,51 @@
+{% extends "admin/object_history.html" %}
+{% load i18n static %}
+
+{% block content %}
+<div id="content-main">
+<div class="module">
+
+{% if event_list %}
+    <table id="change-history">
+        <thead>
+        <tr>
+            <th scope="col">{% trans 'Date/time' %}</th>
+            {% comment %}<th scope="col">{% trans 'User' %}</th>{% endcomment %}
+            <th scope="col" style="min-width: 60px">{% trans 'Type' %}</th>
+            <th scope="col">{% trans 'Description' %}</th>
+            <th scope="col">{% trans 'IP' %}</th>
+            <th scope="col">{% trans 'User Agent' %}</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for event in event_list %}
+        <tr{% if event.type == 'error' %} class="event-error"{% endif %}>
+            <th scope="row">{{ event.time|date:"DATETIME_FORMAT" }}</th>
+            {% comment %}<td>{{ event.user.get_username }}{% if action.user.get_full_name %} ({{ action.user.get_full_name }}){% endif %}</td>{% endcomment %}
+            <td>
+                <img src="{% static "packages/events" %}/{{ event.type }}.png" alt="{{ event.type }}" title="{{ event.type_name }}" />
+                {{ event.type_code }}
+            </td>
+            <td>
+                {{ event.message }}
+                
+                {% if event.service %}
+                    <br/><strong>Service:</strong> {{ event.service }}
+                {% endif %}
+
+                {% if event.duration %}
+                    <br/><strong>Duration:</strong> {{ event.duration }} sec
+                {% endif %}
+            </td>
+            <td>{{ event.ip|default:'' }}</td>
+            <td>{{ event.user_agent|default:'' }}</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% else %}
+    <p>{% trans "This object doesn't have any events." %}</p>
+{% endif %}
+</div>
+</div>
+{% endblock %}

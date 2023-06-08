@@ -1,0 +1,16 @@
+<tr>
+    <{{ tag }} colspan="4">{{ label }}</{{ tag }}>
+    {% if show_video_views %}
+        <{{ tag }}>{{ data.views }}</{{ tag }}>
+    {% endif %}
+    {% if show_clicks %}
+        <{{ tag }}>{{ data.website }}</{{ tag }}>
+        <{{ tag }}>{{ data.review_site }}</{{ tag }}>
+        <{{ tag }}>{{ data.social_site }}</{{ tag }}>
+        <{{ tag }}>{{ data.offer_recipient }}</{{ tag }}>
+        <{{ tag }}>{{ data.offer_others }}</{{ tag }}>
+    {% endif %}
+    {% if show_approved_only %}
+        <{{ tag }}></{{ tag }}>
+    {% endif %}
+</tr>

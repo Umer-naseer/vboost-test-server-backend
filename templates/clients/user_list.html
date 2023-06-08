@@ -1,0 +1,39 @@
+{% extends "template.html" %}
+{% load url from future %}
+
+{% block content %}
+<h1>Users</h1>
+
+{% if accounts %}
+<table>
+    <tr>
+        <th>User ID</th>
+        <th>User Name</th>
+        <th>Full Name</th>
+        <th>Status</th>
+        <th>Title</th>
+        <th>Email</th>
+        <th>Phone</th>
+    </tr>
+
+    {% for account in accounts %}
+    <tr>
+        <td>{{ account.id }}</td>
+        <td><a href="{% url 'user-edit' pk=account.id %}">{{ account.username }}</a></td>
+        <td>{{ account.get_full_name }}</td>
+        <td>{{ account.active }}</td>{# TODO: Maybe denote this by an icon? #}
+        <td>{{ account.title }}</td>
+        <td>{{ account.email }}</td>
+        <td>{{ account.phone }}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% else %}
+No users available {# TODO: style this #}
+{% endif %}
+
+{# % if perms.clients.add_user % #}
+<a href="{% url 'user-add' %}">Add a new user</a>
+{# % endif % #}
+
+{% endblock %}

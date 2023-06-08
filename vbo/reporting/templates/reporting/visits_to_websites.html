@@ -1,0 +1,38 @@
+{% if totals %}
+    <style>
+        .header-group {
+            background-color: #3073C5;
+            border-color: #3073C5;
+        }
+        .header-group span {
+            text-align: center; /* This is to fix the bad behavior of style inliner */
+            width: 100%;
+            display: block;
+        }
+    </style>
+    <div class="section">
+        <div class="subtitle">Visits to Websites</div>
+
+        <table class="table">
+            <tr>
+                <th colspan="3" class="header-group"><span>Website Clicks</span></th>
+                <th colspan="2" class="header-group"><span>Offer Clicks</span></th>
+            </tr>
+            <tr>
+                <th>Website</th>
+                <th>Review Sites</th>
+                <th>Facebook</th>
+                <th>Service Offer</th>
+                <th>Shared Sales Offer</th>
+            </tr>
+            <tr>
+                <td>{{ totals.website or 0 }}</td>
+                <td>{{ totals.review_site or 0 }}</td>
+                <td>{{ totals.social_site or 0 }}</td>
+                <td>{{ totals.offer_recipient or 0 }}</td>
+                <td>{{ totals.offer_others or 0 }}</td>
+            </tr>
+        </table>
+
+    </div>
+{% endif %}

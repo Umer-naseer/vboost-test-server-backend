@@ -1,0 +1,21 @@
+<movie service="craftsman-1.0">
+  <body>
+
+    <!--
+      Stupeflix XML Editor - Default project
+    -->
+
+    <effect type="explode" duration="20">
+      <video filename="http://stupeflix-website.s3.amazonaws.com/code/nasa.mov"/>
+    </effect>
+    <transition type="move" direction="left" duration="2"/>
+    <effect type="flower" duration="20">
+      <video skip="18" filename="http://stupeflix-website.s3.amazonaws.com/code/nasa.mov"/>
+    </effect>
+    <transition type="move" direction="left" duration="2"/>
+    <effect type="slice" duration="20">
+      <video skip="36" filename="http://stupeflix-website.s3.amazonaws.com/code/nasa.mov" />
+    </effect>
+
+  </body>
+</movie>

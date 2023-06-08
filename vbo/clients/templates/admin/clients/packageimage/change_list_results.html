@@ -1,0 +1,65 @@
+{% load i18n admin_static %}
+{% load thumbnail %}
+{% if result_hidden_fields %}
+<div class="hiddenfields">{# DIV for HTML validation #}
+{% for item in result_hidden_fields %}{{ item }}{% endfor %}
+</div>
+{% endif %}
+{% if results %}
+<div class="results">
+<table id="result_list">
+
+{% comment %}
+<thead>
+<tr>
+{% for header in result_headers %}
+<th scope="col" {{ header.class_attrib }}>
+   {% if header.sortable %}
+     {% if header.sort_priority > 0 %}
+       <div class="sortoptions">
+         <a class="sortremove" href="{{ header.url_remove }}" title="{% trans "Remove from sorting" %}"></a>
+         {% if num_sorted_fields > 1 %}<span class="sortpriority" title="{% blocktrans with priority_number=header.sort_priority %}Sorting priority: {{ priority_number }}{% endblocktrans %}">{{ header.sort_priority }}</span>{% endif %}
+         <a href="{{ header.url_toggle }}" class="toggle {% if header.ascending %}ascending{% else %}descending{% endif %}" title="{% trans "Toggle sorting" %}"></a>
+       </div>
+     {% endif %}
+   {% endif %}
+   <div class="text">{% if header.sortable %}<a href="{{ header.url_primary }}">{{ header.text|capfirst }}</a>{% else %}<span>{{ header.text|capfirst }}</span>{% endif %}</div>
+   <div class="clear"></div>
+</th>{% endfor %}
+</tr>
+</thead>
+{% endcomment %}
+
+<tbody>
+<tr>
+{% for result in results %}
+  <td>
+    {% spaceless %}
+      {% thumbnail result.form.instance.absolute_path "300" as thumb %}
+        <img src="{{ thumb.url }}"
+             alt=""
+             class="package-image"
+             data-width="{{ result.form.instance.width }}"
+             data-height="{{ result.form.instance.height }}"
+             data-mask='{{ result.mask|safe }}'
+        />
+
+      {% endthumbnail %}
+    {% endspaceless %}
+    <br />
+    <label for="{{ result.form.is_skipped.auto_id }}">Skip</label>
+    {{ result.form.is_skipped }}<br/>
+    {{ result.form.x1 }}
+    {{ result.form.y1 }}
+    {{ result.form.x2 }}
+    {{ result.form.y2 }}
+  </td>
+  {% if forloop.counter|divisibleby:4 %}
+    </tr><tr>
+  {% endif %}
+{% endfor %}
+</tr>
+</tbody>
+</table>
+</div>
+{% endif %}

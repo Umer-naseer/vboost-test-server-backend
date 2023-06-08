@@ -1,0 +1,35 @@
+{% extends "template.html" %}
+{% load url from future %}
+
+{% block content %}
+<h1>Companies</h1>
+
+{% if companies %}
+<table>
+    <tr>
+        <th>CompanyID</th>
+        <th>Name</th>
+        <th>Status</th>
+        <th>Default Company Name</th>
+        <th>Default Display Name</th>
+    </tr>
+
+    {% for company in companies %}
+    <tr>
+        <td>{{ company.id }}</td>
+        <td><a href="{% url 'company-edit' pk=company.id %}">{{ company.name }}</a></td>
+        <td>{{ company.active }}</td>{# TODO: Maybe denote it by an icon? #}
+        <td>{{ company.default_company_name }}</td>
+        <td>{{ company.default_display_name }}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% else %}
+No companies available {# TODO: style this #}
+{% endif %}
+
+{% if perms.clients.add_company %}
+<a href="{% url 'company-add' %}">Add a company</a>
+{% endif %}
+
+{% endblock %}

@@ -1,0 +1,157 @@
+{% extends 'live/base.html' %}
+{% load thumbnail static %}
+
+{% block content %}
+<div class="main wrap cf">
+    <div class="row">
+        <div class="col-8 main-content">
+            <article id="post-1752" class="post-1752 post type-post status-publish format-standard has-post-thumbnail category-tidbits" itemscope="" itemtype="//schema.org/Article">
+                <header class="post-header cf">
+                    <div class="featured">
+                        <a title="{{ company }}" itemprop="image">
+                            {% if not embed %}
+                                {% thumbnail company.about_image "702" as thumb %}
+                                    <img src="{{ thumb.url }}" class="attachment-main-slider wp-post-image no-display appear" alt="" title="{{ company }}" width="702">
+                                {% endthumbnail %}
+                            {% else %}
+                                {% thumbnail cover_image.image.image "702" as thumb %}
+                                    <img src="{{ thumb.url }}" class="attachment-main-slider wp-post-image no-display appear" alt="" title="{{ company }}" width="702">
+                                {% endthumbnail %}
+                            {% endif %}
+                        </a>
+                    </div>
+                    <div class="heading cf">
+                        <h1 class="post-title item fn arial" itemprop="name headline">{{ company }}</h1>
+                    </div>
+                    {% if embed %}
+                    <br>
+                    {% else %}
+                        {% if page == '1' or page == None %}
+                        <div class="post-meta cf">
+                        {% else %}
+                        <div class="post-meta cf" style="border-color: #d9d9d9 #ffffff #ffffff">
+                        {% endif %}
+                            <span class="posted-by">
+                                <span class="reviewer" itemprop="author">
+                                    <a href="#" title="{{ company }}" rel="author">
+                                    {% filter upper %}
+                                        {{ company.address }}, {{ company.city }},
+                                        {{ company.state }} {{ company.zipcode }}
+                                    {% endfilter %}
+                                    </a>
+                                </span>
+                            </span>
+                        </div>
+                    {% endif %}
+                </header>
+                <!-- .post-header -->
+                {% if not embed %}
+                    {% if page == '1' or page == None %}
+                        <div class="post-container cf">
+                            <div class="post-content-right">
+                                <div class="post-content description " itemprop="articleBody">
+                                    <p style="font-size:14px;color:#606569;margin-top:20px;">
+                                        {{ company.get_bio_display|safe}}
+                                        {{ packages.first.campaign }}
+                                    </p>
+                                    <div class="tagcloud"></div>
+                                </div>
+                                <!-- .post-content -->
+                            </div>
+                        </div>
+                    {% endif %}
+                {% endif %}
+            </article>
+            {% if not embed %}
+                {% if page == '1' or page == None %}
+                <div class="post-share">
+                {% else %}
+                <div class="post-share" style="border-color: #ffffff #ffffff #d9d9d9">
+                {% endif %}
+                <span class="text">Social Links</span>
+                <span class="share-links">
+                    {% if company.website %}
+                        <a data-original-title="Main website" href="{{ company.website }}" target="_blank" class="fa fa-globe" style="background: #008b8b;">
+                        <span class="visuallyhidden">Main website</span></a>
+                        {% endif %}
+                        {% for link in company.links.all %}
+                        <a data-original-title="{{ link.type }}" href="{{ link.value }}" target="_blank" class="fa fa-{{ link.type }}">
+                            <span class="visuallyhidden">{{ link.type }}</span></a>
+                        {% endfor %}
+                </span>
+                </div>
+            {% endif %}
+            <style>
+                .rep {
+                    color: red;
+                    font-family: 'Times New Roman', Times, serif;
+                    font-size: 75%;
+                    margin-left: 0px;
+                    padding-left: 0px;
+                }
+                .rep_name {
+                    font-size: 90%;
+                }
+            </style>
+
+            <section class="related-posts">
+                <h3 class="section-head">Recent Happy Customers</h3>
+                <ul class="highlights-box three-col related-posts">
+                    {% for package in packages %}
+                    <li class="highlights column one-third">
+                        <article>
+                            <a target="_blank" href="{{ package.get_landing_page_url }}" title="" class="image-link">
+                        {% thumbnail package.thumbnail.image "214x140" crop="faces" overlay=package.company.get_stamp_path as thumb %}
+                            <img src="{{ thumb.url|default:"{% static 'live/img/5362055586_611f9563d8_b-351x185.jpg' %}" }}" class="image wp-post-image no-display appear" alt="{{ package.contact.name|default:"Scott Wilbers" }}" title="{{ package.contact.name|default:"Scott Wilbers" }}" height="140" width="214">
+                                            </a> {% endthumbnail %}
+                            <div class="meta" style="margin-top: 0px;">
+                                <time datetime="{{ package.last_mailed|default:'' }}">{{ package.last_mailed|default:"NOT MAILED" }}</time>
+                                <span class="comments"><i class="fa fa-comments-o"></i>
+                            {{ package.shares }}</span>
+                            </div>
+                            <h2><a href="{{ package.get_landing_page_url }}" target="_blank" title=""><span class="rep">My Sales Rep: </span><span class="rep_name">{{ package.contact.name|default:"Scott Wilbers" }}</span></a></h2>
+                        </article>
+                    </li>
+                    {% endfor %}
+                </ul>
+                {% if packages.has_other_pages %}
+                <div class="main-pagination">
+                    {% if packages.has_previous %} {% if packages.previous_page_number == 1 %}
+                    <a class="page-numbers" href="?page=1{% if embed %}&embed=1{% endif %}">1</a> {% else %}
+                    <a class="back page-numbers" href="?page={{ packages.previous_page_number }}{% if embed %}&embed=1{% endif %}"><span class="visuallyhidden">Back</span><i class="fa fa-angle-left"></i></a>
+                    <a class="page-numbers" href="?page=1{% if embed %}&embed=1{% endif %}">1</a>
+                    {% if page != '3' %}<span class="page-numbers dots">…</span>{% endif %}
+                    <a class="page-numbers" href="?page={{ packages.previous_page_number }}{% if embed %}&embed=1{% endif %}">{{ packages.previous_page_number }}</a> {% endif %} {% endif %}
+                    <span class="page-numbers current">{{ packages.number }}</span> {% if packages.has_next %} {% if packages.next_page_number == paginator.num_pages %}
+                    <a class="page-numbers" href="?page={{ packages.next_page_number }}{% if embed %}&embed=1{% endif %}">{{ packages.next_page_number }}</a> {% else %}
+                    <a class="page-numbers" href="?page={{ packages.next_page_number }}{% if embed %}&embed=1{% endif %}">{{ packages.next_page_number }}</a>
+                    {% if page != prepreend_page %}<span class="page-numbers dots">…</span>{% endif %}
+                    <a class="page-numbers" href="?page={{ paginator.num_pages }}{% if embed %}&embed=1{% endif %}">{{ paginator.num_pages }}</a>
+                    <a class="next page-numbers" href="?page={{ packages.next_page_number }}{% if embed %}&embed=1{% endif %}">
+                        <span class="visuallyhidden">Next</span><i class="fa fa-angle-right"></i></a>
+                    {% endif %} {% endif %}
+                </div>
+                {% endif %}
+            </section>
+            <div class="comments">
+                <div id="comments">
+                    <div id="respond" class="comment-respond">
+                        <h3 id="reply-title" class="comment-reply-title"> <small><a rel="nofollow" id="cancel-comment-reply-link" href="/smart-mag/mesmerizing-view-of-a-perfect-moonlit-night/#respond" style="display:none;">Cancel Reply</a></small></h3>
+                    </div>
+                    <!-- #respond -->
+                </div>
+                <!-- #comments -->
+            </div>
+        </div>
+            <aside class="col-4 sidebar">
+                <ul>
+                    {% include "live/include/right_tops.html" %}
+                </ul>
+            </aside>
+    </div>
+    <!-- .row -->
+</div>
+<!-- .main -->
+{% endblock %}
+
+

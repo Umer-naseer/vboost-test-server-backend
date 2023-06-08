@@ -1,0 +1,62 @@
+<?adf version="1.0" ?>
+<adf>
+    <prospect>
+        <id sequence="0" source="" />
+        <requestdate></requestdate>
+        <vehicle>
+            <id sequence="0" source="" />
+            <year></year>
+            <make></make>
+            <model></model>
+            <vin/>
+            <doors/>
+            <odometer status="unknown" unites="mi" />
+            <colorcombination>
+                <exteriorcolor/>
+                <interiorcolor/>
+            </colorcombination>
+            <comments/>
+        </vehicle>
+        <customer>
+            <contact>
+                <name part="first"></name>
+                <name part="last"></name>
+                <phone>{{ package.recipient_phone }}</phone>
+                <email>{{ package.recipient_email }}</email>
+                <address type="home">
+                    <city/>
+                    <postalcode/>
+                </address>
+            </contact>
+            <timeframe>
+                <description/>
+                <earliestdate></earliestdate>
+                <latestdate></latestdate>
+            </timeframe>
+            <comments></comments>
+        </customer>
+        <vendor>
+            <id sequence="0" source="VinSolutions">2184</id>
+            <vendorname></vendorname>
+            <url></url>
+            <contact>
+                <name type="business"></name>
+                <phone></phone>
+                <address type="work">
+                    <street line="0"></street>
+                    <city></city>
+                    <postalcode></postalcode>
+                </address>
+            </contact>
+        </vendor>
+        <provider>
+            <id sequence="0" source="Vinsolutions" />
+            <name>vBoost</name>
+        </provider>
+        <description>vBoost - {{ package.company.name }} - {{ package.campaign.template.get_category_display }} - {{ package.contact.name }}</description>
+        <comments>
+            <video_url>{{ package.video_url }}</video_url>
+        </comments>
+        <leadtype>Sales</leadtype>
+    </prospect>
+</adf>

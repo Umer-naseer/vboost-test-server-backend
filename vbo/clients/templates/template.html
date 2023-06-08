@@ -1,0 +1,66 @@
+{% extends "admin/base.html" %}
+{% load url from future %}
+{% load i18n static %}
+
+{% block title %}{{ title }} | {% trans 'Vboost Control Panel' %}{% endblock %}
+
+{% block extrastyle %}<link rel="stylesheet" href="{% static "css/styles.css" %}">{% endblock %}
+
+{% block branding %}
+    {% block phonecta %}
+    <div id="phonecta">
+        Call Us: (800) 954-7285
+    </div>
+    {% endblock %}
+    <img src="{% static "images/vboost_logo.png" %}" border=0>
+{% endblock %}
+
+{% block nav-global %}
+<ul id="nav">
+    
+    <li><a href="{% url 'admin:index' %}">Home</a></li>
+    
+    {% for title, items in index %}
+    <li class="divider"><img src="{{ STATIC_URL }}images/divider.gif" align="absmiddle"></li>
+    <li>
+        <a href="#">{{ title}}</a>
+        <ul>
+            {% for item in items %}
+                <li><a href="{{ item.url }}">{{ item.title}}</a></li>
+            {% endfor %}
+        </ul>
+    </li>
+    {% endfor %}
+    
+    {% block extranav %}{% endblock %}
+</ul>
+{% endblock %}
+
+{% block footer %}
+<div id="footer">
+<a href="#TODO">Terms of Use</a> | <a href="#TODO">Privacy Policy</a> | <a href="#TODO">Vboost v1.0</a><br>
+Copyright © 2012 Vboost, Inc. All Rights Reserved.   
+<!-- 
+### LICENSE
+############
+
+This W3C-compliant, CSS-based website template has a 
+Creative Commons Attribution-Share Alike 3.0 Unported License.
+
+http://creativecommons.org/licenses/by-sa/3.0/
+
+In short, you must:
++ keep the credit links in the footer intact
++ not change the license (e.g. copywriting my work)
+
+
+### BREAKING THE LICENSE
+#########################
+
+Breaking the rules of the license will result in me initiating
+the necessary legal procedures and publicly shaming you here:
+
+http://owmx.com/hall-of-shame/
+-->
+</div>
+{% endblock %}

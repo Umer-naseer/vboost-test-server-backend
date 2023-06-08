@@ -1,0 +1,151 @@
+[
+    {
+        "fields": {
+            "date_joined": "2012-09-13T21:55:29",
+            "email": "altaisoft@gmail.com",
+            "first_name": "",
+            "groups": [],
+            "is_active": true,
+            "is_staff": true,
+            "is_superuser": true,
+            "last_login": "2013-04-17T13:15:58",
+            "last_name": "",
+            "password": "pbkdf2_sha256$10000$OIDmMG1D7RH5$+GogXHrhe+GCyu3MuLY5YYIW7McRl9uIXSzL9mb5AQg=",
+            "user_permissions": [],
+            "username": "admin"
+        },
+        "model": "auth.user",
+        "pk": 1
+    },
+
+    {
+        "model": "clients.company",
+        "pk": 1,
+        "fields": {
+            "name": "Company",
+            "key": "first"
+        }
+    },
+
+    {
+        "model": "clients.company",
+        "pk": 2,
+        "fields": {
+            "name": "Another company",
+            "key": "second"
+        }
+    },
+
+    {
+        "model": "clients.campaign",
+        "pk": 1,
+        "fields": {
+            "name": "First campaign",
+            "key": "first",
+            "company": 1,
+            "lft": 0,
+            "rght": 0,
+            "tree_id": 0,
+            "level": 0,
+            "stupeflix_template": 1
+        }
+    },
+
+    {
+        "model": "clients.campaign",
+        "pk": 2,
+        "fields": {
+            "name": "Second campaign",
+            "key": "second",
+            "company": 1,
+            "lft": 0,
+            "rght": 0,
+            "tree_id": 0,
+            "level": 0
+        }
+    },
+
+    {
+        "model": "clients.contact",
+        "pk": 1,
+        "fields": {
+            "name": "A person",
+            "email": "some_person@localhost",
+            "company": 1,
+            "is_active": true,
+            "type": "manager"
+        }
+    },
+
+    {
+        "model": "clients.contact",
+        "pk": 2,
+        "fields": {
+            "name": "A default contact",
+            "email": "another_person@localhost",
+            "company": 2,
+            "is_active": true,
+            "type": "manager"
+        }
+    },
+
+    {
+        "model": "templates.template",
+        "pk": 1,
+        "fields": {
+            "last_modified": "2014-03-20 18:02:31.973001",
+            "template": "<html><body>Hello</body></html>"
+        }
+    },
+
+    {
+        "model": "reporting.reportform",
+        "pk": 1,
+        "fields": {
+            "name": "My report",
+            "title": "Title"
+        }
+    },
+
+    {
+        "model": "reporting.schedule",
+        "pk": 1,
+        "fields": {
+            "form": 1,
+            "company": 1,
+            "pattern": "daily",
+            "is_active": true
+        }
+    },
+
+    {
+        "pk": 1,
+        "model": "reporting.rawcontent",
+        "fields": {
+            "ordering": 0,
+            "text": "Hey! I am a report. So tired to show these graphs and text, huh O_O",
+            "region": "main",
+            "parent": 1
+        }
+    },
+    {
+        "pk": 1,
+        "model": "reporting.packageslist",
+        "fields": {
+            "ordering": 1,
+            "region": "main",
+            "parent": 1
+        }
+    },
+    {
+        "pk": 1,
+        "model": "reporting.report",
+        "fields": {
+            "form": 1,
+            "company": 1,
+            "date_from": "2014-03-01",
+            "date_to": "2014-03-31",
+            "date_created": "2013-04-17T13:15:58"
+        }
+    }
+]

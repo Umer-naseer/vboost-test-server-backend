@@ -1,0 +1,8 @@
+{% extends "template.html" %}
+{% block content %}
+    <h1>Widget Embed Preview for {{ object }}</h1>
+
+    {% autoescape off %}
+    {{ embed_code }}
+    {% endautoescape %}
+{% endblock %}

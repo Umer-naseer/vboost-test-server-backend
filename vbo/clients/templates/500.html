@@ -1,0 +1,13 @@
+{% extends "error.html" %}
+
+{% block content_title %}<h1>Internal error</h1>{% endblock %}
+
+{% block title %}Internal error{% endblock %}
+
+{% block content %}
+<div id="content-main">
+<p>Sorry, unexpected error has occured. Our administrators are already notified and shall do their best to solve it.</p>
+
+<p>Maybe you would like to <a href="javascript:history.back()">return back</a> or <a href="/">visit our homepage</a>.</p>
+</div>
+{% endblock %}

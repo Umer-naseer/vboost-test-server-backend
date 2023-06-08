@@ -1,0 +1,352 @@
+div.VboostWidget {
+	* {
+		box-sizing: content-box!important;
+    font-family: arial !important;
+	}
+	float: none;
+	text-align: left;
+	div.vboostWidgetInner {
+		width: 450px;
+		margin: auto;
+		padding: 15px 0;
+		h1, h2, div, img, span, a, b {
+			margin: 0;
+			padding: 0;
+			border: 0;
+			outline: 0;
+			color: black;
+			background: transparent;
+			font: inherit;
+			vertical-align: baseline;
+			text-align: left;
+		}
+		div.leftColumn {
+			width: 420px;
+			padding: 0 15px;
+			margin: auto;
+			img.coverImage {
+				display: block;
+				width: 100%;
+				max-width: 702px;
+				margin-bottom: 25px;
+				&:hover {
+					opacity: 0.8;
+				}
+				will-change: opacity;
+				transition: all .4s ease-in-out;
+			}
+			h1 {
+        font-size: 20px;
+        line-heigth: 21px;
+				padding-left: 18px;
+				border-left: 3px solid #e54e53;
+			}
+			h3 {
+			    color: #e54e53;
+				background: #f9f9f9;
+				border-top: 1px solid #d9d9d9;
+				border-bottom: 1px solid #d9d9d9;
+        font-size: 13px;
+        line-heigth: 32px;
+				text-transform: uppercase;
+				padding: 0 14px;
+				margin: 25px 0 8px;
+			}
+			div.cellContainer {
+				margin-right: -20px;
+				a.cell {
+					width: 196px;
+					margin: 10px 20px 0 0;
+					height: 180px;
+					overflow: hidden;
+					display: inline-block;
+					text-decoration: none;
+					img {
+						display: block;
+						width: 196px;
+						height: 128px;
+						transition: all .4s ease-in-out;
+						will-change: opacity;
+					}
+					div.date {
+						background: #f2f2f2;
+            font-size: 11px;
+            line-heigth: 25px;
+						color: #a6a6a6;
+						text-transform: uppercase;
+						padding-left: 14px;
+						overflow: hidden;
+						text-align: left;
+					}
+					h2 {
+						padding-left: 11px;
+						margin: 7px 0;
+						text-align: left;
+						border-left: 3px solid #e54e53;
+						color: red;
+            font-size: 10px;
+            line-heigth: 17px;
+						span {
+							color: black;
+							font-size: 11px;
+						}
+					}
+					&:hover {
+						img {
+							opacity: 0.8;
+						}
+						span.rep {
+							text-decoration: underline;
+						}
+					}
+				}
+				div.pagination {
+          font-size: 14px;
+          line-heigth: 21px;
+					margin: 8px 0 -17px -4px;
+					span {
+						padding: 0 10px;
+						margin: 0 3px;
+						border-radius: 3px;
+					}
+					span.regular {
+						color: white;
+						background: #e54e53;
+					}
+					span.link {
+						cursor: pointer;
+						color: #676767;
+						background: #ebebeb;
+						text-decoration: none;
+						&:hover {
+							color: white;
+							background: #e54e53;
+						}
+						transition: all .4s ease-in-out;
+					}
+					span.ellipsis {
+						color: black;
+						background: #ebebeb;
+					}
+				}
+			}
+		}
+		div.rightColumn {
+			width: 420px;
+			padding: 0 15px;
+			margin: auto;
+			div.fiveStar {
+        font-size: 13px;
+        line-heigth: 34px;
+				text-transform: uppercase;
+				background: #19232d;
+				color: #efefef;
+				padding: 0 14px;
+				margin-bottom: 15px;
+			}
+			div.dynamicSidebar {
+				a {
+					display: block;
+					margin-bottom: 5px;
+					text-decoration: none;
+					&:first-child {
+						margin-bottom: -5px;
+					}
+					&:last-child {
+					    margin-bottom: 17px;
+					}
+					span {
+						display: block;
+					}
+					img {
+						width: 111px;
+						float: left;
+						clear: left;
+						margin: 0 9px 8px 0;
+						will-change: opacity;
+						transition: all .4s ease-in-out;
+					}
+					span.date {
+            font-size: 11px;
+            line-heigth: 11px;
+						color: #a6a6a6;
+						text-transform: uppercase;
+						padding-top: 12px;
+					}
+					span.name {
+            font-size: 13px;
+            line-heigth: 21px;
+						color: #19232d;
+						margin-top: 8px;
+					}
+					&:first-child {
+					    margin-bottom: 10px;
+						img {
+							width: 100%;
+							margin: 0;
+							float: none;
+						}
+						span.date {
+              font-size: 14px;
+              line-heigth: 14px;
+							color: #606569;
+							padding: 0;
+							text-transform: none;
+						}
+						span.name {
+              font-size: 14px;
+              line-heigth: 14px;
+							color: #606569;
+						    margin: 0;
+						}
+						span.monthly {
+              font-size: 16px;
+              line-heigth: 16px;
+							color: #19232d;
+							margin: 5px 0;
+						}
+					}
+					&:hover {
+						span.name {
+							text-decoration: underline;
+						}
+						img {
+							opacity: 0.8;
+						}
+					}
+				}
+			}
+		}
+		br {
+			clear: both;
+		}
+	}
+	div.vboostWidgetOverlay {
+		background: #ddd;
+		left: 0;
+		right: 0;
+		top: 0;
+		bottom: 0;
+		opacity: 0.5;
+		position: fixed;
+		z-index: 1;
+		cursor: progress;
+		span {
+			display: block;
+			width: 20vmin;
+			height: 20vmin;
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			margin: -10vmin 0 0 -10vmin;
+			border: 1vmin solid #fff;
+			border-top: 1vmin solid #24B498;
+			border-radius: 100%;
+			animation: VboostWidgetRotation 1s infinite linear;
+		}
+	}
+	div.vboostWidgetClear {
+		clear: both;
+	}
+	/******************** RESPONSIVENESS ********************/
+	div.s2,
+	div.s3,
+	div.s4 {
+		div.leftColumn {
+			float: left;
+			border-right: 1px solid #d9d9d9;
+			div.cellContainer {
+				div.pagination {
+					margin: 5px 0 2px -4px;
+				}
+			}
+		}
+		div.rightColumn {
+			float: right;
+			div.dynamicSidebar a {
+				&:first-child {
+					margin-bottom: 5px;
+				}
+				&:last-child {
+				    margin-bottom: 17px;
+				}
+			}
+		}
+	}
+	div.s2 {
+		width: 700px;
+		div.leftColumn {
+			width: 413px;
+			padding: 0 20px;
+			div.cellContainer {
+				a.cell {
+					margin: 12px 20px 5px 0;
+					height: 178px;
+				}
+			}
+		}
+		div.rightColumn {
+			width: 208px;
+		}
+	}
+	div.s3 {
+		width: 900px;
+		div.leftColumn {
+			width: 628px;
+			padding: 0 15px;
+			div.cellContainer {
+				a.cell {
+					margin: 15px 20px 1px 0;
+				}
+			}
+		}
+		div.rightColumn {
+			width: 211px;
+		}
+	}
+	div.s4 {
+		width: 1128px;
+		div.leftColumn {
+			width: 702px;
+			padding: 0 25px;
+			div.cellContainer {
+				margin-right: -30px;
+				a.cell {
+					width: 214px;
+					height: 189px;;
+					margin: 9px 30px 8px 0;
+					img {
+						width: 214px;
+						height: 140px;
+					}
+					h2 {
+						font-size: 11px;
+						span {
+							font-size: 12px;
+						}
+					}
+				}
+			}
+		}
+		div.rightColumn {
+			width: 325px;
+			padding: 0 25px;
+			div.fiveStar {
+				margin-bottom: 35px;
+			}
+			div.dynamicSidebar {
+				a {
+					margin-bottom: 16px;
+				}
+			}
+		}
+	}
+}
+@keyframes VboostWidgetRotation {
+	from {
+		transform: rotate(0);
+	}
+	to {
+		transform: rotate(360deg);
+	}
+}

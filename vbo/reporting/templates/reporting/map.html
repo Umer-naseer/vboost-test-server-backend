@@ -1,0 +1,46 @@
+{% if map %}
+<style>
+    .pin {
+        height: 16px;
+    }
+
+    .map-legend {
+        width: 100%;
+        border: none;
+    }
+</style>
+<div class="section">
+    <div class="subtitle">Click Map (Within US)</div>
+    <div class="body centered">
+        <img src="{{ map }}" alt="" /><br/>
+
+        <table class="map-legend">
+            <tr>
+                <td style="width: 25%"></td>
+                <td>
+                    <img class="pin" src="https://chart.googleapis.com/chart?chst=d_map_pin_letter&chld=|A688B6|000000" alt="purple" />
+                    &nbsp; &lt; 10
+                </td>
+
+                <td>
+                    <img class="pin" src="https://chart.googleapis.com/chart?chst=d_map_pin_letter&chld=|8CA922|000000" alt="green" />
+                    &nbsp; &lt; 20
+                </td>
+
+                <td>
+                    <img class="pin" src="https://chart.googleapis.com/chart?chst=d_map_pin_letter&chld=|E6AD56|000000" alt="orange" />
+                    &nbsp; &lt; 50
+                </td>
+
+                <td>
+                    <img class="pin" src="https://chart.googleapis.com/chart?chst=d_map_pin_letter&chld=|F45951|000000" alt="red" />
+                    &nbsp; &gt; 50
+                </td>
+
+                <td style="width: 25%"></td>
+            </tr>
+        </table>
+        <br/>
+    </div>
+</div>
+{% endif %}

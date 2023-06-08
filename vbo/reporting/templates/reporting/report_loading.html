@@ -1,0 +1,50 @@
+{% load static %}
+<HTML>
+<HEAD>
+    <style type="text/css">
+        #timer {
+            font-size: 250%;
+        }
+    </style>
+    <script type="text/javascript">
+        var count = 5;
+
+        var counter = setInterval(timer, 1000); //1000 will  run it every 1 second
+
+        function timer() {
+            count = count - 1;
+            if (count <= 0) {
+                clearInterval(counter);
+                return;
+            }
+
+            document.getElementById("timer").innerHTML = count; // watch for spelling
+        }
+
+        setTimeout("location.reload()", 5000);
+    </script>
+</HEAD>
+
+
+<body>
+<P> &nbsp;
+<P> &nbsp;
+<P>
+
+<div style="text-align: center; font-weight: bold">
+    <img src="{% static "images/loading.gif" %}" />
+
+    <p>
+    {% if generating %}
+        This report is still being generated. Please wait.
+    {% else %}
+        For some reason, this report PDF file was not created before, and we have just started generating it. Please wait.
+    {% endif %}
+    </p>
+
+    <p>This page will be refreshed in
+        <div id="timer" style="text-align:center">5</div>
+        seconds...
+</div>
+</body>
+</HTML>

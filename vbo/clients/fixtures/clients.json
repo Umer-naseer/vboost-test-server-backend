@@ -1,0 +1,108 @@
+[
+    {
+        "model": "clients.company",
+        "pk": 1,
+        "fields": {
+            "name": "Company",
+            "key": "first",
+            "slug": "cool_company",
+            "keywords1": "first_keyword",
+            "keywords2": "second_keyword"
+        }
+    },
+
+    {
+        "model": "clients.company",
+        "pk": 2,
+        "fields": {
+            "name": "Another company",
+            "key": "second"
+        }
+    },
+
+    {
+        "model": "clients.campaign",
+        "pk": 1,
+        "fields": {
+            "name": "First campaign",
+            "key": "first",
+            "company": 1,
+            "lft": 0,
+            "rght": 0,
+            "tree_id": 0,
+            "level": 0,
+            "stupeflix_template": 1
+        }
+    },
+
+    {
+        "model": "clients.campaign",
+        "pk": 2,
+        "fields": {
+            "name": "Second campaign",
+            "key": "second",
+            "company": 1,
+            "lft": 0,
+            "rght": 0,
+            "tree_id": 0,
+            "level": 0
+        }
+    },
+
+    {
+        "model": "clients.contact",
+        "pk": 1,
+        "fields": {
+            "name": "A person",
+            "company": 1
+        }
+    },
+
+    {
+        "model": "clients.contact",
+        "pk": 2,
+        "fields": {
+            "name": "A default contact",
+            "company": 2
+        }
+    },
+
+    {
+        "model": "clients.package",
+        "pk": 1,
+        "fields": {
+            "company": 1,
+            "campaign": 1,
+            "contact": 1,
+            "submitted_time": "2013-09-13 12:00:00",
+            "landing_page_key": "package_key",
+            "recipient_email": "abc@abc.com"
+        }
+    },
+
+    {
+        "model": "clients.package",
+        "pk": 2,
+        "fields": {
+            "company": 1,
+            "campaign": 1,
+            "contact": 1,
+            "submitted_time": "2013-09-13 12:00:00",
+            "landing_page_key": "second",
+            "recipient_email": "abc@abc.com"
+        }
+    },
+
+    {
+        "model": "clients.package",
+        "pk": 2,
+        "fields": {
+            "company": 2,
+            "campaign": 2,
+            "contact": 2,
+            "submitted_time": "2013-09-13 12:00:00",
+            "landing_page_key": "another",
+            "recipient_email": "abc@abc.com"
+        }
+    }
+]

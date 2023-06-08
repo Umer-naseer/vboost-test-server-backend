@@ -1,0 +1,81 @@
+{% load i18n %}
+<h3>{% blocktrans with filter_title=title %} By {{ filter_title }} {% endblocktrans %}</h3>
+<style>
+    .calendarbox {
+        margin-left: -251px;
+    }
+
+    .datepick-month-header select {
+        margin: 0;
+        padding: 0;
+    }
+
+    .datepick-month th, .datepick-month th a {
+        color: #888;
+    }
+</style>
+<script type="text/javascript">
+    function submit_date_range() {
+        // Filter by date range
+        var q = String(location.search),
+
+            from = django.jQuery('#id_created_time__gte').val(),
+            to   = django.jQuery('#id_created_time__lt').val(),
+
+            gte = RegExp('(created_time__gte)=[^&]*'),
+            lt  = RegExp('(created_time__lt)=[^&]*');
+
+        if (gte.test(q)) {
+            q = q.replace(gte, '$1=' + from)
+        } else {
+            q += '&created_time__gte=' + from;
+        }
+
+        if (lt.test(q)) {
+            q = q.replace(lt, '$1=' + to)
+        } else {
+            q += '&created_time__lt=' + to;
+        }
+
+        if (q[0] == '&') {
+            q = '?' + q.substr(1);
+        }
+
+        window.location = window.location.pathname + q;
+        return false;
+    }
+
+    $(function() {
+        /*$('#calendar').datepick({
+            rangeSelect: true,
+            monthsToShow: [2, 1],
+        });*/
+        $('#id_created_time__gte,#id_created_time__lt').datepick({
+            onSelect: function(dates) {
+                if (this.id == 'id_created_time__gte') {
+                    $('#id_created_time__lt').datepick('option', 'minDate', dates[0] || null);
+                } else {
+                    $('#id_created_time__gte').datepick('option', 'maxDate', dates[0] || null);
+                }
+            },
+            dateFormat: 'yyyy-mm-dd',
+        });
+    });
+</script>
+<form method="GET" action="" onsubmit="return submit_date_range();">
+    {{ spec.form.as_p }}
+
+    <div id="calendar"></div>
+
+    <p>
+    <input type="submit" value="{% trans "Search" %}">
+    <!--input type="reset" value="{% trans "Clear" %}"-->
+    </p>
+</form>
+
+<ul>
+{% for choice in choices %}
+    <li{% if choice.selected %} class="selected"{% endif %}>
+    <a href="{{ choice.query_string|iriencode }}">{{ choice.display }}</a></li>
+{% endfor %}
+</ul>

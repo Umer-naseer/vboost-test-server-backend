@@ -1,0 +1,36 @@
+{# This template can be used both in webpages and emails. For the latter, remember to set this flag. #}
+{% if not email %}
+<script>
+  $(function() {
+    var link = $('#open-dialog');
+    
+    if (!link.attr('href')) {
+      link.magnificPopup({
+        items: [
+          {
+            src: $('#dialog'),
+            type: 'inline',
+          }
+        ],
+      });
+    }
+  });
+</script>
+{% endif %}
+
+<style>
+  .post-it {
+    text-align: center;
+  }
+  
+  .post-it img {
+    max-width: 100%;
+  }
+</style>
+
+<div class="post-it">
+  <a id="open-dialog" href="{% if offer.link_url %}{{ VBOOSTLIVE_URL }}/go/{{ package.landing_page_key }}/offer_{{ offer.target_audience }}/{% endif %}">
+    <img width="{{ offer.image.width }}" height="{{ offer.image.height }}"
+         src="{{ offer.image.url|default:'http://vboostlive.com/media/campaigns/offer/205/1358457999_post-it-note-with-a-pin.jpg' }}" alt="" />
+  </a>
+</div>

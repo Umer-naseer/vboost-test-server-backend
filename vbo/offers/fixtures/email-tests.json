@@ -1,0 +1,100 @@
+[
+    {
+        "model": "clients.company",
+        "pk": 1,
+        "fields": {
+            "name": "My Company",
+            "key": "first",
+            "keywords1": "abc",
+            "keywords2": "def",
+            "slug": "mycompany"
+        }
+    },
+    {
+        "model": "clients.campaign",
+        "pk": 1,
+        "fields": {
+            "name": "My Campaign",
+            "key": "campaign",
+            "lft": 0,
+            "rght": 0,
+            "tree_id": 0,
+            "level": 0
+        }
+    },
+    {
+        "model": "templates.template",
+        "pk": 1,
+        "fields": {
+            "name": "Offer HTML template",
+            "type": "offer",
+            "key": "offer-template",
+            "last_modified": "2013-09-13 12:00:00"
+        }
+    },
+    {
+        "model": "templates.template",
+        "pk": 2,
+        "fields": {
+            "name": "Offer email template",
+            "type": "offer-email",
+            "key": "offer-email-template",
+            "template": "<p>{{ offer.title }}</p>",
+            "last_modified": "2013-09-13 12:00:00"
+        }
+    },
+    {
+        "model": "templates.template",
+        "pk": 3,
+        "fields": {
+            "name": "Offer notification email template",
+            "type": "offer-email-notification",
+            "key": "offer-email-notification-template",
+            "template": "<p>{{ offer.title }}</p>",
+            "last_modified": "2013-09-13 12:00:00"
+        }
+    },
+    {
+        "model": "templates.template",
+        "pk": 4,
+        "fields": {
+            "name": "Redeem page template",
+            "type": "offer-redeem",
+            "key": "offer-redeem-template",
+            "template": "<p>{{ code }}</p>",
+            "last_modified": "2013-09-13 12:00:00"
+        }
+    },
+    {
+        "model": "offers.offer",
+        "pk": 1,
+        "fields": {
+            "campaign": 1,
+            "template": 1,
+            "email_template": 2,
+            "email_notification_template": 3,
+            "redeem_template": 4,
+            "title": "Your offer!",
+            "notification_emails": "altaisoft@gmail.com"
+        }
+    },
+    {
+        "model": "clients.contact",
+        "pk": 1,
+        "fields": {
+            "name": "A person",
+            "company": 1
+        }
+    },
+    {
+        "model": "clients.package",
+        "pk": 1,
+        "fields": {
+            "company": 1,
+            "campaign": 1,
+            "contact": 1,
+            "submitted_time": "2013-09-13 12:00:00",
+            "landing_page_key": "my_key"
+        }
+    }
+]

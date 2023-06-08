@@ -1,0 +1,47 @@
+{% load thumbnail static %}
+
+<!-- it's new section from index.html -->
+
+<h3 class="widgettitle">5 Star Customers</h3>
+<section class="gallery-block">
+    {% if montage_video %}
+        {% with mycustomermontage=montage_video|first %}
+            <article>
+                <a href="{{ mycustomermontage.get_video_url }}" target="_blank" class="image-link videoplayer" itemprop="url">
+                    {% thumbnail mycustomermontage.get_thumbnail_image "325x264" crop="faces" overlay=mycustomermontage.company.get_stamp_path as thumb %}
+                        <img width="325" height="264"
+                            src="{% if mycustomermontage.is_thumbnail_image_exist %}{{ thumb.url }}{% else %}/static/images/nopreview.jpg{% endif %}"
+                            class="image wp-post-image"
+                            itemprop="image"/>
+                        <span class="post-format-icon audio"><i class="fa fa-music"></i></span>
+                    {% endthumbnail %}
+                </a>
+                <div class="meta">
+                    <time datetime="{{ mycustomermontage.date|default:' ' }}">{{ mycustomermontage.date|default:"NOT MAILED" }}</time>
+                </div>
+                <h4 itemprop="name headline">Monthly Slideshow</h4>
+                <div class="excerpt">
+                    <p>{{ mycustomermontage.company }}</p>
+                </div>
+            </article>
+        {% endwith %}
+        <ul class="block posts-list thumb">  <!--class "" was removed-->
+            {% for video in montage_video|slice:'1:4' %}
+                <li>
+                    <a href="{{ video.get_video_url }}" target="_blank" class="videoplayer image-link" itemprop="url">
+                        {% thumbnail video.get_thumbnail_image "110x69" crop="faces" overlay=video.company.get_stamp_path as thumb %}
+                            <img src="{% if video.is_thumbnail_image_exist %}{{ thumb.url }}{% else %}/static/images/nopreview.jpg{% endif %}"
+                                 width="110" height="69" class="image wp-post-image" itemprop="image" />
+                        {% endthumbnail %}
+                    </a>
+                    <div class="content">
+                        <time datetime="{{ video.date|default:' ' }}">{{ video.date|default:"NOT MAILED" }}</time>
+                        <a href="{{ video.get_video_url }}" target="_blank" class="videoplayer arial">
+                            {{ video.company }}
+                        </a>
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+</section>

@@ -1,0 +1,13 @@
+{% load thumbnail %}
+
+{% if package.contact.businesscard_photo %}
+    <div class="row">
+        <div class="12u">
+            <section style="text-align: center">
+                {% thumbnail package.contact.businesscard_photo "300" as thumb %}
+                    <img src="{{ thumb.url }}" />
+                {% endthumbnail %}
+            </section>
+        </div>
+    </div>
+{% endif %}

@@ -1,0 +1,83 @@
+{% if packages %}
+    <style>
+        .header-group {
+            background-color: #3073C5;
+            border-color: #3073C5;
+        }
+        .header-group span {
+            text-align: center; /* This is to fix the bad behavior of style inliner */
+            width: 100%;
+            display: block;
+        }
+    </style>
+    <div class="section">
+        {% if blocks_count > 1 %}
+            <div class="subtitle">Videos (Top {{ packages|length }})</div>
+        {% endif %}
+        <table class="table">
+            <tr>
+                <th rowspan="2" style="width: 30%">Email/Phone</th>
+                <th rowspan="2">Sales rep</th>
+                <th rowspan="2">Mailed</th>
+                <th rowspan="2">Video link</th>
+                {% if show_video_views %}
+                    <th rowspan="2">Views</th>
+                {% endif %}
+                {% if show_clicks %}
+                    <th colspan="3" class="header-group">
+                        <span>Clicks</span>
+                    </th>
+                    <th colspan="2" class="header-group">
+                        <span>Offers</span>
+                    </th>
+                {% endif %}
+                {% if show_approved_only %}
+                    <th rowspan="2">Signature</th>
+                {% endif %}
+            </tr>
+            <tr>
+                {% if show_clicks %}
+                    <th>Website</th>
+                    <th>Reviews</th>
+                    <th>Social</th>
+
+                    <th>Recipient</th>
+                    <th>Others</th>
+                {% endif %}
+            </tr>
+            {% for package in packages %}
+                <tr>
+                    <td style="text-align: left">{{ package.target }}</td>
+                    <td>{% if package.rep.name != "Select Signature" %}{{ package.rep }}{% endif %}</td>
+                    <td>{{ package.date }}</td>
+                    <td><a href="{{ package.url }}">Preview</a></td>
+                    {% if show_video_views %}
+                        <td>{{ package.views.video }}</td>
+                    {% endif %}
+                    {% if show_clicks %}
+                        <td>{{ package.clicks.website }}</td>
+                        <td>{{ package.clicks.review_site }}</td>
+                        <td>{{ package.clicks.social_site }}</td>
+
+                        <td>{{ package.offers.recipient }}</td>
+                        <td>{{ package.offers.others }}</td>
+                    {% endif %}
+                    {% if show_approved_only %}
+                        <td>
+                            {% if package.signature %}
+                            <a href="{{ package.signature.full }}">
+                                <img src="{{ package.signature.thumb }}" />
+                            </a>
+                            {% endif %}
+                        </td>
+                    {% endif %}
+                </tr>
+            {% endfor %}
+
+            
+            {% with data=totals, tag="th", label=packages|length|string + ' packages' %}
+                {% include "totals_row.html" %}
+            {% endwith %}
+        </table>
+    </div>
+{% endif %}
