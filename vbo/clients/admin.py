@@ -44,11 +44,11 @@ class UserProxy(User):
     class Meta:
         proxy = True
 
-class UserProxyAdmin(admin.ModelAdmin):
+class UserProxyAdmin(DefaultUserAdmin):
     verbose_name = "New Admin Model"
     inlines = [UserProfileInline, TokenInline]
     list_display = ('username', 'email', 'first_name', 'last_name', 'is_active')
-    action = ("set_active", "set_deactive")
+    actions = ["set_active", "set_deactive"]
 
     def add_view(self, *args, **kwargs):
         self.inlines = []
