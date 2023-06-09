@@ -3,7 +3,7 @@ from rest_framework import routers
 from clients.api import (
     CampaignViewSet, ContactViewSet, PackageViewSet, EventViewSet,
     CompanyView, help_view,
-    PackageImageViewSet, PackageCompleteView)
+    PackageImageViewSet, PackageCompleteView, UserDeactivateView)
 from live.api import MontageView, WidgetPackageView
 
 router = routers.DefaultRouter()
@@ -18,6 +18,8 @@ router.register(r'events', EventViewSet)
 urlpatterns = patterns(
     '',
     url(r'^auth/', include('djoser.urls')),
+    url(r'^user/deactivate/$', UserDeactivateView.as_view({'post':'create'})),
+    url(r'^user/deactivate/(?P<pk>[\w_-]+)/$', UserDeactivateView.as_view({'get':'retrieve'})),
     url(r'^company/', CompanyView.as_view(), name='company'),
     url(r'^package/(?P<pk>[\d]+)/complete/$', PackageCompleteView.as_view(),
         name='packagecomplete'),

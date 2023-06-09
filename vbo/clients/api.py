@@ -14,6 +14,7 @@ from rest_framework import (
 
 from campaigns.models import CampaignType, CampaignTypeImage
 from django.conf import settings
+from django.contrib.auth.models import User
 from django.http import HttpResponse
 from django.utils import timezone
 
@@ -614,3 +615,26 @@ class EventViewSet(viewsets.ModelViewSet):
 
     def retrieve(self, request, *args, **kwargs):
         return response.Response({})
+
+
+class UserDeactivateSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = User
+        fields =  ['id', 'is_active']
+
+class UserDeactivateView(viewsets.ModelViewSet):
+    queryset = User.objects.all()
+    serializer_class = UserDeactivateSerializer
+
+    def create(self, request, *args, **kwargs):
+        data = []
+        user_id = request.data.get('id', None)
+        is_active = request.data.get('is_active', None)
+        user_data = User.objects.filter(id=user_id)
+
+        if user_data.exists() and user_id:
+            User.objects.filter(id=user_id).update(is_active=is_active)
+            data['is_active'] = user_data.first().is_active
+            return response.Response({"is_active":user_data.first().is_active})
+        return response.Response({"error": f"Please pass correct {user_data.first().is_active} -- {user_id} -- {is_active}."})
