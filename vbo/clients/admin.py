@@ -46,16 +46,23 @@ class UserProxy(User):
 
 class UserProxyAdmin(DefaultUserAdmin):
     inlines = [UserProfileInline, TokenInline]
-    list_display = ('username', 'email', 'first_name', 'last_name', 'is_active')
+    list_display = ('username', 'email', 'first_name', 'last_name', 'company', 'is_active')
     actions = ["set_active", "set_deactive"]
+    list_filter = ['is_active']
+    
+    def company(self, instance):
+        if instance.profile:
+            if instance.profile.company:
+                return instance.profile.company.name
+        return ''
 
     def add_view(self, *args, **kwargs):
         self.inlines = []
-        return super(UserProxyAdmin, self).add_view(*args, **kwargs)
+        return super(UserAdmin, self).add_view(*args, **kwargs)
 
     def change_view(self, *args, **kwargs):
         self.inlines = [UserProfileInline, TokenInline]
-        return super(UserProxyAdmin, self).change_view(*args, **kwargs)
+        return super(UserAdmin, self).change_view(*args, **kwargs)
 
     def set_active(self, request, queryset):
         for query in queryset:

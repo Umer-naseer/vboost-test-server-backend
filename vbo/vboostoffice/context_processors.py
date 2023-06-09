@@ -118,7 +118,7 @@ INDEX = (
             'url': '/clients/userproxy/',
             'perm': 'auth.change_user',
             'image': 'users.png',
-            'title': 'Testing Users',
+            'title': 'Delete My Accounts',
         },
         {
             'url': '/auth/group/',
