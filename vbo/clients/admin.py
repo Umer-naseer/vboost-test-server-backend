@@ -43,12 +43,14 @@ class UserAdmin(DefaultUserAdmin):
 class UserProxy(User):
     class Meta:
         proxy = True
+        verbose_name = 'Users'
 
 class UserProxyAdmin(DefaultUserAdmin):
     inlines = [UserProfileInline, TokenInline]
     list_display = ('username', 'email', 'first_name', 'last_name', 'company', 'is_active')
     actions = ["set_active", "set_deactive"]
     list_filter = ['is_active']
+    list_display_links = None
     
     def company(self, instance):
         if instance.profile:
@@ -69,14 +71,14 @@ class UserProxyAdmin(DefaultUserAdmin):
             query.is_active = True
             query.save()
 
-    set_active.short_description = "Set user active"
+    set_active.short_description = "Activate Selected Users"
 
     def set_deactive(self, request, queryset):
         for query in queryset:
             query.is_active = False
             query.save()
 
-    set_deactive.short_description = "Set user deactive"
+    set_deactive.short_description = "Deactivate Selected Users"
 
 
 site.unregister(User)
