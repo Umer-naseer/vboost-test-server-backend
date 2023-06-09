@@ -115,6 +115,12 @@ INDEX = (
             'title': 'Users',
         },
         {
+            'url': '/clients/userproxy/',
+            'perm': 'auth.change_user',
+            'image': 'users.png',
+            'title': 'Testing Users',
+        },
+        {
             'url': '/auth/group/',
             'perm': 'auth.change_group',
             'image': 'roles.png',
