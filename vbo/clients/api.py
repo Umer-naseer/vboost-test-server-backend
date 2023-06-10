@@ -1,26 +1,26 @@
-import json
 import base64
-import uuid
-import os.path
-import os
+import json
 import logging
 import operator
-from .models import Campaign, Company, Package, PackageImage, Contact, Event
+import os
+import os.path
+import uuid
 
-from rest_framework import (
-    serializers, viewsets, permissions, pagination,
-    generics, response, status, decorators, renderers
-)
-
-from campaigns.models import CampaignType, CampaignTypeImage
 from django.conf import settings
+from django.contrib.auth import authenticate
 from django.contrib.auth.models import User
 from django.http import HttpResponse
 from django.utils import timezone
+from rest_framework import (decorators, generics, pagination, permissions,
+                            renderers, response, serializers, status, viewsets)
+from rest_framework.authtoken.models import Token
+from rest_framework.views import APIView
 
+from campaigns.models import CampaignType, CampaignTypeImage
 from generic.utils import user_ip
-from packages.helpers import rotate_jpeg, resize_image
+from packages.helpers import resize_image, rotate_jpeg
 
+from .models import Campaign, Company, Contact, Event, Package, PackageImage
 
 
 def customSuperUserMakeDir(path):
@@ -638,3 +638,37 @@ class UserDeactivateView(viewsets.ModelViewSet):
             data['is_active'] = user_data.first().is_active
             return response.Response({"is_active":user_data.first().is_active})
         return response.Response({"error": f"Please pass correct {user_data.first().is_active} -- {user_id} -- {is_active}."})
+
+
+class CustomLoginAPIView(APIView):
+    authentication_classes = []
+    permission_classes = []
+
+    def post(self, request, format=None):
+        # Retrieve the login credentials from the request data
+        username = request.data.get('username')
+        password = request.data.get('password')
+        
+        # Perform the authentication
+        user = authenticate(username=username, password=password)
+
+        try:
+            if user is None:
+                return response.Response({'error': 'Invalid credentials'}, status=status.HTTP_401_UNAUTHORIZED)
+
+            # Check the 'is_active' flag of the user
+            is_active = user.is_active
+
+            # Generate the auth token using Djoser
+            # token = djoser_views.TokenCreateView.as_view()(request._request).data.get('auth_token')
+            token, _ = Token.objects.get_or_create(user=user)
+
+            # Create the response data
+            response_data = {
+                'auth_token': token.key,
+                'is_active': is_active,
+            }
+
+            return response.Response(response_data, status=status.HTTP_200_OK)
+        except Exception as ex:
+            return response.Response({'error': f'Invalid {username} -- {password} -- {user.username} -- {user.is_active}'}, status=status.HTTP_401_UNAUTHORIZED)
