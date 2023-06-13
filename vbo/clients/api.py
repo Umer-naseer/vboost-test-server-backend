@@ -628,16 +628,17 @@ class UserDeactivateView(viewsets.ModelViewSet):
     serializer_class = UserDeactivateSerializer
 
     def create(self, request, *args, **kwargs):
-        data = []
-        user_id = request.data.get('id', None)
-        is_active = request.data.get('is_active', None)
-        user_data = User.objects.filter(id=user_id)
+        try:
+            user_id = request.data.get('id', None)
+            is_active = request.data.get('is_active', None)
+            user_data = User.objects.filter(id=user_id)
 
-        if user_data.exists() and user_id:
-            User.objects.filter(id=user_id).update(is_active=is_active)
-            data['is_active'] = user_data.first().is_active
-            return response.Response({"is_active":user_data.first().is_active})
-        return response.Response({"error": f"Please pass correct {user_data.first().is_active} -- {user_id} -- {is_active}."})
+            if user_data.exists() and user_id:
+                User.objects.filter(id=user_id).update(is_active=is_active)
+                return response.Response({"is_active": is_active})
+            return response.Response({"error": f"Please pass correct {user_id} -- {is_active}."})
+        except Exception as e:
+            return response.Response({"error": f"Please pass correct -- {user_id} -- {is_active}."})
 
 
 class CustomLoginAPIView(APIView):
